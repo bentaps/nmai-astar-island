@@ -1,0 +1,662 @@
+[
+  {
+    "round_num": 9,
+    "round_id": "2a341ace-0f57-4309-9b89-e59fe0f09179",
+    "seed_idx": 0,
+    "score": 85.6435
+  },
+  {
+    "round_num": 9,
+    "round_id": "2a341ace-0f57-4309-9b89-e59fe0f09179",
+    "seed_idx": 1,
+    "score": 88.3028
+  },
+  {
+    "round_num": 9,
+    "round_id": "2a341ace-0f57-4309-9b89-e59fe0f09179",
+    "seed_idx": 2,
+    "score": 88.5115
+  },
+  {
+    "round_num": 9,
+    "round_id": "2a341ace-0f57-4309-9b89-e59fe0f09179",
+    "seed_idx": 3,
+    "score": 87.0758
+  },
+  {
+    "round_num": 9,
+    "round_id": "2a341ace-0f57-4309-9b89-e59fe0f09179",
+    "seed_idx": 4,
+    "score": 87.3439
+  },
+  {
+    "round_num": 11,
+    "round_id": "324fde07-1670-4202-b199-7aa92ecb40ee",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 11,
+    "round_id": "324fde07-1670-4202-b199-7aa92ecb40ee",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 11,
+    "round_id": "324fde07-1670-4202-b199-7aa92ecb40ee",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 11,
+    "round_id": "324fde07-1670-4202-b199-7aa92ecb40ee",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 11,
+    "round_id": "324fde07-1670-4202-b199-7aa92ecb40ee",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 7,
+    "round_id": "36e581f1-73f8-453f-ab98-cbe3052b701b",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 7,
+    "round_id": "36e581f1-73f8-453f-ab98-cbe3052b701b",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 7,
+    "round_id": "36e581f1-73f8-453f-ab98-cbe3052b701b",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 7,
+    "round_id": "36e581f1-73f8-453f-ab98-cbe3052b701b",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 7,
+    "round_id": "36e581f1-73f8-453f-ab98-cbe3052b701b",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 17,
+    "round_id": "3eb0c25d-28fa-48ca-b8e1-fc249e3918e9",
+    "seed_idx": 0,
+    "score": 93.0493
+  },
+  {
+    "round_num": 17,
+    "round_id": "3eb0c25d-28fa-48ca-b8e1-fc249e3918e9",
+    "seed_idx": 1,
+    "score": 91.9662
+  },
+  {
+    "round_num": 17,
+    "round_id": "3eb0c25d-28fa-48ca-b8e1-fc249e3918e9",
+    "seed_idx": 2,
+    "score": 93.0583
+  },
+  {
+    "round_num": 17,
+    "round_id": "3eb0c25d-28fa-48ca-b8e1-fc249e3918e9",
+    "seed_idx": 3,
+    "score": 93.1067
+  },
+  {
+    "round_num": 17,
+    "round_id": "3eb0c25d-28fa-48ca-b8e1-fc249e3918e9",
+    "seed_idx": 4,
+    "score": 91.9085
+  },
+  {
+    "round_num": 19,
+    "round_id": "597e60cf-d1a1-4627-ac4d-2a61da68b6df",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 19,
+    "round_id": "597e60cf-d1a1-4627-ac4d-2a61da68b6df",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 19,
+    "round_id": "597e60cf-d1a1-4627-ac4d-2a61da68b6df",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 19,
+    "round_id": "597e60cf-d1a1-4627-ac4d-2a61da68b6df",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 19,
+    "round_id": "597e60cf-d1a1-4627-ac4d-2a61da68b6df",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 1,
+    "round_id": "71451d74-be9f-471f-aacd-a41f3b68a9cd",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 1,
+    "round_id": "71451d74-be9f-471f-aacd-a41f3b68a9cd",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 1,
+    "round_id": "71451d74-be9f-471f-aacd-a41f3b68a9cd",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 1,
+    "round_id": "71451d74-be9f-471f-aacd-a41f3b68a9cd",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 1,
+    "round_id": "71451d74-be9f-471f-aacd-a41f3b68a9cd",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 10,
+    "round_id": "75e625c3-60cb-4392-af3e-c86a98bde8c2",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 10,
+    "round_id": "75e625c3-60cb-4392-af3e-c86a98bde8c2",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 10,
+    "round_id": "75e625c3-60cb-4392-af3e-c86a98bde8c2",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 10,
+    "round_id": "75e625c3-60cb-4392-af3e-c86a98bde8c2",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 10,
+    "round_id": "75e625c3-60cb-4392-af3e-c86a98bde8c2",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 2,
+    "round_id": "76909e29-f664-4b2f-b16b-61b7507277e9",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 2,
+    "round_id": "76909e29-f664-4b2f-b16b-61b7507277e9",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 2,
+    "round_id": "76909e29-f664-4b2f-b16b-61b7507277e9",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 2,
+    "round_id": "76909e29-f664-4b2f-b16b-61b7507277e9",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 2,
+    "round_id": "76909e29-f664-4b2f-b16b-61b7507277e9",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 12,
+    "round_id": "795bfb1f-54bd-4f39-a526-9868b36f7ebd",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 12,
+    "round_id": "795bfb1f-54bd-4f39-a526-9868b36f7ebd",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 12,
+    "round_id": "795bfb1f-54bd-4f39-a526-9868b36f7ebd",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 12,
+    "round_id": "795bfb1f-54bd-4f39-a526-9868b36f7ebd",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 12,
+    "round_id": "795bfb1f-54bd-4f39-a526-9868b36f7ebd",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 13,
+    "round_id": "7b4bda99-6165-4221-97cc-27880f5e6d95",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 13,
+    "round_id": "7b4bda99-6165-4221-97cc-27880f5e6d95",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 13,
+    "round_id": "7b4bda99-6165-4221-97cc-27880f5e6d95",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 13,
+    "round_id": "7b4bda99-6165-4221-97cc-27880f5e6d95",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 13,
+    "round_id": "7b4bda99-6165-4221-97cc-27880f5e6d95",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 4,
+    "round_id": "8e839974-b13b-407b-a5e7-fc749d877195",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 4,
+    "round_id": "8e839974-b13b-407b-a5e7-fc749d877195",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 4,
+    "round_id": "8e839974-b13b-407b-a5e7-fc749d877195",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 4,
+    "round_id": "8e839974-b13b-407b-a5e7-fc749d877195",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 4,
+    "round_id": "8e839974-b13b-407b-a5e7-fc749d877195",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 16,
+    "round_id": "8f664aed-8839-4c85-bed0-77a2cac7c6f5",
+    "seed_idx": 0,
+    "score": 85.9298
+  },
+  {
+    "round_num": 16,
+    "round_id": "8f664aed-8839-4c85-bed0-77a2cac7c6f5",
+    "seed_idx": 1,
+    "score": 88.7676
+  },
+  {
+    "round_num": 16,
+    "round_id": "8f664aed-8839-4c85-bed0-77a2cac7c6f5",
+    "seed_idx": 2,
+    "score": 89.3073
+  },
+  {
+    "round_num": 16,
+    "round_id": "8f664aed-8839-4c85-bed0-77a2cac7c6f5",
+    "seed_idx": 3,
+    "score": 87.8078
+  },
+  {
+    "round_num": 16,
+    "round_id": "8f664aed-8839-4c85-bed0-77a2cac7c6f5",
+    "seed_idx": 4,
+    "score": 90.0506
+  },
+  {
+    "round_num": 22,
+    "round_id": "a8be24e1-bd48-49bb-aa46-c5593da79f6f",
+    "seed_idx": 0,
+    "score": 87.2568
+  },
+  {
+    "round_num": 22,
+    "round_id": "a8be24e1-bd48-49bb-aa46-c5593da79f6f",
+    "seed_idx": 1,
+    "score": 86.8313
+  },
+  {
+    "round_num": 22,
+    "round_id": "a8be24e1-bd48-49bb-aa46-c5593da79f6f",
+    "seed_idx": 2,
+    "score": 89.4513
+  },
+  {
+    "round_num": 22,
+    "round_id": "a8be24e1-bd48-49bb-aa46-c5593da79f6f",
+    "seed_idx": 3,
+    "score": 86.8191
+  },
+  {
+    "round_num": 22,
+    "round_id": "a8be24e1-bd48-49bb-aa46-c5593da79f6f",
+    "seed_idx": 4,
+    "score": 86.6718
+  },
+  {
+    "round_num": 6,
+    "round_id": "ae78003a-4efe-425a-881a-d16a39bca0ad",
+    "seed_idx": 0,
+    "score": 42.494
+  },
+  {
+    "round_num": 6,
+    "round_id": "ae78003a-4efe-425a-881a-d16a39bca0ad",
+    "seed_idx": 1,
+    "score": 38.9164
+  },
+  {
+    "round_num": 6,
+    "round_id": "ae78003a-4efe-425a-881a-d16a39bca0ad",
+    "seed_idx": 2,
+    "score": 40.0844
+  },
+  {
+    "round_num": 6,
+    "round_id": "ae78003a-4efe-425a-881a-d16a39bca0ad",
+    "seed_idx": 3,
+    "score": 39.5157
+  },
+  {
+    "round_num": 6,
+    "round_id": "ae78003a-4efe-425a-881a-d16a39bca0ad",
+    "seed_idx": 4,
+    "score": 39.9576
+  },
+  {
+    "round_num": 18,
+    "round_id": "b0f9d1bf-4b71-4e6e-816c-19c718d29056",
+    "seed_idx": 0,
+    "score": 89.7239
+  },
+  {
+    "round_num": 18,
+    "round_id": "b0f9d1bf-4b71-4e6e-816c-19c718d29056",
+    "seed_idx": 1,
+    "score": 90.3952
+  },
+  {
+    "round_num": 18,
+    "round_id": "b0f9d1bf-4b71-4e6e-816c-19c718d29056",
+    "seed_idx": 2,
+    "score": 89.2102
+  },
+  {
+    "round_num": 18,
+    "round_id": "b0f9d1bf-4b71-4e6e-816c-19c718d29056",
+    "seed_idx": 3,
+    "score": 90.3727
+  },
+  {
+    "round_num": 18,
+    "round_id": "b0f9d1bf-4b71-4e6e-816c-19c718d29056",
+    "seed_idx": 4,
+    "score": 88.4272
+  },
+  {
+    "round_num": 21,
+    "round_id": "b3a0be6b-b48b-419d-916a-b7a77fa58c4d",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 21,
+    "round_id": "b3a0be6b-b48b-419d-916a-b7a77fa58c4d",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 21,
+    "round_id": "b3a0be6b-b48b-419d-916a-b7a77fa58c4d",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 21,
+    "round_id": "b3a0be6b-b48b-419d-916a-b7a77fa58c4d",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 21,
+    "round_id": "b3a0be6b-b48b-419d-916a-b7a77fa58c4d",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 8,
+    "round_id": "c5cdf100-a876-4fb7-b5d8-757162c97989",
+    "seed_idx": 0,
+    "score": 71.5037
+  },
+  {
+    "round_num": 8,
+    "round_id": "c5cdf100-a876-4fb7-b5d8-757162c97989",
+    "seed_idx": 1,
+    "score": 67.2615
+  },
+  {
+    "round_num": 8,
+    "round_id": "c5cdf100-a876-4fb7-b5d8-757162c97989",
+    "seed_idx": 2,
+    "score": 73.0254
+  },
+  {
+    "round_num": 8,
+    "round_id": "c5cdf100-a876-4fb7-b5d8-757162c97989",
+    "seed_idx": 3,
+    "score": 70.1817
+  },
+  {
+    "round_num": 8,
+    "round_id": "c5cdf100-a876-4fb7-b5d8-757162c97989",
+    "seed_idx": 4,
+    "score": 69.3324
+  },
+  {
+    "round_num": 15,
+    "round_id": "cc5442dd-bc5d-418b-911b-7eb960cb0390",
+    "seed_idx": 0,
+    "score": 88.7448
+  },
+  {
+    "round_num": 15,
+    "round_id": "cc5442dd-bc5d-418b-911b-7eb960cb0390",
+    "seed_idx": 1,
+    "score": 89.5131
+  },
+  {
+    "round_num": 15,
+    "round_id": "cc5442dd-bc5d-418b-911b-7eb960cb0390",
+    "seed_idx": 2,
+    "score": 89.5413
+  },
+  {
+    "round_num": 15,
+    "round_id": "cc5442dd-bc5d-418b-911b-7eb960cb0390",
+    "seed_idx": 3,
+    "score": 89.8555
+  },
+  {
+    "round_num": 15,
+    "round_id": "cc5442dd-bc5d-418b-911b-7eb960cb0390",
+    "seed_idx": 4,
+    "score": 89.3997
+  },
+  {
+    "round_num": 14,
+    "round_id": "d0a2c894-2162-4d49-86cf-435b9013f3b8",
+    "seed_idx": 0,
+    "score": 81.0591
+  },
+  {
+    "round_num": 14,
+    "round_id": "d0a2c894-2162-4d49-86cf-435b9013f3b8",
+    "seed_idx": 1,
+    "score": 81.9575
+  },
+  {
+    "round_num": 14,
+    "round_id": "d0a2c894-2162-4d49-86cf-435b9013f3b8",
+    "seed_idx": 2,
+    "score": 82.6737
+  },
+  {
+    "round_num": 14,
+    "round_id": "d0a2c894-2162-4d49-86cf-435b9013f3b8",
+    "seed_idx": 3,
+    "score": 81.1435
+  },
+  {
+    "round_num": 14,
+    "round_id": "d0a2c894-2162-4d49-86cf-435b9013f3b8",
+    "seed_idx": 4,
+    "score": 81.4351
+  },
+  {
+    "round_num": 3,
+    "round_id": "f1dac9a9-5cf1-49a9-8f17-d6cb5d5ba5cb",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 3,
+    "round_id": "f1dac9a9-5cf1-49a9-8f17-d6cb5d5ba5cb",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 3,
+    "round_id": "f1dac9a9-5cf1-49a9-8f17-d6cb5d5ba5cb",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 3,
+    "round_id": "f1dac9a9-5cf1-49a9-8f17-d6cb5d5ba5cb",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 3,
+    "round_id": "f1dac9a9-5cf1-49a9-8f17-d6cb5d5ba5cb",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 5,
+    "round_id": "fd3c92ff-3178-4dc9-8d9b-acf389b3982b",
+    "seed_idx": 0,
+    "score": null
+  },
+  {
+    "round_num": 5,
+    "round_id": "fd3c92ff-3178-4dc9-8d9b-acf389b3982b",
+    "seed_idx": 1,
+    "score": null
+  },
+  {
+    "round_num": 5,
+    "round_id": "fd3c92ff-3178-4dc9-8d9b-acf389b3982b",
+    "seed_idx": 2,
+    "score": null
+  },
+  {
+    "round_num": 5,
+    "round_id": "fd3c92ff-3178-4dc9-8d9b-acf389b3982b",
+    "seed_idx": 3,
+    "score": null
+  },
+  {
+    "round_num": 5,
+    "round_id": "fd3c92ff-3178-4dc9-8d9b-acf389b3982b",
+    "seed_idx": 4,
+    "score": null
+  },
+  {
+    "round_num": 20,
+    "round_id": "fd82f643-15e2-40e7-9866-8d8f5157081c",
+    "seed_idx": 0,
+    "score": 90.6335
+  },
+  {
+    "round_num": 20,
+    "round_id": "fd82f643-15e2-40e7-9866-8d8f5157081c",
+    "seed_idx": 1,
+    "score": 91.0476
+  },
+  {
+    "round_num": 20,
+    "round_id": "fd82f643-15e2-40e7-9866-8d8f5157081c",
+    "seed_idx": 2,
+    "score": 92.0786
+  },
+  {
+    "round_num": 20,
+    "round_id": "fd82f643-15e2-40e7-9866-8d8f5157081c",
+    "seed_idx": 3,
+    "score": 92.1898
+  },
+  {
+    "round_num": 20,
+    "round_id": "fd82f643-15e2-40e7-9866-8d8f5157081c",
+    "seed_idx": 4,
+    "score": 91.7613
+  }
+]
