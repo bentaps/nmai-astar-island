@@ -36,7 +36,7 @@ Requirements: Python 3 with `numpy`, `scipy`, `sympy`, `matplotlib`. Run the scr
 
 * Author list, affiliations, acknowledgements, AI-use statement (TODO comments in `main.tex`).
 * Reference [LP] (the Lie–Poisson manuscript): decide whether to merge, cite as companion paper, or wait for
-  it. Corollary 5.4 depends on its Theorem 9(iii)(b), which is itself computer-assisted and based on
+  it. Corollary 5.3 depends on its Theorem 9(iii)(b), which is itself computer-assisted and based on
   unpublished computations.
 * Literature check for integrable discretisations of isotropic anharmonic oscillators (Feng–Maruno 2008,
   discrete Newtonian systems in Suris 2003) and a conjugacy check of the isotropic map against them.

@@ -26,7 +26,7 @@
 
 ## 1. What the paper proves, in plain words
 
-1. **Block theorem (Theorem 3.1).** Take a group of variables that is pushed along *fixed* directions, with a
+1. **Block theorem (Theorem 3.2).** Take a group of variables that is pushed along *fixed* directions, with a
    "speed" that depends on the rest of the system. Then Kahan's method keeps a slightly rescaled copy of each
    quadratic invariant of those directions. This holds even when the directions do not commute.
    *Example:* for a particle in a round (isotropic) well, $q\mapsto$ position, $p\mapsto$ momentum, Kahan keeps
@@ -80,7 +80,7 @@
 ## 3. What a referee would most likely object to (most serious first)
 
 1. **Overlap and priority with [LP].** [LP]'s midpoint theorem covers the single-speed block theorem and the
-   commuting measure results, and our Corollary 5.4 uses its Theorem 9(iii)(b). That theorem is itself based on
+   commuting measure results, and our Corollary 5.3 uses its Theorem 9(iii)(b). That theorem is itself based on
    unpublished computations. If [LP] is yours, merge or submit together. If not, coordinate with its authors
    before submitting.
 2. **"Why these formulas?"** This was the main weakness, and it is now largely fixed: the energy and the

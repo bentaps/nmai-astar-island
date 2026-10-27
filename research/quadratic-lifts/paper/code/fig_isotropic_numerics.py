@@ -27,7 +27,8 @@ def verlet(q, p, h):
     p = p - h/2*(om**2 + q@q)*q; q = q + h*p; return q, p - h/2*(om**2 + q@q)*q
 def invariants(q, p, y, h):
     M = np.cross(q, p); Mh = M/(1 + h**2/2*Up(y)); ch = y - q@q + h**2/4*p@p
-    Eh = (p@p/2 + u2*y**2/2 + u1*y + u1**2/(2*u2) + h**2*u2/2*Mh@Mh)/(1 + h**2*u2*(q@q) + h**6*u2**2/4*Mh@Mh)
+    K = p@p/2 + u2*y**2/2 + u1*y + u1**2/(2*u2)
+    Eh = (K + h**2*u2/2*Mh@Mh)/(1 + h**2*u2*(q@q) - h**4*u2/2*K)      # Theorem 6.1(b)
     return Eh, Mh, ch
 def run_kahan(h, T):
     q, p = q0.copy(), p0.copy(); y = q@q - h**2/4*p@p   # start on the shifted sheet c_h = 0

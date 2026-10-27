@@ -1,4 +1,4 @@
-(a) h*om = 5, 10000 steps: max drift E_h 9.9e-16, M_h 1.6e-14, c_h 7.7e-14; max energy error 5.60e-02
+(a) h*om = 5, 10000 steps: max drift E_h 2.2e-16, M_h 1.6e-14, c_h 7.7e-14; max energy error 5.60e-02
 (b) Kahan h*om=5: max energy err 5.60e-02; midpoint h*om=5: 2.75e-03 (4.0 Newton iterations per step); Verlet h*om=1.5: 3.44e-01 (blow-up: False)
 (c) h*om= 0.05: Kahan 6.01e-06  midpoint 2.00e-06 (3.0 its/step)  Verlet 4.79e-04
 (c) h*om= 0.10: Kahan 2.40e-05  midpoint 8.00e-06 (3.0 its/step)  Verlet 1.92e-03

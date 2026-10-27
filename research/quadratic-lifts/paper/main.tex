@@ -239,6 +239,26 @@ fields on $\R^m$. For a function $I$ of degree at most two on $\R^m$, with Hessi
 (\T_{kl}I)(w)=L_k(w)\tr\,\nabla^2I\,L_l(w).
 \]
 
+\begin{lemma}[crossed identity]\label{lem:crossed}
+Assume~\eqref{eq:blockfield}, let $z'=\Phi_h(z)$, $w=Pz$, $w'=Pz'$, $a_k=\frac h2A_k(z)$ and
+$a_k'=\frac h2A_k(z')$. Then
+\begin{equation}\label{eq:blockstep}
+w'-\sum_ka_kL_k(w')=w+\sum_ka_k'L_k(w),
+\end{equation}
+and every polynomial $I$ of degree at most two on $\R^m$ that is a first integral of every $L_k$ satisfies
+\begin{equation}\label{eq:crossedgen}
+I(w')+\frac12\sum_{k,l}a_ka_l\,(\T_{kl}I)(w')=I(w)+\frac12\sum_{k,l}a_k'a_l'\,(\T_{kl}I)(w).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By \cref{prop:basic}(b), applied to each product in~\eqref{eq:blockfield}, the $w$-components of Kahan's
+equations read $w'-w=\frac h2\sum_k\big[A_k(z)L_k(w')+A_k(z')L_k(w)\big]$, which is~\eqref{eq:blockstep}.
+Since $I$ is quadratic, Taylor's formula is exact, and since $\nabla I\cdot L_k=0$,
+$I\big(w\pm\sum_ka_kL_k(w)\big)=I(w)+\frac12\sum_{k,l}a_ka_l(\T_{kl}I)(w)$. Applying $I$ to both sides
+of~\eqref{eq:blockstep} gives~\eqref{eq:crossedgen}.
+\end{proof}
+
 \begin{theorem}[block theorem]\label{thm:block}
 Let $V$ be a finite-dimensional space of polynomials of degree at most two on $\R^m$, each a first integral
 of every $L_k$, and assume that $\T_{kl}V\subset V$ for all $k,l$. Choose a basis $\bI=(I_1,\dots,I_d)$ of $V$
@@ -251,21 +271,10 @@ is conserved by Kahan's map wherever $\bM_h$ is invertible.
 \end{theorem}
 
 \begin{proof}
-By \cref{prop:basic}(b), applied to each product in~\eqref{eq:blockfield}, the $w$-components of Kahan's
-equations read $w'-w=\frac h2\sum_k\big[A_k(z)L_k(w')+A_k(z')L_k(w)\big]$, with $w=Pz$ and $w'=Pz'$. Put
-$a_k=\frac h2A_k(z)$ and $a_k'=\frac h2A_k(z')$. Then
-\begin{equation}\label{eq:blockstep}
-w'-\sum_ka_kL_k(w')=w+\sum_ka_k'L_k(w).
-\end{equation}
-Let $I\in V$. Since $I$ is quadratic, Taylor's formula is exact, and since $\nabla I\cdot L_k=0$,
-\[
-I\Big(w\pm\sum_ka_kL_k(w)\Big)=I(w)+\frac12\sum_{k,l}a_ka_l\,(\T_{kl}I)(w).
-\]
-Apply this to both sides of~\eqref{eq:blockstep} for each basis element. With
-$\bM(a)=\Id+\frac12\sum_{k,l}a_ka_lT_{kl}$ we obtain $\bM(a)\bI(w')=\bM(a')\bI(w)$. The matrices $\bM(a)$ and
-$\bM(a')$ are polynomials in the commuting $T_{kl}$, so they commute, and therefore
-$\bM(a')^{-1}\bI(w')=\bM(a)^{-1}\bI(w)$. Since $\bM(a)=\bM_h(z)$ and $\bM(a')=\bM_h(z')$, this is the
-claim.
+Apply \cref{lem:crossed} to each basis element. With $\bM(a)=\Id+\frac12\sum_{k,l}a_ka_lT_{kl}$ we obtain
+$\bM(a)\bI(w')=\bM(a')\bI(w)$. The matrices $\bM(a)$ and $\bM(a')$ are polynomials in the commuting $T_{kl}$,
+so they commute, and therefore $\bM(a')^{-1}\bI(w')=\bM(a)^{-1}\bI(w)$. Since $\bM(a)=\bM_h(z)$ and
+$\bM(a')=\bM_h(z')$, this is the claim.
 \end{proof}
 
 The ``speeds'' cross over in~\eqref{eq:blockstep}: the speed at the old point multiplies the new point and
@@ -323,7 +332,7 @@ $\beta=\frac14h^2\omega^2A(z)^2$, \cref{thm:block} gives
 \[
 N_h=\frac{N}{1+\beta},\qquad G_h=\frac{G}{1+\beta}+\frac{\beta N/\omega}{(1+\beta)^2}.
 \]
-The squared denominator cannot come from \cref{cor:twovar,cor:affine}: in normal-mode coordinates $G$ is not
+The squared denominator is not produced by \cref{cor:twovar,cor:affine}: in normal-mode coordinates $G$ is not
 a sum of two-variable integrals, and its Hessian does not annihilate the quadratic part.
 \end{example}
 
@@ -624,7 +633,7 @@ $M'_{ab}/Y'=M_{ab}/Y$; this is also \cref{ex:angmom}.
 
 For $E_h$, consider the block $w=(p,\tilde y)$. It moves as $\dot w=\sum_kq_k\,L_k(w)$, with the coordinates $q_k$
 as speeds and the fixed linear fields $L_k(w)=(-2u_2\tilde y\,e_k,\ 2p_k)$, and $K(w)$ is invariant under every
-$L_k$. The closure condition of \cref{thm:block} fails, but the first half of its proof still applies. With
+$L_k$. The closure condition of \cref{thm:block} fails, but \cref{lem:crossed} still applies. With
 $a=\frac h2q$ and $a'=\frac h2q'$ it gives
 $K(w')+\frac12\sum_{k,l}a_ka_l(\T_{kl}K)(w')=K(w)+\frac12\sum_{k,l}a_k'a_l'(\T_{kl}K)(w)$, and here
 $\sum_{k,l}x_kx_l(\T_{kl}K)(w)=4u_2\big(u_2\tilde y^2\lvert x\rvert^2+(x\cdot p)^2\big)
@@ -696,8 +705,8 @@ Rotations of the pair $(q,p)$ preserve the integrals, so the connected group $SO
 freely because $M\ne0$. A compact orientable surface with a free circle action is a torus, and $L/SO(2)$ is a
 circle. $\Phi_h$ commutes with the action, so it induces a homeomorphism $f$ of $L/SO(2)$. The measure
 $\dd z/P_2$ induces on $L$ the invariant density $\sigma=(\dd z/P_2)/(\dd c_h\wedge\dd M_h\wedge\dd E_h)$, which
-is smooth, positive and rotation invariant, so it descends to a smooth positive $f$-invariant density on the
-circle. Its distribution function conjugates $f$ to a rigid rotation by $\rho$. Choosing a section of the
+is smooth, nowhere zero and rotation invariant, so $\lvert\sigma\rvert$ descends to a smooth positive
+$f$-invariant density on the circle. Its distribution function conjugates $f$ to a rigid rotation by $\rho$. Choosing a section of the
 trivial principal bundle $L\to L/SO(2)$ gives coordinates $(\theta,\phi)$ in which $SO(2)$ acts by translating
 $\phi$; since $\Phi_h$ commutes with these translations, it has the stated form. For Diophantine $\rho$ the
 cohomological equation $\gamma(\theta+\rho)-\gamma(\theta)=g(\theta)-\bar g$ has a smooth solution, and
@@ -725,15 +734,15 @@ and then $s$. Hence $\lvert q\rvert^2=t+s$, $\lvert p\rvert^2$ and $y$ stay boun
 
 \begin{remark}[an $O(n)$ explicit form]\label{rem:explicit}
 Eliminating $q',p'$ from Kahan's equations leaves one scalar linear equation for $y'$. With
-$\alpha=hU'(y)$, $Y=1+\frac h2\alpha$, $a=\lvert q\rvert^2$, $b=q\cdot p$ and $c=\lvert p\rvert^2$,
+$\alpha=hU'(y)$, $Y=1+\frac h2\alpha$ and $w=q+\frac h2p$,
 \begin{gather*}
-y'=\frac{yY-h(\alpha+hu_1)(a+\frac h2b)+2hb+h^2c}{Y+h^2u_2(a+\frac h2b)},\\
+y'=\frac{yY+h\big(2p-(\alpha+hu_1)q\big)\cdot w}{Y+\kappa\,q\cdot w},\\
 q'=\frac{(1-\frac h2\alpha')q+hp}{Y},\qquad
 p'=\frac{(1-\frac h2\alpha)p-(\alpha+\alpha')q}{Y},
 \end{gather*}
 with $\alpha'=hU'(y')$. A step therefore costs $O(n)$ operations, like one St\"ormer--Verlet step, and no
 linear system has to be solved. The denominators vanish exactly where
-$\det(\Id-\frac h2F')=Y\big(Y+h^2u_2(a+\frac h2b)\big)$ does. Two further identities make the link with
+$\det(\Id-\frac h2F')=Y^{n-1}(Y+\kappa\,q\cdot w)$ does. Two further identities make the link with
 discrete Newtonian equations~\cite{Suris03}. Along an orbit $(q_k,p_k,y_k)$,
 \[
 q_k\wedge q_{k+1}=h\,M_h,\qquad q_{k+1}+q_{k-1}=\lambda_k\,q_k,\quad
@@ -856,12 +865,12 @@ St\"ormer--Verlet is unstable for $h\omega>2$.}
 
 \begin{itemize}[leftmargin=*]
 \item \emph{Exact invariants.} At $h\omega=5$ the modified invariants $E_h$, $M_h$ and $c_h$ drift by at most
-  $10^{-15}$, $1.6\times10^{-14}$ and $7.7\times10^{-14}$ over $10^4$ steps, i.e.\ by round-off. The
+  $2\times10^{-16}$, $1.6\times10^{-14}$ and $7.7\times10^{-14}$ over $10^4$ steps, i.e.\ by round-off. The
   true energy error stays bounded at $5.6\times10^{-2}$.
 \item \emph{Stability.} St\"ormer--Verlet is unstable for $h\omega>2$. The lifted Kahan map remained bounded
   for all tested step sizes up to $h\omega=10$. \Cref{prop:bounded} guarantees bounded orbits when
-  $h^4u_2E_h<2$, which for this problem is approximately $h\omega<2$ because the constant
-  $u_1^2/(2u_2)=\omega^4/4$ dominates $E_h$; beyond that the observed stability is not covered by the
+  $D(z_0)>0$. For this problem that holds for $h\omega$ below about $2$, because the constant
+  $u_1^2/(2u_2)=\omega^4/4$ dominates $K$; the observed stability beyond that is not covered by the
   proposition.
 \item \emph{Accuracy and cost.} At equal step size the energy error of the lifted Kahan map is about three times
   that of the midpoint rule for $h\omega\le1$, and it grows to $0.19$ at $h\omega=10$, where the midpoint
@@ -891,8 +900,8 @@ integrable in every dimension, with an $O(n)$ explicit form. Open problems:
   closure defect is absorbed by another conserved quantity. A general version of this mechanism, or a reduction
   theory for Kahan maps with linear symmetries, might explain the magnetic case and prove
   \cref{conj:principle}.
-\item \emph{The magnetic case.} Explain the rational integral of the magnetic isotropic map, for instance by a
-  version of \cref{thm:block} without the closure condition, and test dimensions $n\ge3$.
+\item \emph{The magnetic case.} Explain the rational integral of the magnetic isotropic map, and test
+  dimensions $n\ge3$.
 \item \emph{Explicit solutions.} The invariant tori of \cref{cor:tori} should admit a parametrisation by
   elliptic functions, as for planar Kahan maps~\cite{PSS19}.
 \item \emph{Higher order.} Modified integrals depend on $h$, so compositions of Kahan steps with different
