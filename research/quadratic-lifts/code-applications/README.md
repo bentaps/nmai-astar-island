@@ -16,7 +16,7 @@ Requirements: Python 3 with `numpy`, `scipy` and `sympy`. Run every script from 
 | Kahan–Toda: exact Liouville measure for $n=3,4,5$, not Poisson | `toda_measure.py` | 1 min |
 | Polarisation does not make constraints protected (and the lift blows up) | `polarization_nogo.py` | seconds |
 | The internal charge of a coupled $O(2)$ lattice is not protected | `o2_lattice_charge.py` | seconds |
-| Stiff rotor chain: modified energy and circles conserved; stability for $h\omega\lesssim2$, blow-up beyond | `rotor_chain.py`, `rotor_chain_scan.py`, `rotor_chain_long.py` | 1–5 min |
+| Stiff rotor chain: modified energy conserved and stable to $t=600$ for $h\omega\le2$, blow-up beyond; Störmer–Verlet comparison | `rotor_chain_scan.py`, `rotor_chain_long.py` | 1–5 min |
 
 Notes:
 

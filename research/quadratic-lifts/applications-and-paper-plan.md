@@ -141,7 +141,8 @@ The isotropic example suggests a recipe:
 
 Natural next candidates:
 
-* isotropic potentials in $\mathbb R^3$ (possibly superintegrable);
+* the $\mathbb R^3$ isotropic map, now known to be integrable: count its integrals (it may be
+    superintegrable, as the continuous system is) and find $E_h$ for general $U$;
 * lifts of the integrable Hénon–Heiles and quartic cases (with suitable auxiliary variables);
 * lifted tops with quartic Hamiltonians.
 
@@ -209,7 +210,7 @@ paper already covers inhomogeneous Nambu systems; I did not find it there.
 |---|---|---|---|
 | cubic wave equations: $\varphi^4$ / Klein–Gordon, FPU-$\beta$, nonlinear strings | $y_k=u_k^2$ or $r_k=(u_{k+1}-u_k)^2$ | every constraint, exactly (lemma); back-substitution gives a one-step method on $(u,v)$ | **useful, but no modified energy and no polynomial measure** (2-site $\varphi^4$: none up to degree 6; FPU with 2 masses: none up to degree 6) |
 | Toda lattices (exponential interactions) | $u_k=e^{q_k-q_{k+1}}$ | modified energy, exact Liouville measure, no constraints needed | **fully protected** (not integrable for $n\ge3$) |
-| rotor / XY chains, $-J\sum\cos(q_{k+1}-q_k)$, open ends | $(\sin\theta_k,\cos\theta_k)$ of the bond angles | modified energy and every circle (drift $10^{-15}$) | **fully protected**, but stable only for $h\omega\lesssim2$ when the stiffness enters through the nonlinear terms (below) |
+| rotor / XY chains, $-J\sum\cos(q_{k+1}-q_k)$, open ends | $(\sin\theta_k,\cos\theta_k)$ of the bond angles | modified energy (drift $10^{-15}$) and every modified circle | **fully protected**, but stable only for $h\omega\lesssim2$ when the stiffness enters through the nonlinear terms (below) |
 | on-site trigonometric potential plus harmonic coupling (sine-Gordon) | $(q,\sin q,\cos q)$ | circles and energy, but $s=\sin q$ is not algebraic and drifts in phase | first note: phase drift |
 | $O(n)$-symmetric coupled lattices | $y_k=\lvert u_k\rvert^2$ | constraints; the internal charge is **not** protected (drift $0.1$) | angular momentum does not survive coupling |
 | nonlinear Schrödinger | $\rho_k=\lvert\psi_k\rvert^2$ | constraints are "opposite scaling", with no partner for 2 or more sites; no density up to degree 4 | not protected |
