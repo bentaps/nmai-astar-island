@@ -7,6 +7,9 @@ constraints $y-x_ix_j$ as a modified Kahan integral so that we can back-substitu
 lifted Kahan method." Every numerical claim is reproduced by a script in
 [`code-invariants/`](code-invariants/) (see [§10](#10-reproducibility)).*
 
+*Next note: [What the Kahan-lift invariants are good for, and what to write up](applications-and-paper-plan.md)
+(a new integrable map, new measures, PDEs, why polarisation does not help, and a paper plan).*
+
 > **Main takeaway.** Kahan's method keeps an exactly conserved, slightly modified copy of every
 > quadratic invariant in a *linear space* of "protected" invariants. That space is spanned by
 > three kinds of invariant:
@@ -160,7 +163,8 @@ and let $T$ be the $r\times r$ matrix with $\mathcal TI_k=\sum_lT_{kl}I_l$.
 > fields $L_k$, let $V$ be the common quadratic invariants and
 > $\mathcal T_{kl}I=L_k^\top\nabla^2I\,L_l$. If each $\mathcal T_{kl}$ maps $V$ to itself and
 > their matrices commute, Kahan conserves
-> $\big(\mathrm{Id}+\tfrac{h^2}8\sum_{k,l}A_kA_lT_{kl}\big)^{-1}\mathbf I$.
+> $\big(\mathrm{Id}+\tfrac{h^2}8\sum_{k,l}A_kA_lT_{kl}\big)^{-1}\mathbf I$. The vector fields
+> $L_k$ themselves need **not** commute.
 
 **Proof (short, because it is the heart of the matter).** Polarisation turns $A(z)L(w)$ into
 $\tfrac12[A(z)L(w')+A(z')L(w)]$. With $a=\tfrac h2A(z)$ and $a'=\tfrac h2A(z')$, the block's
@@ -194,6 +198,7 @@ out at each end gives exact conservation.
 | generalised Suslov system $\dot x=\ell(x)\,\mathbb J_0\mathsf Hx$ in $\mathbb R^{2m}$ ($\mathbb J_0$ the standard symplectic matrix, $\mathsf H$ a constant symmetric matrix with frequencies $\omega_k$, $\ell$ linear) | $\operatorname{diag}(2\omega_k^2)$ on normal-mode actions | **each** action $I_k/(1+\tfrac14h^2\ell(x)^2\omega_k^2)$, i.e. $m$ integrals (CMMOQ 2014 had the total energy and a measure) |
 | **resonant block** $\dot u=A(\omega\mathbb Ju+v)$, $\dot v=A\,\omega\mathbb Jv$ ($u,v\in\mathbb R^2$) | a Jordan block | $N_h=\dfrac{N}{1+\beta}$, $\ G_h=\dfrac{G}{1+\beta}+\dfrac{\beta N/\omega}{(1+\beta)^2}$, with $G=u^\top\mathbb Jv$, $N=\lvert v\rvert^2$, $\beta=\tfrac14h^2A^2\omega^2$ |
 | nilpotent block $\dot w=A\,(w_2,w_3,0)$ | nilpotent | $w_2^2-2w_1w_3-\tfrac14h^2A^2w_3^2$ |
+| isotropic lift $\dot q=1\cdot p$, $\dot p=2U'(y)\cdot(-q)$ in $\mathbb R^n$: two shear fields that generate $\mathfrak{sl}(2)$ (they do **not** commute) | scalar on angular momenta ($\mathcal T_{12}M=M$, $\mathcal T_{11}=\mathcal T_{22}=0$) | every $M_{ab}=q_ap_b-q_bp_a$ divided by $1+\tfrac12h^2U'(y)$ (see the [next note](applications-and-paper-plan.md)) |
 
 **What is genuinely new here.** When the fixed flow is diagonalisable (over $\mathbb C$), every
 quadratic invariant is a combination of two-variable invariants in normal-mode coordinates. The
@@ -201,7 +206,8 @@ block theorem then reproduces CMOQ plus a change of variables, packaged in one f
 things are new:
 
 1. **Several speeds.** This is where the lemma comes from: products $y-x_ix_j$ with affine factors
-    are invariants of two *commuting* flows (see §2.1).
+    are invariants of two flows whose second-derivative operators are nilpotent (see §2.1). It also
+    gives modified angular momenta for isotropic systems, where the flows do not even commute.
 2. **Non-diagonalisable blocks.** Here invariants are protected that are neither two-variable
     combinations nor lemma-type. In the resonant example the automatic test of §7 reports
     $G=u^\top\mathbb Jv$ as "integral, NOT protected" by mechanisms A and B. Yet the block
@@ -238,9 +244,12 @@ the right must cancel: $Q_ix_j+x_iQ_j=0$. That leaves very few possibilities:
 | product, opposite scaling | $Q_i=x_iR$, $Q_j=-x_jR$ for a linear $R\ne0$ | only with a partner (it must lie in $\mathcal P$) | from the partner, e.g. §3 |
 
 "Opposite scaling" means the two factors are stretched and squeezed at the same rate, like
-$(q,p)\mapsto(e^{\tau}q,e^{-\tau}p)$, which keeps $qp$ fixed. In block-theorem language the
-scaling field $(x_i,-x_j,0)$ and the translation fields $(1,0,x_j)$, $(0,1,x_i)$ **do not
-commute**, which is exactly why the theorem cannot protect such a constraint alone.
+$(q,p)\mapsto(e^{\tau}q,e^{-\tau}p)$, which keeps $qp$ fixed. In block-theorem language the block
+$(x_i,x_j,y)$ moves along the scaling field $(x_i,-x_j,0)$ and the translation fields
+$(1,0,x_j)$, $(0,1,x_i)$. The second derivative of $c$ along the scaling field is $2x_ix_j$, which
+is **not** an invariant of the translations. Closure fails, which is why the theorem cannot
+protect such a constraint alone. (An earlier version of this note blamed non-commuting fields;
+that is not the reason, see §1.3.)
 
 *Example.* In the "mixed" lift of $H=\tfrac12(qp)^2+\tfrac12(q^2+p^2)$ with $y=qp$, the field is
 $\dot q=qy+p$, $\dot p=-py-q$, so $R=y$. The constraint is protected only because the energy is a
@@ -260,6 +269,12 @@ quadratic velocities ($\dot y=2qp$). Their constraints are then either condition
 partners, and in general neither is available. The chain closes only when derivatives stay
 inside a finite set of affine-moving functions: exponentials ($\tfrac{d}{dt}e^{q}=e^{q}\dot q$,
 with force *linear* in $e^q$) and single harmonics (§5).
+
+Rewriting products by polarisation, $x_ix_j=\tfrac12\big((x_i+x_j)^2-x_i^2-x_j^2\big)$ with
+$z=x_i+x_j$ as an extra variable, does not escape this. The square constraints are exact only if
+$x_i$, $x_j$ and $x_i+x_j$ all move affinely, which is the lemma's condition again. The protection
+test is coordinate-free, so linear recombination cannot change its verdict (details and a
+numerical demonstration in the [next note](applications-and-paper-plan.md#4-your-polarisation-idea)).
 
 ### 2.3 Triangular hierarchies: what happens beyond degree four
 
