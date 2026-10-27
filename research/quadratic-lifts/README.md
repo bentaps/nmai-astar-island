@@ -1,5 +1,11 @@
 # Quadratic lifts beyond the midpoint rule
 
+> **Folder contents.** Research notes, in order: this note; [Which lift constraints can Kahan's method
+> protect?](kahan-invariants.md); [What the Kahan-lift invariants are good for](applications-and-paper-plan.md);
+> [Dimensions, affine factors and the integrable class](dimensions-and-integrable-class.md);
+> [The Lie–Poisson draft and whether to publish](lie-poisson-draft-and-publication.md). A paper draft for
+> *Nonlinearity* built from them is in [`paper/`](paper/) ([PDF](paper/main.pdf)).
+
 *A research note on extending the multiple quadratic auxiliary variable (MQAV) method of
 B. K. Tapley, "Geometric integration of ODEs using multiple quadratic auxiliary variables",
 SIAM J. Sci. Comput. 44(4), A2651–A2668 (2022), [arXiv:2108.06548](https://arxiv.org/abs/2108.06548).

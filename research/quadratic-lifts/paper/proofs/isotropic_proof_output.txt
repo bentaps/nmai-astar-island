@@ -1,0 +1,14 @@
+[0] n=2: closed-form step satisfies Kahan's equations identically: True (1s)
+[0] n=3: closed-form step satisfies Kahan's equations identically: True (2s)
+[1] n=2: det(I - h/2 F') = (h**2*u1 + h**2*u2*y + 2)*(h**3*p1*q1*u2 + h**3*p2*q2*u2 + 2*h**2*q1**2*u2 + 2*h**2*q2**2*u2 + h**2*u1 + h**2*u2*y + 2)/4
+    c_h conserved: True (0s)
+    M_h conserved: True (0s)
+    E_h conserved: True (254s)
+    measure: P(z') det(I - h/2 F'(z)) = det(I + h/2 F'(z')) P(z): True (9s)
+[3] n=3: det(I - h/2 F') = (h**2*u1 + h**2*u2*y + 2)**2*(h**3*p1*q1*u2 + h**3*p2*q2*u2 + h**3*p3*q3*u2 + 2*h**2*q1**2*u2 + 2*h**2*q2**2*u2 + 2*h**2*q3**2*u2 + h**2*u1 + h**2*u2*y + 2)/8
+    c_h conserved: True (0s)
+    E_h conserved: True (1s)
+    measure: P(z') det(I - h/2 F'(z)) = det(I + h/2 F'(z')) P(z): True (178s)
+[4] 1/E_h(alt) = 1/E_h + h^4 u2/2 identically: True
+    Jacobian minor of (c_h, M_h, E_h) in columns (q1, p2, y) at q=(1,0), p=(0,1), y=1/3: 432*(6*u1 + 2*u2 - 3)*(27*h**6*u1**3 - 27*h**6*u1**2*u2 - 27*h**6*u1*u2**2 - 5*h**6*u2**3 - 108*h**6*u2**2 + 54*h**4*u1**2 - 180*h**4*u1*u2 - 66*h**4*u2**2 - 108*h**2*u1 - 252*h**2*u2 - 216)/((3*h**2*u1 + h**2*u2 + 6)**3*(9*h**4*u1**2 + 6*h**4*u1*u2 + h**4*u2**2 + 9*h**4*u2 - 36*h**2*u2 - 36)**2)
+    non-zero: True   (total 456s)

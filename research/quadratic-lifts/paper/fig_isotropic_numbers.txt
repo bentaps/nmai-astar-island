@@ -1,0 +1,15 @@
+(a) h*om = 5, 10000 steps: max drift E_h 9.9e-16, M_h 1.6e-14, c_h 7.7e-14; max energy error 5.60e-02
+(b) Kahan h*om=5: max energy err 5.60e-02; midpoint h*om=5: 2.75e-03 (4.0 Newton iterations per step); Verlet h*om=1.5: 3.44e-01 (blow-up: False)
+(c) h*om= 0.05: Kahan 6.01e-06  midpoint 2.00e-06 (3.0 its/step)  Verlet 4.79e-04
+(c) h*om= 0.10: Kahan 2.40e-05  midpoint 8.00e-06 (3.0 its/step)  Verlet 1.92e-03
+(c) h*om= 0.20: Kahan 9.62e-05  midpoint 3.17e-05 (3.2 its/step)  Verlet 7.65e-03
+(c) h*om= 0.50: Kahan 6.01e-04  midpoint 1.88e-04 (4.0 its/step)  Verlet 4.74e-02
+(c) h*om= 1.00: Kahan 2.40e-03  midpoint 6.40e-04 (4.0 its/step)  Verlet 1.82e-01
+(c) h*om= 1.50: Kahan 5.38e-03  midpoint 1.15e-03 (4.0 its/step)  Verlet 3.44e-01
+(c) h*om= 1.90: Kahan 1.80e-02  midpoint 5.16e-03 (4.0 its/step)  Verlet 4.05e-01
+(c) h*om= 2.50: Kahan 1.69e-02  midpoint 2.79e-03 (4.0 its/step)  Verlet unstable
+(c) h*om= 3.50: Kahan 2.84e-02  midpoint 2.51e-03 (4.0 its/step)  Verlet unstable
+(c) h*om= 5.00: Kahan 5.60e-02  midpoint 2.75e-03 (4.0 its/step)  Verlet unstable
+(c) h*om= 7.00: Kahan 1.03e-01  midpoint 2.95e-03 (4.0 its/step)  Verlet unstable
+(c) h*om=10.00: Kahan 1.85e-01  midpoint 3.07e-03 (4.0 its/step)  Verlet unstable
+wrote ../fig_isotropic.pdf

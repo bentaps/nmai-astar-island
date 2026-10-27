@@ -1,0 +1,12 @@
+(K1) q'-q = h/2 (p+p'): True
+(6.x) K'(1+k|q|^2) - k/2|q^p'|^2 = K(1+k|q'|^2) - k/2|q'^p|^2: True
+|q^p'| = (2-Y)|M_h|  and  |q'^p| = (2-Y')|M_h|: True True
+E_h(z') = E_h(z): True
+w = q' - h/2 p': True
+(R1) Y' - Y = k/2 (B - A): True
+(K2') Y w' + Y' v = (4 - Y - Y') w: True
+(R2) Y B + Y' A = (4 - Y - Y') C: True
+D = (2-Y) Y + k A,  D' = (2-Y') Y' + k B: True True
+det(I - h/2 F'(z)) = Y^(n-1) (Y + k/2 (A + C)): True
+det(I + h/2 F'(z')) = Y'^(n-1) (Y' + k/2 (B + C)): True
+2D = (4 - Y - Y')(Y + k/2 (A + C))  and  2D' = (4 - Y - Y')(Y' + k/2 (B + C)): True True
