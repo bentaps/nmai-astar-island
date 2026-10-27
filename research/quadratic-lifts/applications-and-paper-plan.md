@@ -10,6 +10,8 @@
 
 *Every claim is reproduced by a script in [`code-applications/`](code-applications/) (see §6).*
 
+*Next note: [How far does it go? Dimensions, affine factors, and the integrable class](dimensions-and-integrable-class.md).*
+
 > **Main takeaway.** Yes, the ideas produce genuinely new results:
 >
 > * a new **integrable** 5-dimensional map (Kahan's method on the quadratic lift of the isotropic
