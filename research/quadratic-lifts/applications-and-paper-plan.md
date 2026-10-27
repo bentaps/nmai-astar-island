@@ -114,15 +114,17 @@ not, as far as I know, one produced by Kahan's method on a quadratic lift.
 * **The family is integrable beyond the example.** Adding a harmonic term
     ($H=\tfrac12\lvert p\rvert^2+\tfrac12\lvert q\rvert^2+\tfrac14\lvert q\rvert^4$) and moving
     to $\mathbb R^3$ (a 7-dimensional map) both give exactly the same quadratic degree sequence
-    $4,12,25,44,68,97,132$. The anisotropic potential $(q_1^2+2q_2^2)^2$, which breaks the rotation
-    symmetry, is the control case (`isotropic_variants_degrees.py`; result in the README).
+    $4,12,25,44,68,97,132$. The control case, the anisotropic potential $(q_1^2+2q_2^2)^2$ that
+    breaks the rotation symmetry, grows exponentially ($4,16,58,208,742,>900$). So the symmetry
+    is what makes the map integrable.
 
 ### 1.2 Most lifted maps are not integrable, and the test tells them apart
 
 | Kahan map | Degrees $d_1,\dots,d_7$ | Verdict |
 |---|---|---|
 | quartic oscillator lift, 3D (calibration) | $3,9,19,33,51,73,99$ | quadratic: integrable (known) |
-| isotropic quartic lift, 5D | $4,12,25,44,68,97,132$ | quadratic: **integrable (new)** |
+| isotropic quartic lift, 5D (also with a harmonic term, and in $\mathbb R^3$, 7D) | $4,12,25,44,68,97,132$ | quadratic: **integrable (new)** |
+| anisotropic quartic $(q_1^2+2q_2^2)^2$ lift, 5D | $4,16,58,208,742,>900$ | exponential (ratio $\approx3.6$): not integrable |
 | non-symmetric quartic lift, 3D | $3,9,23,57,139,337,815$ | $d_{k+1}=2d_k+d_{k-1}+2$, growth $(1+\sqrt2)^k$: not integrable |
 | open Toda, 3 particles, $(p,u)$ variables, 5D | $3,9,23,57,139,337,815$ | not integrable, despite a measure and two integrals |
 

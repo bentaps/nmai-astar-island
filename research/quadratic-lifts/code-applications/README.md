@@ -11,7 +11,7 @@ Requirements: Python 3 with `numpy`, `scipy` and `sympy`. Run every script from 
 | New integrable map: the lifted isotropic quartic oscillator conserves $c_h$, $M_h$, $E_h$ and the measure, numerically for $h=0.3,0.5,0.9$; modified angular momenta in $\mathbb R^3$ | `isotropic_quartic.py` | 1 min |
 | The same integrals and measure are exact with $h$ symbolic | `isotropic_exact.py` | 2 min |
 | Degree growth: quartic oscillator (integrable), non-symmetric quartic, isotropic quartic (integrable), open Toda | `integrability_degrees.py` | 15 min |
-| Degree growth of isotropic variants: harmonic term, $\mathbb R^3$, anisotropic control | `isotropic_variants_degrees.py` | 10–40 min |
+| Degree growth of isotropic variants: harmonic term and $\mathbb R^3$ give $4,12,25,44,68,97,132$ (integrable); the anisotropic control gives $4,16,58,208,742,>900$ (not integrable) | `isotropic_variants_degrees.py` | 11 min |
 | Measures of multi-DOF lifted maps: isotropic quartic, Toda, random 3D Nambu systems have densities; $\varphi^4$, FPU, discrete NLS lifts do not (up to the stated degree) | `multidof_measures.py` | 6 min |
 | Kahan–Toda: exact Liouville measure for $n=3,4,5$, not Poisson | `toda_measure.py` | 1 min |
 | Polarisation does not make constraints protected (and the lift blows up) | `polarization_nogo.py` | seconds |
