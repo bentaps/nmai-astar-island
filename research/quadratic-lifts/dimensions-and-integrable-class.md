@@ -213,7 +213,7 @@ is chaotic (degrees $5,16,43,114,305,>400$).
 | $1{:}6{:}1$, lift adapted to $q_1\pm q_2$ | $5,17,37,65,101,145$ | **yes** | decoupling after a rotation |
 | $1{:}6{:}1$, diagonal lift $y_k=q_k^2$ | $5,25,113,>400$ | no | same system, wrong lift |
 | two-particle Toda; two coupled rotors | $2,4,\dots,12$; $3,9,19,33,51,73$ | **yes** | translation + 1 DOF |
-| quartic $1{:}6{:}8$ and $1{:}12{:}16$ | $5,25,113,>400$ | no | hidden quartic integral |
+| quartic $1{:}6{:}8$ and $1{:}12{:}16$ | $5,25,113,>400$ | no | hidden integral: quartic in momenta ($1{:}6{:}8$), quadratic from parabolic separation ($1{:}12{:}16$) |
 | Garnier ($\tfrac12\sum a_kq_k^2+\tfrac14\lvert q\rvert^4$, $a_1\ne a_2$) | $4,16,58,208,>400$ | no | separable in elliptic coordinates |
 | open Toda, 3 particles | $3,9,23,57,139,337$ | no | Lax pair (hidden) |
 | anisotropic $(q_1^2+2q_2^2)^2$; generic $1{:}3{:}2$ | exponential | no | not integrable |

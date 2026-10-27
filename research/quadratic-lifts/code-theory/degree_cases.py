@@ -32,7 +32,7 @@ CASES = {
     "quartic 1:0:1 (decoupled)": lambda: quartic2(0, 1),
     "quartic 1:6:1 (separable after rotation)": lambda: quartic2(6, 1),
     "quartic 1:6:8 (integrable, quartic integral)": lambda: quartic2(6, 8),
-    "quartic 1:12:16 (integrable, quartic integral)": lambda: quartic2(12, 16),
+    "quartic 1:12:16 (integrable, quadratic integral from parabolic separation)": lambda: quartic2(12, 16),
     "quartic 1:3:2 (non-integrable control)": lambda: quartic2(3, 2),
     "Garnier a=(1,2)": lambda: garnier(1, 2),
     "isotropic quartic n=4 (9D)": lambda: isotropic(4),

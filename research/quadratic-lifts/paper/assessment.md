@@ -47,7 +47,7 @@
    * a modified energy;
    * a measure.
 
-   Every regular orbit lies on an invariant 2-torus. **All of this now has short proofs by hand.** While
+   Every compact regular level set is an invariant 2-torus. **All of this now has short proofs by hand.** While
    drafting I found two arguments:
    * the modified energy follows from a "crossed" version of the block theorem plus the discrete angular
      momentum $q_k\wedge q_{k+1}=hM_h$;
@@ -56,8 +56,11 @@
    Computer algebra now serves as an independent check, with $h,u_1,u_2$ symbolic and $n=2,3$, in about 8
    minutes.
 
-   *Practical bonus:* the step has a closed form with cost $O(n)$, like Störmer–Verlet. It stays stable at
-   $h\omega=10$, where Störmer–Verlet already fails at $h\omega>2$.
+   *Practical bonus:* the step has a closed form with cost $O(n)$, like Störmer–Verlet.
+   * In the test problem it stayed stable up to $h\omega=10$, where Störmer–Verlet already fails at
+     $h\omega>2$.
+   * That stability is only *guaranteed* up to about $h\omega=2$. Beyond that, some orbits with large initial
+     data escape to infinity, so the paper now says "at moderate amplitudes".
 5. **Survey (Section 7).** Nineteen lifted maps were tested by exact degree growth.
    * Systems that are integrable through a linear symmetry plus one DOF stay integrable after lifting.
    * Systems integrable through hidden symmetries do not: three-particle Toda, Garnier, and the quartic
@@ -91,8 +94,28 @@
 4. **Novelty of the integrable map.** It may be conjugate to a known integrable map; the check has not been
    done.
 5. **The numerical gain is modest.** At equal step size the lifted Kahan map is about 3 times less accurate in
-   energy than the implicit midpoint rule. Its advantages are cost (explicit, $O(n)$), stability and exact
-   modified invariants.
+   energy than the implicit midpoint rule. Its advantages are cost (explicit, $O(n)$), stability at moderate
+   amplitudes and exact modified invariants. Stability beyond the Störmer–Verlet limit is observed, not proved,
+   and fails for some large initial data.
+
+## 3b. Independent check of the draft
+
+A separate reviewer agent re-derived and numerically tested every theorem, example and formula. Most checks
+used exact rational arithmetic, for $n=2,3,4$ and several parameter values.
+* **Confirmed correct:** the block theorem and its corollaries, the lift results, the Liouville-measure theorem,
+  the whole isotropic theorem (including each step of the new hand proofs), the bounded-orbit proposition and
+  the numbers in Section 8.
+* **Errors and overclaims it found, all fixed in the draft:**
+  * stability and tori claims needed "compact" and "at moderate amplitudes";
+  * the Kahan–Toda Poisson defect is $O(h^3)$, not $O(1)$;
+  * only one specific lift of a one-DOF quartic is a Nambu field, so Corollary 5.3 now names that lift;
+  * the $1{:}12{:}16$ quartic has an integral *quadratic* in momenta (parabolic separation), not a quartic
+    one;
+  * a missing case in Proposition 4.6 (a root at infinity);
+  * the modified circles in Theorem 5.1 hold for any mass matrix;
+  * a degree-zero condition in the tori proof;
+  * two citation details.
+* **Not re-checked:** the degree sequences of Table 1, the magnetic-case search, and the claims taken from [LP].
 
 ## 4. Where to send it
 
