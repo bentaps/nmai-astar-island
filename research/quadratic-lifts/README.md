@@ -6,6 +6,8 @@ SIAM J. Sci. Comput. 44(4), A2651–A2668 (2022), [arXiv:2108.06548](https://arx
 Every numerical claim below is reproduced by a script in [`code/`](code/); see
 [§8](#8-reproducibility).*
 
+*Follow-up note: [Which lift constraints can Kahan's method protect?](kahan-invariants.md) (a block theorem, a classification of protectable constraints, back-substitution, and new invariant measures).*
+
 > **Main takeaway.** Treat the lift as a *design choice*: if you choose the auxiliary variables
 > so that every invariant you care about is a quadratic in **two** variables (or uses only
 > variables that move **linearly**), then Kahan's method — one linear solve per step — conserves
@@ -177,7 +179,7 @@ Two integrals plus a measure in three dimensions means every orbit lies on the i
 two quadrics: the map is **integrable**. As an independent check, the orbit-based test in
 `quartic_kahan.py` finds exactly two quadratic relations, and its relation counts at degrees
 2–6 (2, 8, 19, 36, 60) match the ideal of two quadrics exactly. This fits the CMOQ mechanism (and
-may sit inside their 10-parameter integrable family). The new point is that **the MQAV lift
+may sit inside their 10-parameter integrable family; the [follow-up note](kahan-invariants.md#3-a-family-where-the-constraint-needs-a-partner-one-dof-lifts) shows that it does). The new point is that **the MQAV lift
 lands you there**.
 
 **A "projected Kahan" method on the original phase space.** Start the auxiliary variable on the
