@@ -51,24 +51,21 @@ modified invariants, Liouville measures and\\ integrable maps in every dimension
 
 \begin{abstract}
 Kahan's method discretises a quadratic vector field by a birational map that costs one linear solve per
-step and that, remarkably often, inherits invariant measures, modified integrals and even integrability.
-Quadratic lifts, i.e.\ auxiliary variables such as $y=x_ix_j$ or $u=\mathrm e^{q}$ that turn a polynomial or
-exponential vector field into a quadratic one, carry the method far beyond quadratic problems, but the lift
-constraints and the original invariants need not survive the discretisation. We determine which structures
-do survive. (i)~A \emph{block theorem}: a block of variables that moves along fixed affine flows at affine
-speeds keeps explicitly modified versions of all quadratic invariants of those flows, even when the flows do
-not commute. It contains the two-variable theorem of Celledoni, McLaren, Owren and Quispel, produces modified
-invariants with squared denominators for resonant blocks, and yields $I-\tfrac{h^2}{8}F\tr\nabla^2I\,F$ for
-every quadratic integral whose curvature lies in affinely moving variables. (ii)~Lift constraints whose
-factors move affinely are always protected, and the lifted method restricted to the invariant \emph{shifted
-sheet} is a symmetric one-step method on the original variables. (iii)~For every potential built from
-exponentials and single harmonics, with any mass matrix and in any dimension, the lifted Kahan map preserves
-the canonical Liouville measure and a modified energy. (iv)~For isotropic quartic oscillators in $\R^n$ the
-lifted Kahan map is integrable for every $n$: we give its modified energy, angular momenta and invariant
-measure in closed form, show that regular level sets are invariant 2-tori carrying skew rotations, and obtain
-an integrator of $O(n)$ cost per step that remains stable far beyond the St\"ormer--Verlet limit. Exact
-degree-growth computations indicate that integrability survives lifting when it stems from linear symmetries
-and one degree of freedom, and is lost when it rests on hidden symmetries.
+step and often inherits invariant measures, modified integrals and integrability. Quadratic lifts, i.e.\
+auxiliary variables such as $y=x_ix_j$ or $u=\mathrm e^{q}$ that make a polynomial or exponential vector field
+quadratic, carry the method beyond quadratic problems, but the lift constraints and the original invariants need
+not survive. We show which do. (i)~A \emph{block theorem}: variables that move along fixed affine flows at
+affine speeds keep modified versions of all quadratic invariants of those flows, even when the flows do not
+commute. It contains the two-variable theorem of Celledoni et al., gives invariants with
+squared denominators for resonant blocks, and gives $I-\tfrac{h^2}{8}F\tr\nabla^2I\,F$ whenever the curvature of
+$I$ lies in affinely moving variables. (ii)~Constraints with affinely moving factors are always protected, and
+on the invariant \emph{shifted sheet} the lifted method is a symmetric one-step method on the original
+variables. (iii)~For potentials built from exponentials and single harmonics, with any mass matrix, the lifted
+map preserves the Liouville measure and a modified energy. (iv)~For isotropic quartic oscillators in $\R^n$ the
+lifted map is integrable for every $n$: we give its modified energy, angular momenta and measure in closed form
+with elementary proofs, show that regular level sets are invariant tori, and obtain an integrator of $O(n)$ cost
+per step, stable far beyond the St\"ormer--Verlet limit. Degree-growth computations suggest that
+integrability survives lifting when it stems from linear symmetries and one degree of freedom.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Kahan's method, Hirota--Kimura discretisation, quadratic lifts, auxiliary
@@ -310,10 +307,10 @@ is a modified integral.
 
 \begin{proof}
 Write $S=R\tr\Lambda R$ with $R$ of full row rank and $\Lambda$ symmetric and invertible, and let $\phi=Rz$
-and $\eta=s\tr z$. Since $RQ=0$, $\dot\phi=\alpha(z)$ with $\alpha$ affine, and $\nabla I\cdot F=0$ gives
-$\dot\eta=-\phi\tr\Lambda\alpha(z)$. The block $w=(\phi,\eta)$ therefore moves as
+and $\chi=s\tr z$. Since $RQ=0$, $\dot\phi=\alpha(z)$ with $\alpha$ affine, and $\nabla I\cdot F=0$ gives
+$\dot\chi=-\phi\tr\Lambda\alpha(z)$. The block $w=(\phi,\chi)$ therefore moves as
 $\dot w=\sum_j\alpha_j(z)L_j(w)$ with $L_j(w)=(e_j,-(\Lambda\phi)_j)$. The function
-$\tilde I(w)=\frac12\phi\tr\Lambda\phi+\eta$ equals $I$, is invariant under every $L_j$, and satisfies
+$\tilde I(w)=\frac12\phi\tr\Lambda\phi+\chi$ equals $I$, is invariant under every $L_j$, and satisfies
 $\T_{jk}\tilde I=\Lambda_{jk}$ and $\T_{jk}1=0$. All $T_{jk}$ are multiples of one nilpotent matrix, so
 \cref{thm:block} applies and gives $I_h=I-\frac{h^2}8\alpha\tr\Lambda\alpha=I-\frac{h^2}8F\tr SF$.
 \end{proof}
@@ -631,7 +628,8 @@ $O(n)$-equivariant (\cref{prop:basic}(c)).
 (b) $c_h$ is \cref{thm:affine-constraints}. Since $q'\wedge p'=\det N\,q\wedge p$, we get
 $M'_{ab}/Y'=M_{ab}/Y$; this is also \cref{ex:angmom}.
 
-For $E_h$, consider the block $w=(p,\tilde y)$. It moves as $\dot w=\sum_kq_k\,L_k(w)$, with the coordinates $q_k$
+For $E_h$ we may take $u_1=0$, so that $\tilde y=y$, by the remark before the proof. Consider the block
+$w=(p,\tilde y)$. It moves as $\dot w=\sum_kq_k\,L_k(w)$, with the coordinates $q_k$
 as speeds and the fixed linear fields $L_k(w)=(-2u_2\tilde y\,e_k,\ 2p_k)$, and $K(w)$ is invariant under every
 $L_k$. The closure condition of \cref{thm:block} fails, but \cref{lem:crossed} still applies. With
 $a=\frac h2q$ and $a'=\frac h2q'$ it gives
@@ -653,19 +651,19 @@ $K'(\mu-s^2)-\lambda s^2=K(\mu-s'^2)-\lambda s'^2$, that is,
 \]
 Finally $\mu-s^2=1+\kappa\tilde y-\frac14\kappa^2\tilde y^2-\kappa g=D$ and $\mu-s'^2=D'$, so $E_h'=E_h$.
 
-(c) Put $v=q-\frac h2p$, $w=q+\frac h2p$ and $w'=q'+\frac h2p'$. The first equation in~\eqref{eq:isokahan} says
-$w=q'-\frac h2p'$, so $q=\frac12(v+w)$ and $q'=\frac12(w+w')$. Let $A=v\cdot w$, $B=w\cdot w'$ and
-$C=\lvert w\rvert^2$. In these variables the third equation in~\eqref{eq:isokahan} reads $y'-y=B-A$, and the
-second one reads $Yw'+Y'v=(4-Y-Y')\,w$. Hence
+(c) Put $\xi=q-\frac h2p$, $\eta=q+\frac h2p$ and $\eta'=q'+\frac h2p'$. The first equation in~\eqref{eq:isokahan}
+says $\eta=q'-\frac h2p'$, so $q=\frac12(\xi+\eta)$ and $q'=\frac12(\eta+\eta')$. Let $A=\xi\cdot\eta$,
+$B=\eta\cdot\eta'$ and $C=\lvert\eta\rvert^2$. In these variables the third equation in~\eqref{eq:isokahan} reads $y'-y=B-A$, and the
+second one reads $Y\eta'+Y'\xi=(4-Y-Y')\,\eta$. Hence
 \begin{equation}\label{eq:R12}
 Y'-Y=\tfrac12\kappa(B-A),\qquad YB+Y'A=(4-Y-Y')\,C .
 \end{equation}
 Moreover $D=(2-Y)Y+\kappa A$ and $D'=(2-Y')Y'+\kappa B$, because $1-\frac14\kappa^2\tilde y^2=(2-Y)Y$ and
-$\lvert q\rvert^2-\frac{h^2}4\lvert p\rvert^2=v\cdot w$. A Schur-complement computation in the block form of
+$\lvert q\rvert^2-\frac{h^2}4\lvert p\rvert^2=\xi\cdot\eta$. A Schur-complement computation in the block form of
 $\Id\mp\frac h2F'$ gives
 \begin{align*}
-\det\big(\Id-\tfrac h2F'(z)\big)&=Y^{n-1}\big(Y+\kappa\,q\cdot w\big)=Y^{n-1}\big(Y+\tfrac12\kappa(A+C)\big),\\
-\det\big(\Id+\tfrac h2F'(z')\big)&=Y'^{\,n-1}\big(Y'+\kappa\,q'\cdot w\big)=Y'^{\,n-1}\big(Y'+\tfrac12\kappa(B+C)\big).
+\det\big(\Id-\tfrac h2F'(z)\big)&=Y^{n-1}\big(Y+\kappa\,q\cdot\eta\big)=Y^{n-1}\big(Y+\tfrac12\kappa(A+C)\big),\\
+\det\big(\Id+\tfrac h2F'(z')\big)&=Y'^{\,n-1}\big(Y'+\kappa\,q'\cdot\eta\big)=Y'^{\,n-1}\big(Y'+\tfrac12\kappa(B+C)\big).
 \end{align*}
 Using~\eqref{eq:R12}, a short computation shows
 \[
@@ -734,15 +732,15 @@ and then $s$. Hence $\lvert q\rvert^2=t+s$, $\lvert p\rvert^2$ and $y$ stay boun
 
 \begin{remark}[an $O(n)$ explicit form]\label{rem:explicit}
 Eliminating $q',p'$ from Kahan's equations leaves one scalar linear equation for $y'$. With
-$\alpha=hU'(y)$, $Y=1+\frac h2\alpha$ and $w=q+\frac h2p$,
+$\alpha=hU'(y)$, $Y=1+\frac h2\alpha$ and $\eta=q+\frac h2p$,
 \begin{gather*}
-y'=\frac{yY+h\big(2p-(\alpha+hu_1)q\big)\cdot w}{Y+\kappa\,q\cdot w},\\
+y'=\frac{yY+h\big(2p-(\alpha+hu_1)q\big)\cdot\eta}{Y+\kappa\,q\cdot\eta},\\
 q'=\frac{(1-\frac h2\alpha')q+hp}{Y},\qquad
 p'=\frac{(1-\frac h2\alpha)p-(\alpha+\alpha')q}{Y},
 \end{gather*}
 with $\alpha'=hU'(y')$. A step therefore costs $O(n)$ operations, like one St\"ormer--Verlet step, and no
 linear system has to be solved. The denominators vanish exactly where
-$\det(\Id-\frac h2F')=Y^{n-1}(Y+\kappa\,q\cdot w)$ does. Two further identities make the link with
+$\det(\Id-\frac h2F')=Y^{n-1}(Y+\kappa\,q\cdot\eta)$ does. Two further identities make the link with
 discrete Newtonian equations~\cite{Suris03}. Along an orbit $(q_k,p_k,y_k)$,
 \[
 q_k\wedge q_{k+1}=h\,M_h,\qquad q_{k+1}+q_{k-1}=\lambda_k\,q_k,\quad

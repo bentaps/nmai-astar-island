@@ -123,7 +123,7 @@
 
 ## 6. Status of the files and the new repository
 
-* The draft is in `research/quadratic-lifts/paper/` (`main.tex`, `main.pdf`, 17 pages), with the proof script,
+* The draft is in `research/quadratic-lifts/paper/` (`main.tex`, `main.pdf`, 18 pages), with the proof scripts,
   the figure scripts and a README that maps every result to a script.
 * **New GitHub repository:** creating it from this session failed. The GitHub integration returned
   `403 Resource not accessible by integration`, which means it may not create repositories on your account. To

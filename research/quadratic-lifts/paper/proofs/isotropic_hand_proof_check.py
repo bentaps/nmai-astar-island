@@ -24,18 +24,18 @@ print("(K1) q'-q = h/2 (p+p'):", all(Z(e) for e in qn - q - h/2*(p + pn)))
 # ---- E_h: crossed identity from the block (p, Ytilde) with speeds q
 lhs = Kn*(1 + kap*q.dot(q)) - kap/2*wedge2(q, pn)
 rhs = K*(1 + kap*qn.dot(qn)) - kap/2*wedge2(qn, p)
-print("(6.x) K'(1+k|q|^2) - k/2|q^p'|^2 = K(1+k|q'|^2) - k/2|q'^p|^2:", Z(lhs - rhs))
+print("(crossed identity, Sec. 6) K'(1+k|q|^2) - k/2|q^p'|^2 = K(1+k|q'|^2) - k/2|q'^p|^2:", Z(lhs - rhs))
 Mh2 = wedge2(q, p)/Y**2
 print("|q^p'| = (2-Y)|M_h|  and  |q'^p| = (2-Y')|M_h|:", Z(wedge2(q, pn) - (2 - Y)**2*Mh2), Z(wedge2(qn, p) - (2 - Yn)**2*Mh2))
 D = 1 + kap*q.dot(q) - h**2*kap/2*K; Dn = 1 + kap*qn.dot(qn) - h**2*kap/2*Kn
 Eh = (K + kap/2*Mh2)/D; Ehn = (Kn + kap/2*wedge2(qn, pn)/Yn**2)/Dn
 print("E_h(z') = E_h(z):", Z(Ehn - Eh))
-# ---- measure: v, w, w'
+# ---- measure: xi, eta, eta' (named v, w, wn below)
 w = q + h/2*p; v = q - h/2*p; wn = qn + h/2*pn
-print("w = q' - h/2 p':", all(Z(e) for e in w - (qn - h/2*pn)))
+print("eta = q' - h/2 p':", all(Z(e) for e in w - (qn - h/2*pn)))
 A, B, C = v.dot(w), w.dot(wn), w.dot(w)
 print("(R1) Y' - Y = k/2 (B - A):", Z(Yn - Y - kap/2*(B - A)))
-print("(K2') Y w' + Y' v = (4 - Y - Y') w:", all(Z(e) for e in Y*wn + Yn*v - (4 - Y - Yn)*w))
+print("(K2') Y eta' + Y' xi = (4 - Y - Y') eta:", all(Z(e) for e in Y*wn + Yn*v - (4 - Y - Yn)*w))
 print("(R2) Y B + Y' A = (4 - Y - Y') C:", Z(Y*B + Yn*A - (4 - Y - Yn)*C))
 print("D = (2-Y) Y + k A,  D' = (2-Y') Y' + k B:", Z(D - ((2 - Y)*Y + kap*A)), Z(Dn - ((2 - Yn)*Yn + kap*B)))
 Zs = sp.Matrix(sp.symbols('Q1:4 P1:4 Ys'))               # generic point for the Jacobian
