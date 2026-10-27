@@ -15,6 +15,7 @@ here, and the figure scripts write PNGs to `../figures/`.
 | Non-symmetric quartic potential (exact constraint, bounded energy, not integrable) | `quartic_general.py` |
 | Lemma test on a random 7-dimensional system with a three-variable constraint | `lemma_random2.py` |
 | Pendulum trigonometric lift (integrable) and phase drift with a redundant angle | `pendulum.py` |
+| Pendulum Kahan map preserves the measure $ds\,dc\,dp/(1+\tfrac14h^2p^2)$ | `pendulum_measure.py` |
 | Failure on the paper's non-separable example; Kahan + reset drift | `nonseparable.py` |
 | Stability test from the paper's Figure 2 (MQAV with Newton, staggered, explicit splitting) | `nonsep_methods.py`, `stag_probe.py` |
 | Reduced quadratic-observable lift $(q^2,p^2,qp)$ | `reduced_lift.py` |

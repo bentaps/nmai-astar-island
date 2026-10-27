@@ -239,8 +239,9 @@ $$E_h=\tfrac12p^2-c-\tfrac{h^2}{8}s^2,\qquad K_h=\frac{s^2+c^2}{1+\tfrac14h^2p^2
 
 Test: $h=0.25$, large swing $q_0=2.5$, $2\times10^5$ steps. Both drift by only $5\times10^{-14}$,
 orbits lie on the intersection of two quadrics, and the true energy error stays at
-$2.5\times10^{-2}$ (about 3% of $E_0=0.80$) with no growth. This is an integrable, linearly
-implicit pendulum.
+$2.5\times10^{-2}$ (about 3% of $E_0=0.80$) with no growth. The map also preserves the measure
+$ds\,dc\,dp/(1+\tfrac14h^2p^2)$ — again the denominator of a modified invariant
+(`pendulum_measure.py`). This is an integrable, linearly implicit pendulum.
 
 **Warning, and a design rule.** If you also keep $q$ as a variable ($\dot q=p$), the relation
 "angle of $(c,s)$ equals $q$" is not algebraic, so nothing protects it. For a *rotating* pendulum
