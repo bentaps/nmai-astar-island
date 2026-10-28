@@ -1,0 +1,5 @@
+D(z0) = 0 at h*om = 1.99998
+lifted Kahan: 2 escapes of 1961; error > 0.3 or escape for h*om in [1.995, 2.005]
+impulse: 50 escapes of 1961; error > 0.3 or escape for h*om in [1.565, 1.565], [3.080, 3.150], [4.685, 4.705], [6.220, 6.350], [7.800, 7.840], [9.240, 9.450]
+median error for h*om in [2.2, 10]: Kahan 0.081, impulse 0.033, midpoint 0.0029
+h*om <= 1: Kahan/Verlet error ratio 0.013

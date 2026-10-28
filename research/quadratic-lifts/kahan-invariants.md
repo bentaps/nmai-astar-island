@@ -37,7 +37,7 @@ lifted Kahan method." Every numerical claim is reproduced by a script in
 | Can a constraint borrow protection? | Yes. Protection survives linear combinations, so $c=(I_1-I_2)/(\lambda_1-\lambda_2)$ is protected whenever the "pencil members" $I_k=\tilde H+\lambda_kc$ are. An automatic test decides this for any lift. | §1.4, §7 |
 | A family where every constraint has a partner? | Lifts of 1-DOF Hamiltonians $U(\varphi(x))+\kappa(x)$. They are integrable, and they turn out to be Celledoni–McLaren–Owren–Quispel's integrable Nambu family after a linear change of variables. | §3 |
 | Back-substitution? | The lifted Kahan method started on the "shifted sheet" *is* a symmetric one-step method on the original variables. For mechanical lifts $y=qq^\top-\tfrac{h^2}{4}vv^\top$ explicitly. | §4 |
-| New invariant measures? | For every quartic 1-DOF potential tested (lift $y=q^2$), Kahan preserves $dz/P$ with $P$ a degree-4 polynomial. The example has a closed form valid for all $h$; the general case is a conjecture. Consequence: the back-substituted method preserves an area form, which explains the bounded energy error. | §6 |
+| New invariant measures? | For every quartic 1-DOF potential tested (lift $y=q^2$), Kahan preserves $dz/P$ with $P$ a degree-4 polynomial. The example has a closed form valid for all $h$; the general case is now proved, with a closed form for every quartic potential (paper, Proposition 5.3). Consequence: the back-substituted method preserves an area form, which explains the bounded energy error. | §6 |
 | Kahan-friendly classes beyond polynomials? | Toda-type exponential potentials (no constraints needed), Morse, trigonometric potentials with a constant mass matrix, and generalised Suslov systems (all normal-mode actions). | §5 |
 
 ---
@@ -544,7 +544,9 @@ theorem protects it.
 
 ## 9. Open questions (and which ones look publishable)
 
-1. **Prove the measure conjecture of §6.** This would give a clean theorem: "Kahan's method on the
+1. **Prove the measure conjecture of §6.** *(Solved for every quartic potential: the paper's Proposition 5.3
+    gives the density in closed form, see [`paper/proofs/quartic_density_proof.py`](paper/proofs/quartic_density_proof.py).)*
+    This would give a clean theorem: "Kahan's method on the
     quadratic lift of any quartic 1-DOF Hamiltonian is either integrable or area-preserving on
     the shifted sheet." Combined with §3 and §4, that is a self-contained paper. The structure of
     $P$ (the $\tfrac{h^2}{6}V''$ term and the $V'''^2$ term) suggests a closed formula.

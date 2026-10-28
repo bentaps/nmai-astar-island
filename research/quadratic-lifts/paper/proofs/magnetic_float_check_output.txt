@@ -1,0 +1,3 @@
+max drift of (c_h, L_h, Ecal_h) over 2000 steps: 2.7533531010703882e-14
+max Larmor residual (forward and inverse): 1.609823385706477e-15
+max measure residual: 8.881784197001252e-16

@@ -1,0 +1,6 @@
+[1] numerator of E_h(z) - e  =  const * D(z) * Q(y, y'): True
+[2] E_h = e is linear in a = |q|^2 with root A(x): True
+    Q4 has degree 4 in y
+[3] continuous limit correct: True
+[4] max |Q(y_k, y_k+1)| = 6.9e-13, max |b_k^2 - Q4(y_k)| = 1.0e-13
+    tau = 0.7822425662 (about 2h = 0.8); max |(y(k tau), y'(k tau)) - (y_k, b_k)|, k <= 60: 4.0e-09

@@ -1,0 +1,4 @@
+[1] measure identity for all (q, p, y, h, a4, a3, a2, a1): True  (0.1s)
+[2] on y = q^2: T1 = V''/2, 4 a4 q + a3 = V'''/6, T2 = 4/3 V' V''' - V''^2: True
+[3] V = q^4/4 + q^3/3 + q^2/2 reproduces the earlier closed form (times 144): True
+[4] V = q^4/4: P = (1 + h^2 q^2/2)(3 + h^2 c_h/2 - h^4 Ht_h/4): True

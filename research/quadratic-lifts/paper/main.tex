@@ -50,22 +50,23 @@ modified invariants, Liouville measures and\\ integrable maps in every dimension
 \maketitle
 
 \begin{abstract}
-Kahan's method discretises a quadratic vector field by a birational map that costs one linear solve per
-step and often inherits invariant measures, modified integrals and integrability. Quadratic lifts
-(auxiliary variables such as $y=x_ix_j$ or $u=\mathrm e^{q}$ that make a polynomial or exponential vector field
-quadratic) carry the method beyond quadratic problems, but lift constraints and original invariants need
-not survive. We show which do. (i)~A \emph{block theorem}: variables that move along fixed affine flows at
-affine speeds keep modified versions of the quadratic invariants of those flows when their
-second-derivative operators close and commute; the flows themselves need not commute. It contains the two-variable theorem of Celledoni et al., gives invariants with
-squared denominators for resonant blocks, and gives $I-\tfrac{h^2}{8}F\tr\nabla^2I\,F$ when the curvature of
-$I$ lies in affinely moving variables. (ii)~Constraints with affinely moving factors are protected, and
-on the invariant \emph{shifted sheet} the lifted method is a symmetric one-step method on the original
-variables. (iii)~For potentials built from exponentials and single harmonics, with any mass matrix, the lifted
-map preserves the Liouville measure and a modified energy. (iv)~For isotropic quartic oscillators in $\R^n$ the
-lifted map is integrable for every $n$: we give its modified energy, angular momenta and measure in closed form
-with elementary proofs, show that compact regular level sets are invariant tori, and obtain an $O(n)$-cost
-integrator that, at moderate amplitudes, stays stable far beyond the St\"ormer--Verlet limit. Degree-growth computations suggest that
-integrability survives lifting when it stems from linear symmetries and one degree of freedom.
+Kahan's method discretises quadratic vector fields by birational maps that cost one linear solve per step
+and often inherit measures, integrals and integrability. Quadratic lifts (auxiliary variables such as
+$y=x_ix_j$ or $u=\mathrm e^{q}$) carry the method beyond quadratic problems, but constraints and invariants
+need not survive. We show which do. (i)~A
+\emph{block theorem}: variables that move along fixed affine flows at affine speeds keep modified versions of
+the quadratic invariants of those flows when their second-derivative operators close and commute; the flows
+themselves need not commute. It gives $I-\tfrac{h^2}{8}F\tr\nabla^2I\,F$ when the curvature of $I$ lies in
+affinely moving variables. (ii)~Constraints with affinely moving factors are protected; on the invariant
+\emph{shifted sheet} the lifted method is a symmetric one-step method for the original system. For quartic
+potentials in one degree of freedom it preserves an explicit area form. (iii)~For
+potentials built from exponentials and single harmonics, with any mass matrix, the lifted map preserves the
+Liouville measure and a modified energy. (iv)~For isotropic quartic oscillators in $\R^n$ the lifted map is
+integrable for every $n$, with all integrals and the measure in closed form. Its radial part is a QRT map,
+solved explicitly by elliptic functions, and the planar case stays integrable in a magnetic field. This gives
+an $O(n)$-cost integrator, stable far beyond the St\"ormer--Verlet limit, whose single failure band the theory
+predicts. All proved integrable cases stem from linear symmetries and one degree of freedom; degree growth
+suggests that hidden symmetries do not survive lifting.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Kahan's method, Hirota--Kimura discretisation, quadratic lifts, auxiliary
@@ -120,30 +121,39 @@ whether lifting can produce new integrable maps. Our main results are the follow
   protected, as $y-x_ix_j+\tfrac{h^2}{4}\dot x_i\dot x_j$ (\cref{thm:affine-constraints}). On the invariant
   ``shifted sheet'' that these modified constraints define, the lifted method is a symmetric second-order
   one-step method on the original variables (\cref{thm:sheet}).
-\item \textbf{Liouville measures} (\cref{thm:liouville}). For every Hamiltonian
+\item \textbf{Invariant measures} (\cref{thm:liouville,prop:quarticdensity}). For every Hamiltonian
   $\frac12p\tr Gp+\sum_kc_k\mathrm e^{\alpha_k\cdot q}+\sum_jg_j\cos(\beta_j\cdot q)$, in any dimension and with
   any constant mass matrix, Kahan's method in the exponential and harmonic variables preserves the
   canonical Liouville measure and a modified energy. This covers Toda chains, rotor and XY chains and coupled
-  pendula.
+  pendula. For every potential of degree at most four in one degree of freedom, the lifted map preserves an
+  explicit measure, so the method on the shifted sheet preserves an area form even when it is not integrable
+  (\cref{cor:area}).
 \item \textbf{An integrable family in every dimension} (\cref{thm:isotropic,cor:tori}). For
   $H=\frac12\lvert p\rvert^2+U(\lvert q\rvert^2)$ with $U$ quadratic and $q,p\in\R^n$, the lift
   $y=\lvert q\rvert^2$ gives a Kahan map that conserves modified angular momenta, a modified energy and an
   explicit measure, for every $n$. Its compact regular level sets are invariant 2-tori on which it acts as a
-  skew rotation. The map can be evaluated in closed form at $O(n)$ cost (\cref{rem:explicit}). Bounded orbits
-  are guaranteed under an explicit condition (\cref{prop:bounded}), and in our tests at moderate amplitudes
-  the map stays stable far beyond the St\"ormer--Verlet limit (\cref{sec:numerics}).
-\item \textbf{Which integrable systems survive lifting} (\cref{sec:survey}). Exact degree-growth computations
-  on nineteen lifted maps indicate that the lifted Kahan map is integrable when the original integrability
-  comes from linear symmetries plus one degree of freedom, and is not when it rests on hidden symmetries
-  (\cref{conj:principle}).
+  skew rotation. Its radial part is a QRT map: the lifted variable $y_k$ is an elliptic function sampled at
+  equal steps, which gives an explicit solution (\cref{thm:radial,cor:explicit-solution}). The map can be
+  evaluated in closed form at $O(n)$ cost (\cref{rem:explicit}), and bounded orbits are guaranteed under an
+  explicit condition (\cref{prop:bounded}). In a scan over step sizes it stays stable far beyond the
+  St\"ormer--Verlet limit, with a single failure band where this condition fails, whereas a splitting method
+  that integrates the stiff part exactly resonates near every multiple of $\pi/2$ (\cref{sec:numerics}).
+\item \textbf{Which integrable systems survive lifting} (\cref{sec:survey}). We prove integrability for every
+  lifted map in our survey whose degree growth is polynomial (\cref{prop:cases}). The cases are one degree of
+  freedom, the isotropic family, single exponentials and harmonics, products of these up to affine changes of
+  variables, and the planar isotropic oscillator in a magnetic field. For the last, whose integrals lie outside
+  the reach of the block theorem, we give the integrals and the measure in closed form, together with a discrete
+  Larmor identity (\cref{prop:magnetic}). Exact degree-growth computations on nineteen lifted maps indicate
+  that integrability resting on hidden symmetries is lost (\cref{conj:principle}).
 \end{enumerate}
 
 \paragraph{Relation to other work.}
 A companion manuscript~\cite{LP} studies Kahan's method for Lie--Poisson systems through a Cayley form of the
 map. Its ``midpoint theorem'' covers the single-speed case of our block theorem and the commuting cases of
 our measure results. Our block theorem does not need commuting coefficient matrices, which is what the
-isotropic family requires (\cref{rem:LP}). Conversely, \cite{LP} proves, with computer assistance, that every three-dimensional
-quadratic Nambu system has a Kahan-invariant measure, which we use in \cref{sec:onedof}. Integrable Kahan maps
+isotropic family requires (\cref{rem:LP}). Conversely, \cite{LP} proves, with computer assistance, that every
+three-dimensional quadratic Nambu system has a Kahan-invariant measure; for the Nambu lifts of quartic potentials
+we give this measure in closed form (\cref{prop:quarticdensity}). Integrable Kahan maps
 in arbitrary dimension are known for Lotka--Volterra systems~\cite{KQV16,vdKMMQ24} and for almost abelian
 Lie--Poisson systems~\cite{LP}; the family of \cref{sec:isotropic} is of a different kind, coming from a
 mechanical system with a non-quadratic potential through a lift. Integrable discretisations of central-force
@@ -151,15 +161,16 @@ and quartic-potential problems have been constructed by other
 means~\cite{MinesakiNakamura02,FengMaruno08,Suris03}, and discrete-gradient methods preserve energy and
 angular momentum~\cite{MQR99}. What is new in \cref{sec:isotropic} is that integrability arises from a
 general-purpose, linearly implicit integrator, with all modified integrals and the measure in closed form and
-in every dimension.
+in every dimension. Kahan discretisations of planar quadratic Hamiltonian systems are known to give QRT-type
+maps~\cite{PSS19,GMQ24}; here a QRT map appears as the radial part of a map in dimension $2n+1$.
 
 \paragraph{Outline.}
 \Cref{sec:prelim} collects facts about Kahan's method and defines quadratic lifts. \Cref{sec:block} proves the
 block theorem and its corollaries. \Cref{sec:lifts} treats lift constraints and the shifted sheet,
-\cref{sec:measures} invariant measures, and \cref{sec:isotropic} the isotropic family. \Cref{sec:survey}
-surveys integrability, \cref{sec:numerics} gives numerical experiments, and \cref{sec:conclusion} lists open
-problems. \Cref{app:proof} describes an independent computer-algebra verification of \cref{thm:isotropic},
-and \cref{app:exact} the exact searches.
+\cref{sec:measures} invariant measures, and \cref{sec:isotropic} the isotropic family and its radial
+dynamics. \Cref{sec:survey} proves the integrable cases and surveys the others, \cref{sec:numerics} gives
+numerical experiments, and \cref{sec:conclusion} lists open problems. \Cref{app:proof} describes the
+computer-algebra verifications, and \cref{app:exact} the exact searches.
 
 % ======================================================================================================
 \section{Preliminaries}\label{sec:prelim}
@@ -547,20 +558,43 @@ Carlo~\cite{DKPR87}, so \cref{thm:liouville} provides linearly implicit candidat
 
 \subsection{One degree of freedom: an area form on the shifted sheet}\label{sec:onedof}
 
-Write a one-degree-of-freedom potential of degree at most four as a quadratic $\tilde V(q,y)$ with
-$\tilde V(q,q^2)=V(q)$. The lift $\dot q=p$, $\dot p=-\tilde V_q-2q\tilde V_y$, $\dot y=2qp$ is the Nambu field
-$\nabla\tilde H\times\nabla c$ on $\R^3$ with $\tilde H=\frac12p^2+\tilde V$ and $c=y-q^2$. Other lifts of the
-same potential, which differ by multiples of $y-q^2$ in $\dot p$, are in general not Nambu fields. Kahan maps of three-dimensional quadratic systems have a rich structure~\cite{HonePetrera09,CMMOQ14,PS18}.
-The companion manuscript~\cite{LP} proves, with computer assistance, that Kahan's map of every
-three-dimensional Nambu field with quadratic $H$ and $C$ preserves a measure $\dd z/P$ with $P$ a polynomial of
-degree at most four. Our
-exact searches (\cref{app:exact}) independently found such densities for four quartic potentials and for
-random quadratic Nambu systems, including a closed form valid for all $h$ for
-$V=\frac14q^4+\frac13q^3+\frac12q^2$.
+Write a one-degree-of-freedom potential of degree at most four as $V(q)=a_4q^4+a_3q^3+a_2q^2+a_1q$, and let
+$\tilde V(q,y)=a_4y^2+a_3qy+a_2y+a_1q$, so that $\tilde V(q,q^2)=V(q)$. The lift $\dot q=p$,
+$\dot p=-\tilde V_q-2q\tilde V_y$, $\dot y=2qp$ is the Nambu field $\nabla\tilde H\times\nabla c$ on $\R^3$ with
+$\tilde H=\frac12p^2+\tilde V$ and $c=y-q^2$. Any other quadratic $\tilde V$ with $\tilde V(q,q^2)=V(q)$ differs
+from this one by a multiple of $c$ and gives the same field. Other lifts of the same potential, which differ by
+multiples of $y-q^2$ in $\dot p$, are in general not Nambu fields. Kahan maps of three-dimensional quadratic
+systems have a rich structure~\cite{HonePetrera09,CMMOQ14,PS18}. The companion manuscript~\cite{LP} proves,
+with computer assistance, that Kahan's map of every three-dimensional Nambu field with quadratic $H$ and $C$
+preserves a measure $\dd z/P$ with $P$ a polynomial of degree at most four. For the Nambu lifts of quartic
+potentials we give this measure in closed form.
+
+\begin{proposition}\label{prop:quarticdensity}
+For every $V$ as above, Kahan's map of the Nambu lift preserves the measure $\dd q\,\dd p\,\dd y/P$, where
+\begin{gather*}
+P=3+h^2T_1+\tfrac1{16}h^4T_2+\tfrac1{16}h^6\,(4a_4q+a_3)^2\,p^2,\qquad T_1=4a_4q^2+2a_4y+3a_3q+a_2,\\
+T_2=-4\big(2a_4w+a_3q+a_2\big)^2+8\big(4a_2a_4-a_3^2\big)\,w+8a_1(4a_4q+a_3),\qquad w=2q^2-y .
+\end{gather*}
+On the sheet $y=q^2$ one has $T_1=\frac12V''$, $4a_4q+a_3=\frac16V'''$ and $T_2=\frac43V'V'''-V''^2$.
+\end{proposition}
+
+\begin{proof}
+Let $\mathcal M=\Id-\frac h2F'(z)$ and $\Delta=\det\mathcal M$, so that $z'=z+h\operatorname{adj}(\mathcal M)F(z)/\Delta$
+by \cref{prop:basic}(a). Since $P$ has degree four and $F'$ is affine, multiplying the measure
+identity $P(z')\,\Delta=\det\big(\Id+\frac h2F'(z')\big)P(z)$ by $\Delta^4$ turns it into an identity between
+polynomials in $(q,p,y,h,a_1,\dots,a_4)$. We verified this identity, and the values on the sheet, by computer
+algebra (\cref{app:proof}).
+\end{proof}
+
+We found $P$ by the exact search of \cref{app:exact}, in an ansatz that is invariant under the two scaling
+symmetries of the family of fields; within this ansatz the density is unique up to a factor that depends only on
+$h$ and the coefficients. For
+$V=\frac14q^4$ it factorises as $P=\big(1+\frac12h^2q^2\big)\big(3+\frac12h^2c_h-\frac14h^4\tilde H_h\big)$, where
+$1+\frac12h^2q^2$ is the density of \cref{ex:quartic} and $c_h$, $\tilde H_h$ are its integrals.
 
 \begin{corollary}\label{cor:area}
-Assume the result of~\cite{LP} quoted above. For every quartic potential and the Nambu lift above, the
-back-substituted method of \cref{thm:sheet} preserves the area form $\dd q\wedge\dd p/P(q,p,q^2-\frac{h^2}4p^2)$.
+For every potential of degree at most four, the back-substituted method of \cref{thm:sheet} for the Nambu lift
+preserves the area form $\dd q\wedge\dd p/P\big(q,p,q^2-\frac{h^2}4p^2\big)$.
 \end{corollary}
 
 \begin{proof}
@@ -766,6 +800,86 @@ $y_0=\lvert q_0\rvert^2-\frac{h^2}4\lvert p_0\rvert^2$ on the shifted sheet, $(q
 second-order, integrable discretisation of the original system on $\R^{2n}$ (\cref{thm:sheet}).
 \end{remark}
 
+\subsection{Radial dynamics: a QRT map and an explicit solution}\label{sec:radial}
+
+By \cref{rem:explicit}, $q_k\cdot q_{k+1}=\big((1-\frac h2\alpha_{k+1})\lvert q_k\rvert^2+h\,q_k\cdot p_k\big)/Y_k$ and
+$\lvert q_k\wedge q_{k+1}\rvert=hm$ with $m=\lvert M_h\rvert$. So in the plane of motion the polar angle of $q_k$
+advances by $\vartheta_k$ with
+\begin{equation}\label{eq:angle}
+\tan\vartheta_k=\frac{hm\,Y_k}{(1-\frac h2\alpha_{k+1})\lvert q_k\rvert^2+h\,q_k\cdot p_k},
+\end{equation}
+and the whole orbit is determined by the radial quantities $y_k$, $\lvert q_k\rvert^2$ and $b_k=q_k\cdot p_k$. The
+next theorem shows that they are elliptic functions of $k$, generated by a QRT map~\cite{QRT88,QRT89,Duistermaat10}.
+
+\begin{theorem}[radial dynamics]\label{thm:radial}
+Let $u_1=0$ (otherwise replace $y$ by $\tilde y=y+u_1/u_2$ and $c_h$ by $c_h+u_1/u_2$), and let $(z_k)$ be an orbit
+with $c_h=\gamma$, $\lvert M_h\rvert^2=m^2$ and $E_h=e$. Define the symmetric biquadratic polynomial
+\begin{align*}
+\mathcal Q(x,x')={}&P\sigma_1^2-4\kappa\big(e\kappa h^2+2\big)\sigma_1\sigma_2+16\big(e\kappa h^2+1\big)\sigma_2\\
+&+16eh^2\sigma_1-16h^2\big(2e\gamma+m^2\big),
+\end{align*}
+where $\sigma_1=x+x'$, $\sigma_2=xx'$ and $P=4(\kappa\gamma-1)+\kappa h^2(2e\gamma\kappa-4e+\kappa m^2)$.
+\begin{enumerate}[label=(\alph*)]
+\item $\mathcal Q(y_k,y_{k+1})=0$ for all $k$. For fixed $\gamma$ and $m$, $\mathcal Q$ depends linearly on $e$. Hence
+  $y_{k+1}$ and $y_{k-1}$ are the two roots of $\mathcal Q(y_k,\cdot)$, and $(y_{k-1},y_k)\mapsto(y_k,y_{k+1})$ is
+  the symmetric QRT map of the pencil of biquadratic curves $\{\mathcal Q=0\}$ parametrised by $e$.
+\item $\lvert q_k\rvert^2=\mathcal A(y_k)$ and $b_k^2=Q_4(y_k)$, where
+\begin{gather*}
+\mathcal A(x)=\big(1+\tfrac12e\kappa h^2\big)\big(x-\gamma-\tfrac14\kappa x^2\big)+\tfrac12eh^2-\tfrac14\kappa h^2m^2,\\
+Q_4(x)=\tfrac{4}{h^2}\mathcal A(x)\big(\gamma-x+\mathcal A(x)\big)-m^2\big(1+\tfrac12\kappa x\big)^2 .
+\end{gather*}
+  If $Q_4$ has simple roots and $h$ is small enough, there are $x_0$ and $\tau$ such that
+  $(y_k,b_k)=\big(\mathfrak y(x_0+k\tau),\mathfrak y'(x_0+k\tau)\big)$ for all $k$, where $\mathfrak y$ is the
+  elliptic function with $(\mathfrak y')^2=Q_4(\mathfrak y)$.
+\item As $h\to0$, $\mathcal Q(x,x+hw)/h^2\to-4w^2+16\big[(x-\gamma)(2e-u_2x^2)-m^2\big]$, so the curve
+  $\mathcal Q=0$ is a deformation of the radial energy relation
+  $\dot y^2=4\big[(y-\gamma)(2e-u_2y^2)-m^2\big]$ of the continuous system.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Use $\xi$, $\eta$, $\eta'$ from the proof of \cref{thm:isotropic}(c). There we saw
+$\lvert q\rvert^2-\frac{h^2}{4}\lvert p\rvert^2=\xi\cdot\eta$, so $\xi\cdot\eta=y-\gamma$, and likewise
+$\eta\cdot\eta'=y'-\gamma$ because $\xi'=\eta$. The second relation in~\eqref{eq:R12} gives
+$\lvert\eta\rvert^2=\big(Y(y'-\gamma)+Y'(y-\gamma)\big)/(4-Y-Y')$. Since $q\wedge p=\xi\wedge\eta/h$, conservation
+of $M_h$ and Lagrange's identity give $\lvert\xi\rvert^2\lvert\eta\rvert^2=(y-\gamma)^2+h^2Y^2m^2$. With
+$q=\frac12(\xi+\eta)$ and $p=(\eta-\xi)/h$, the quantities $\lvert q\rvert^2$ and $\lvert p\rvert^2$, and hence
+$E_h(z)$, become rational functions of $y$ and $y'$. A direct computation (\cref{app:proof}) shows that the
+numerator of $E_h(z)-e$ is a constant multiple of $D(z)\,\mathcal Q(y,y')$. Since $D(z)\ne0$, $\mathcal
+Q(y,y')=0$. Symmetry and linearity in $e$ are visible in the formula, and the QRT statement follows because both
+$\mathcal Q(y_{k-1},y_k)$ and $\mathcal Q(y_k,y_{k+1})$ vanish.
+
+(b) On the level set, $c_h=\gamma$ gives $\lvert p\rvert^2=\frac4{h^2}(\gamma-y+\lvert q\rvert^2)$, and then
+$E_h=e$ is linear in $\lvert q\rvert^2$, with root $\mathcal A(y)$. Lagrange's identity gives
+$b^2=\lvert q\rvert^2\lvert p\rvert^2-\lvert q\wedge p\rvert^2=Q_4(y)$. So the map induced on the orbit space
+is a birational automorphism of the curve $\mathfrak E=\{(y,b):b^2=Q_4(y)\}$, which has genus one when $Q_4$ has
+simple roots. In a uniformising coordinate $x$ with $\dd x=\dd y/b$, every automorphism of $\mathfrak E$ is
+$x\mapsto\zeta x+\tau$ with $\zeta$ a root of unity. The induced map depends continuously on $h$ and tends to the
+identity as $h\to0$, so $\zeta=1$: it is a translation. Then $\mathfrak y(x)=y$ satisfies $\mathfrak y'=b$ and
+$(\mathfrak y')^2=Q_4(\mathfrak y)$.
+
+(c) Expand $\mathcal Q(x,x+hw)$ in powers of $h$ (\cref{app:proof}).
+\end{proof}
+
+\begin{corollary}[explicit solution]\label{cor:explicit-solution}
+Under the hypotheses of \cref{thm:radial}(b), in the plane of motion
+\[
+q_k=\sqrt{\mathcal A\big(\mathfrak y(x_0+k\tau)\big)}\,\big(\cos\theta_k,\sin\theta_k\big),\qquad
+\theta_{k+1}=\theta_k+\vartheta_k,
+\]
+with $\vartheta_k$ given by~\eqref{eq:angle} in terms of $y_k=\mathfrak y(x_0+k\tau)$, $y_{k+1}$ and
+$b_k=\mathfrak y'(x_0+k\tau)$. The radial motion of the discrete system is thus the continuous elliptic motion of the
+modified curve $\mathfrak E$, sampled at equal steps $\tau$ of its uniformising parameter; for small $h$,
+$\tau\approx2h$.
+\end{corollary}
+
+Kahan discretisations of planar quadratic systems are known to produce QRT-type maps and translations on
+elliptic curves~\cite{PSS19,GMQ24}. Here the QRT map arises as the radial part of a map in five or more
+dimensions, after reduction by the rotation group. Numerically, the points $(y_k,y_{k+1})$ lie on $\mathcal Q=0$
+to round-off (\cref{fig:isotropic}(c)). Along an orbit with $n=3$ and $h=0.4$, the pairs $(y_k,b_k)$ agree with
+$(\mathfrak y(x_0+k\tau),\mathfrak y'(x_0+k\tau))$, $\tau=0.7822$, to $4\times10^{-9}$ over 60 steps, which is the
+accuracy of the reference integration of $\mathfrak y''=\frac12Q_4'(\mathfrak y)$.
+
 % ======================================================================================================
 \section{Which integrable systems survive lifting?}\label{sec:survey}
 
@@ -775,7 +889,10 @@ computed the degree growth of iterates for nineteen lifted Kahan maps. Kahan map
 to a generic line, the $k$-th iterate has some degree $d_k$, and zero algebraic entropy
 $\lim_{k\to\infty}\frac1k\log d_k=0$, in practice polynomial growth of $d_k$, is the standard indicator of
 integrability~\cite{HietarintaViallet98,BellonViallet99}. We computed $d_k$ exactly, modulo a large prime
-(\cref{app:exact}). \Cref{tab:degrees} and \cref{fig:degrees} summarise the results.
+(\cref{app:exact}). \Cref{tab:degrees} and \cref{fig:degrees} summarise the results. Every map in the upper half
+of \cref{tab:degrees} is proved to be integrable in \cref{sec:proved}, so for these maps the degree growth is a
+consistency check. For the maps in the lower half, exponential growth is strong evidence that they are not
+integrable.
 
 \begin{table}[t]
 \centering\small
@@ -821,8 +938,133 @@ with the anisotropic one for $k\le4$.}
 \label{fig:degrees}
 \end{figure}
 
-Three observations stand out. First, the isotropic family stays integrable with a harmonic term, in
-dimensions three and four, and in a uniform magnetic field. Second, in our tests every lifted system whose
+\subsection{Proved cases}\label{sec:proved}
+
+Two elementary facts extend the results of the previous sections. Kahan's method commutes with affine changes
+of variables (\cref{prop:basic}(c)), and it acts factor by factor on products: if
+$F(z_1,z_2)=\big(F_1(z_1),F_2(z_2)\big)$, then the equations~\eqref{eq:kahan} decouple, and Kahan's map of $F$
+is the product of the Kahan maps of $F_1$ and $F_2$.
+
+\begin{proposition}[proved integrable cases]\label{prop:cases}
+For each of the following lifted systems, Kahan's map preserves a measure with an explicit density and conserves
+explicit, functionally independent modified integrals. Their common level sets are curves in cases~(a)
+and~(d), surfaces that carry a circle action commuting with the map in cases~(b) and~(e), and products of
+these in case~(c).
+\begin{enumerate}[label=(\alph*)]
+\item One degree of freedom: the systems of \cref{prop:pencil}, which include all even quartic oscillators.
+\item The isotropic family of \cref{thm:isotropic}, in every dimension, and every lifted system that is
+  affinely conjugate to it. Examples are $H=\frac12p\tr Gp+U(q\tr G^{-1}q)$ with $G$ symmetric positive
+  definite, lifted with $y=q\tr G^{-1}q$, and the two-body problem
+  $H=\frac12\lvert p_1\rvert^2+\frac12\lvert p_2\rvert^2+U(\lvert q_1-q_2\rvert^2)$ with $q_k,p_k\in\R^n$,
+  lifted with $y=\lvert q_1-q_2\rvert^2$.
+\item Lifted systems that are affinely conjugate to a product of systems from the other cases. Examples are the
+  potential $q_1^4+q_2^4$ with $y_k=q_k^2$, and $q_1^4+6q_1^2q_2^2+q_2^4$ with $y_\pm=(q_1\pm q_2)^2$.
+\item A single exponential or a single harmonic, $H=\frac12p\tr Gp+c\,\mathrm e^{\alpha\cdot q}$ or
+  $H=\frac12p\tr Gp+g\cos(\beta\cdot q)$ on $\R^n\times\R^n$, with $G$ symmetric and the lift of
+  \cref{thm:liouville}. Examples are the two-particle Toda chain and two coupled rotors.
+\item The planar isotropic oscillator in a uniform magnetic field (\cref{prop:magnetic} below).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) is \cref{prop:pencil}: two integrals on $\R^3$. (b) follows from \cref{thm:isotropic} and
+\cref{prop:basic}(c). For the first example, the linear change $\tilde q=G^{-1/2}q$, $\tilde p=G^{1/2}p$ gives the
+isotropic system with $y=\lvert\tilde q\rvert^2$. For the two-body problem, put $r=q_1-q_2$, $\pi=p_1-p_2$,
+$R=q_1+q_2$ and $P=p_1+p_2$. The lifted field becomes $\dot r=\pi$, $\dot\pi=-4U'(y)\,r$, $\dot y=2\,r\cdot\pi$,
+which is~\eqref{eq:isofield} with $U$ replaced by $2U$, together with $\dot R=P$, $\dot P=0$, on which Kahan's
+map is the exact flow. (c) The map is the product of the maps of the factors. In the second example the lifted
+field is $\dot p_1=-2(q_1+q_2)y_+-2(q_1-q_2)y_-$, $\dot p_2=-2(q_1+q_2)y_++2(q_1-q_2)y_-$,
+$\dot y_\pm=2(q_1\pm q_2)(p_1\pm p_2)$, which decouples in the variables $q_1\pm q_2$, $p_1\pm p_2$, $y_\pm$ into two
+quartic oscillators. (d) On $\R^N$ with $N=n+1$ (exponential) or $N=n+2$ (harmonic), \cref{thm:liouville} gives
+the Liouville measure, $E_h$ and, in the harmonic case, the modified circle
+$\rho_h=(C^2+S^2)/(1+\frac14h^2b^2)$ with $b=\beta\tr Gp$. Since $\dot p$ is a multiple of $\alpha$ (resp.\
+$\beta$), the $n-1$ linear functions $w\cdot p$ with $w\perp\alpha$ (resp.\ $w\perp\beta$) are integrals of the
+lifted field, hence of the map (\cref{prop:basic}(e)). These $N-1$ integrals are functionally independent: the
+linear ones do not involve the lifted variables, and $\partial E_h/\partial u=c-\frac14h^2c^2u\,\alpha\tr G\alpha$
+(exponential), resp.\ $\det\partial(E_h,\rho_h)/\partial(C,S)=2gS\big(1+\frac14h^2gC\,\beta\tr G\beta\big)/
+\big(1+\frac14h^2b^2\big)$ (harmonic), is not identically zero. (e) is \cref{prop:magnetic}.
+\end{proof}
+
+In each case the map is integrable in the usual sense. On a compact regular level set that is a curve, the
+preserved measure induces an invariant density, and the argument in the proof of \cref{cor:tori} shows that
+the map is conjugate to a rotation of the circle. In cases~(b) and~(e) the same argument applies to the circle
+$L/SO(2)$ and gives a skew rotation of a $2$-torus, under the hypotheses of \cref{cor:tori}. Level sets need not
+be compact: for the two-particle Toda chain they are open arcs, traversed by scattering orbits.
+
+\begin{proposition}[the magnetic case]\label{prop:magnetic}
+Let $n=2$ and $U(y)=\frac12u_2y^2$. A charged particle in the potential $U(\lvert q\rvert^2)$ and a uniform
+magnetic field of strength $B$, lifted with $y=\lvert q\rvert^2$, gives the quadratic field
+\begin{equation}\label{eq:magfield}
+\dot q=v,\qquad\dot v=-2U'(y)\,q+B\,\Jq v,\qquad\dot y=2\,q\cdot v,\qquad
+\Jq=\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
+\end{equation}
+Write $\beta=\frac12hB$, $\kappa=h^2u_2$, $\alpha=hU'(y)$, $Y=1+\frac12\kappa y$, $a=\lvert q\rvert^2$,
+$M=q\wedge v$ and $K=\frac12\lvert v\rvert^2+\frac12u_2y^2$, and let
+$c_h=y-\lvert q\rvert^2+\frac{h^2}4\lvert v\rvert^2$ and $D=(2-Y)Y+\kappa(y-c_h)$ be as in \cref{thm:isotropic}.
+\begin{enumerate}[label=(\alph*)]
+\item In the complex notation $Q=q_1+\mathrm iq_2$, $V=v_1+\mathrm iv_2$, Kahan's map is
+\[
+Q'=\frac{(2-Y'-\mathrm i\beta)\,Q+hV}{Y-\mathrm i\beta},\qquad
+V'=\frac{-(\alpha+\alpha')\,Q+(2-Y+\mathrm i\beta)\,V}{Y-\mathrm i\beta},
+\]
+where $y'$ solves the scalar linear equation $y'-y=h\,(q\cdot v'+q'\cdot v)$. It satisfies the discrete Larmor
+identity
+\begin{equation}\label{eq:larmor}
+Y\,q\wedge q'-\beta\,q\cdot q'=h\big(q\wedge v-\tfrac12B\lvert q\rvert^2\big).
+\end{equation}
+\item It conserves $c_h$,
+\[
+L_h=\frac{P_L}{P^B}\qquad\text{and}\qquad\mathcal E_h=\frac{\hat P_E}{(2+\kappa c_h)\,P^B},
+\]
+and preserves the measure $\dd z/P^B$, where
+\begin{align*}
+P^B&=Y(D-\beta^2)+2\beta^2+h\beta\kappa M,\\
+P_L&=M(D+\beta^2)-B\big[2aY+(1+Y)\,c_h+\tfrac12y\,(Y^2-2Y-2+\beta^2)\big],\\
+\hat P_E&=(2+\kappa c_h)\,KY+\tfrac12\kappa M^2(4-Y)+\tfrac12B^2\big(y-(a+c_h)(2-Y)\big)
+-\kappa BM\big(\tfrac12y+a+c_h\big).
+\end{align*}
+The integrals $c_h$, $L_h$ and $\mathcal E_h$ are functionally independent.
+\item For $B=0$, $P^B=YD=P_2$, $L_h=M_h$ and $\mathcal E_h=E_h+\kappa M_h^2/\big(2(2+\kappa c_h)\big)$. As
+$h\to0$, $L_h\to q\wedge v-\frac12By$ and $\mathcal E_h\to K$, the canonical angular momentum (in the symmetric
+gauge) and the energy.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) By \cref{prop:basic}(b), Kahan's equations are $q'-q=\frac h2(v+v')$,
+$v'-v=-\alpha q'-\alpha'q+\beta\Jq(v+v')$ and $y'-y=h(q\cdot v'+q'\cdot v)$. Since $\Jq$ acts as multiplication
+by $\mathrm i$, the first two read
+$\left(\begin{smallmatrix}1&-h/2\\ \alpha&1-\mathrm i\beta\end{smallmatrix}\right)\binom{Q'}{V'}
+=\left(\begin{smallmatrix}1&h/2\\-\alpha'&1+\mathrm i\beta\end{smallmatrix}\right)\binom QV$. The matrix on the
+left has determinant $Y-\mathrm i\beta$, and inverting it gives the formulas. Multiply the formula for $Q'$ by
+$(Y-\mathrm i\beta)\bar Q$ and take imaginary parts: since $\bar QQ'=q\cdot q'+\mathrm i\,q\wedge q'$ and
+$\operatorname{Im}(\bar QV)=q\wedge v$, this gives~\eqref{eq:larmor}.
+
+(b), (c) The map is equivariant and all functions involved are invariant under rotations of the plane, so it
+suffices to verify the identities on the slice $q_2=0$. There they are identities between rational functions of
+$(q_1,v_1,v_2,y)$ and $(h,B,u_2)$, which we verified by computer algebra (\cref{app:proof}). The determinants in
+the measure identity are $\det\big(\Id\mp\frac h2F'(z)\big)=Y\big(Y+\kappa\,q\cdot(q\pm\frac h2v)\big)+\beta^2
++\frac12h\beta\kappa M$. Independence follows from a non-zero $3\times3$ minor of the Jacobian matrix.
+\end{proof}
+
+The integrals were found by the exact search of \cref{app:exact}, run in the basis of rotation-invariant
+monomials $y^ia^jb^kc^lM^m$ with $b=q\cdot v$ and $c=\lvert v\rvert^2$, modulo several primes and with
+rational reconstruction of the coefficients. They explain the quadratic degree growth in \cref{tab:degrees}.
+\Cref{prop:magnetic} also shows that \cref{thm:block} is sufficient but not necessary for protection: in the
+velocity variables the canonical angular momentum fails the closure condition of \cref{thm:block}, yet it has
+the modified integral $L_h$. The Larmor identity~\eqref{eq:larmor} plays the role of $q\wedge q'=hM_h$ in
+\cref{rem:explicit}. Applied to the inverse step $\Phi_{-h}$, it gives
+$Y'\,q\wedge q'-\beta\,q\cdot q'=h\big(q'\wedge v'-\frac12B\lvert q'\rvert^2\big)$, so the continuous angular
+momentum changes by $\frac{\kappa}{2h}(y'-y)\,q\wedge q'$ per step. In the continuous system, Larmor's theorem
+removes the magnetic field of a central-force problem by passing to a frame that rotates with angular velocity
+$\frac12B$, at the price of an extra harmonic term $\frac18B^2\lvert q\rvert^2$. We have not found a discrete
+analogue of this theorem that would derive \cref{prop:magnetic} from \cref{thm:isotropic}.
+
+\subsection{Hidden symmetries and a conjecture}
+
+Three observations stand out. First, every integrable map in \cref{tab:degrees} is covered by
+\cref{prop:cases}; in particular the isotropic family stays integrable with a harmonic term, in every
+dimension, and in a uniform magnetic field. Second, in our tests every lifted system whose
 continuous integrability rests on a hidden symmetry is chaotic after lifting: three-particle Toda, the Garnier
 system~\cite{Garnier19}, and the quartic potentials $1{:}6{:}8$ and $1{:}12{:}16$~\cite{Hietarinta87}. Third,
 the separable $1{:}6{:}1$ potential $q_1^4+6q_1^2q_2^2+q_2^4=\frac12[(q_1+q_2)^4+(q_1-q_2)^4]$ gives an
@@ -834,9 +1076,14 @@ one, so the lift must respect the linear structure that makes the system integra
 Let $\dot x=f(x)$ be integrable because of a group of linear symmetries together with a reduction to one
 degree of freedom, and let $F$ be a quadratic lift that is equivariant under the symmetries, adapted to the
 reduction and has only protected constraints. If the reduced one-degree-of-freedom problem lies in a class
-on which Kahan's method is integrable (\cref{prop:pencil}, or the single-exponential and single-harmonic
-cases of \cref{thm:liouville}), then the lifted Kahan map is integrable.
+on which Kahan's method is integrable (\cref{prop:pencil}, or \cref{prop:cases}(d)), then the lifted Kahan
+map is integrable.
 \end{conjecture}
+
+\Cref{prop:cases} confirms the conjecture in every case of this kind that we tested. In cases~(b) and~(e) the
+symmetry group consists of rotations and the reduction is to the radial motion; in cases~(c) and~(d) the
+reduction is an affine change of variables that splits off decoupled or free factors. What is missing for a
+proof is a reduction theory for Kahan maps with linear symmetries (\cref{sec:conclusion}).
 
 The heuristic reason is that every mechanism producing exact modified integrals here is linear-algebraic:
 Kahan's method commutes with linear maps, and the modified integrals are built from quadratic invariants of
@@ -846,12 +1093,6 @@ of linear flows and nothing protects them. This is a statement about \emph{lifte
 genuinely quadratic Clebsch and $\mathfrak{so}(4)$ Manakov tops keep hidden quadratic integrals under Kahan's
 method~\cite{PPS09,PPS11}.
 
-The magnetic case shows that \cref{thm:block} is sufficient but not necessary for protection. In velocity
-variables, $\dot q=v$, $\dot v=-2U'(y)q+B\,\Jq v$, $\dot y=2q\cdot v$, the canonical angular momentum fails the
-closure condition of \cref{thm:block}, yet the degree growth is quadratic. For $U(y)=\frac14y^2$, $B=1$ and
-$h=\frac15$, an exact search finds two invariant densities $\dd z/P_1$ and $\dd z/P_2$ with polynomials $P_1$,
-$P_2$ of degrees three and four. Their ratio is a rational integral, conserved to round-off, that mixes
-$q\wedge v$ with energy-like terms. No mechanism in this paper predicts it.
 
 % ======================================================================================================
 \section{Numerical experiments}\label{sec:numerics}
@@ -863,44 +1104,70 @@ H=\tfrac12\lvert p\rvert^2+\tfrac12\omega^2\lvert q\rvert^2+\tfrac14\lvert q\rve
 \]
 i.e.\ $u_2=\frac12$ and $u_1=\frac12\omega^2$, with $q_0=(0.8,0.1,-0.3)$, $p_0=(0,3,1)$ and $y_0$ on the
 shifted sheet. The stiff harmonic term sits in the linear part of the lift, which Kahan's method treats like
-the midpoint rule. We compare with the implicit midpoint rule on $(q,p)$, solved by Newton's method to a
-tolerance of $10^{-14}$, and with the St\"ormer--Verlet method. \Cref{fig:isotropic} shows the results.
+the midpoint rule. We compare with three methods: the implicit midpoint rule on $(q,p)$, solved by Newton's
+method to a tolerance of $10^{-14}$; the St\"ormer--Verlet method; and Strang splitting into the exact
+harmonic flow and a kick by the quartic force (the impulse method), which is the natural explicit method for
+this problem when the stiff part is linear and known~\cite{BiesiadeckiSkeel93,GSS99,HochbruckLubich99}.
+\Cref{fig:isotropic,fig:stepsize} show the results.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{fig_isotropic.pdf}
-\caption{Stiff isotropic oscillator in $\R^3$, $\omega=10$. (a) Lifted Kahan at $h\omega=5$: drift of the
-modified invariants over $10^4$ steps (relative for $E_h$ and $M_h$, absolute for $c_h$). (b) Running maximum
-of the relative energy error. (c) Maximal relative energy error on $[0,200]$ against $h\omega$;
-St\"ormer--Verlet is unstable for $h\omega>2$.}
+\caption{(a), (b) Stiff isotropic oscillator in $\R^3$, $\omega=10$. (a) Lifted Kahan at $h\omega=5$: running
+maximum of the drift of the modified invariants over $10^4$ steps (relative for $E_h$ and $M_h$, absolute for
+$c_h$). (b) Running maximum of the relative energy error. (c) Radial dynamics of an orbit with $n=2$, $u_2=1$,
+$u_1=0$, $h=0.35$, $q_0=(1.2,0)$, $p_0=(0.3,0.9)$: the points
+$\big(\frac12(y_k+y_{k+1}),(y_{k+1}-y_k)/h\big)$ lie on the curve $\mathcal Q(y,y')=0$ of \cref{thm:radial}
+(solid), a deformation of the continuous radial relation $\dot y^2=4[(y-\gamma)(2e-u_2y^2)-m^2]$ with the same
+$\gamma$, $e$, $m$ (dashed).}
 \label{fig:isotropic}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_stepsize.pdf}
+\caption{Maximal relative energy error on $[0,200]$ against $h\omega$ for the stiff oscillator, on a grid of
+$1961$ step sizes ($99$ for the midpoint rule); errors are capped at $3$, and escaping orbits are drawn at the
+cap. Dotted vertical lines: integer multiples of $\pi/2$, where the impulse method resonates. Solid vertical
+line: the step size at which $D(z_0)=0$; \cref{prop:bounded} guarantees bounded lifted Kahan orbits to its
+left.}
+\label{fig:stepsize}
 \end{figure}
 
 \begin{itemize}[leftmargin=*]
 \item \emph{Exact invariants.} At $h\omega=5$ the modified invariants $E_h$, $M_h$ and $c_h$ drift by at most
   $2.2\times10^{-16}$, $1.6\times10^{-14}$ and $7.7\times10^{-14}$ over $10^4$ steps, i.e.\ by round-off. The
   true energy error stays bounded at $5.6\times10^{-2}$.
-\item \emph{Stability.} St\"ormer--Verlet is unstable for $h\omega>2$. For the initial value above, the lifted
-  Kahan map remained bounded for all tested step sizes up to $h\omega=10$, and so did 20 random orbits with
-  $\lvert q_0\rvert\le3$ and $\lvert p_0\rvert=\omega\lvert q_0\rvert$ for $h\omega\le5$. \Cref{prop:bounded}
-  guarantees bounded orbits only when $D(z_0)>0$, which here means $h\omega$ below about $2$, because the
-  constant $u_1^2/(2u_2)=\omega^4/4$ dominates $K$. Beyond that the level sets of $E_h$ need not be compact,
-  and for large initial data some orbits do escape: one of 20 random orbits with $\lvert q_0\rvert=3$ escaped
-  at $h\omega=10$, and an independent test with other initial data found more such escapes. Stability beyond
-  $h\omega\approx2$ is therefore observed at moderate amplitudes, not guaranteed.
-\item \emph{Accuracy and cost.} At equal step size the energy error of the lifted Kahan map is about three times
-  that of the midpoint rule for $h\omega\le1$, and it grows to $0.185$ at $h\omega=10$, where the midpoint
-  error saturates at $3\times10^{-3}$. The midpoint rule needed three to four Newton iterations per step, each
-  with a $6\times6$ linear solve, whereas the lifted Kahan step (\cref{rem:explicit}) costs about as much as a
-  St\"ormer--Verlet step.
+\item \emph{Resonances.} St\"ormer--Verlet is unstable for $h\omega>2$. The impulse method is stable for most
+  step sizes, but it resonates near the integer multiples of $\pi/2$, as is well known for impulse and
+  multiple-time-stepping methods~\cite{BiesiadeckiSkeel93,GSS99}: of the $1961$ step sizes, $100$ gave errors
+  above $0.3$, $50$ of them escaping orbits, all in six narrow bands at $h\omega\approx k\pi/2$,
+  $k=1,\dots,6$. The lifted Kahan map has a single failure band, $h\omega\in[1.995,2.005]$ (three step sizes,
+  two of them escaping). Its location is predicted by the theory:
+  $D(z_0)$ changes sign at $h\omega=1.99998$, and \cref{prop:bounded} guarantees bounded orbits below that
+  value. At $h\omega\approx2$ the Cayley transform of the harmonic part, which Kahan's method shares with the
+  midpoint rule, rotates by $\pi/2$ per step (here $Y\approx1+\frac14h^2\omega^2=2$), a $1{:}4$ resonance, and
+  the midpoint rule also shows a bump there. Beyond the band, $D(z_0)<0$ and \cref{prop:bounded} no longer
+  applies, but all orbits in the scan stayed bounded. Larger amplitudes can escape there: one of $20$ random
+  orbits with $\lvert q_0\rvert=3$ and $\lvert p_0\rvert=\omega\lvert q_0\rvert$ escaped at $h\omega=10$.
+\item \emph{Accuracy and cost.} For $h\omega\le1$ the lifted Kahan map is about $75$ times more accurate than
+  St\"ormer--Verlet (median error ratio $0.013$), because, like the midpoint rule, it conserves the energy of the
+  harmonic part exactly, and about three times less accurate than the midpoint rule. For
+  $h\omega\in[2.2,10]$ the median errors are $0.081$ (lifted Kahan), $0.033$ (impulse) and $0.0029$
+  (midpoint); the error of the lifted Kahan map grows to $0.19$ at $h\omega=10$. The midpoint rule needed three
+  to four Newton iterations per step, each with a $6\times6$ linear solve, whereas the lifted Kahan step
+  (\cref{rem:explicit}) costs about as much as a St\"ormer--Verlet step and needs no splitting of the field.
 \end{itemize}
 
-So the lifted Kahan map is an explicit-cost, symmetric, integrable integrator whose qualitative long-time
-behaviour (invariant tori, exact modified energy and angular momenta) is correct, at moderate amplitudes, at step
-sizes where the standard explicit method fails. It is less accurate than the fully implicit midpoint rule at large
-$h\omega$. For the exponential and trigonometric class of \cref{thm:liouville}, stiffness that enters through
-the lifted nonlinear variables limits the step size: for a stiff rotor chain the lifted Kahan method conserved
-its modified energy and stayed stable up to time $600$ for $h\omega\le2$, and blew up beyond.
+So the lifted Kahan map is an explicit-cost, symmetric, integrable integrator that keeps exact modified
+energy and angular momenta and invariant tori at step sizes where the standard explicit method fails.
+Unlike St\"ormer--Verlet it stays stable beyond $h\omega=2$, and unlike the impulse method it has a single
+failure band, whose location is predicted by the sign of $D(z_0)$. It is less accurate than the fully implicit
+midpoint rule and, between its resonances, than the impulse method, which needs the stiff part to be linear and
+its flow known. For the exponential and
+trigonometric class of \cref{thm:liouville}, stiffness that enters through the lifted nonlinear variables
+limits the step size: for a stiff rotor chain the lifted Kahan method conserved its modified energy and stayed
+stable up to time $600$ for $h\omega\le2$, and blew up beyond.
 
 % ======================================================================================================
 \section{Conclusions and open problems}\label{sec:conclusion}
@@ -910,16 +1177,21 @@ integrals survive through a few linear-algebraic mechanisms, collected in \cref{
 factors, two-variable integrals, and blocks that move along fixed linear flows at affine speeds, possibly
 several and non-commuting. These mechanisms protect the lift constraints of quartic potentials, give the
 Liouville measure for exponential and harmonic potentials, and make the lifted isotropic quartic oscillator
-integrable in every dimension, with an $O(n)$ explicit form. Open problems:
+integrable in every dimension, with an $O(n)$ explicit form and an explicit solution through a QRT map. For
+every quartic potential in one degree of freedom the lifted map preserves an explicit measure, integrable or
+not. Every
+integrable lifted map we found is covered by \cref{prop:cases}, including the planar magnetic case, whose
+integrals lie beyond the block theorem. Open problems:
 \begin{enumerate}[leftmargin=*]
-\item \emph{A block theorem without closure.} The proof of \cref{thm:isotropic}(b) uses a block whose
-  closure defect is absorbed by another conserved quantity. A general version of this mechanism, or a reduction
-  theory for Kahan maps with linear symmetries, might explain the magnetic case and prove
-  \cref{conj:principle}.
-\item \emph{The magnetic case.} Explain the rational integral of the magnetic isotropic map, and test
-  dimensions $n\ge3$.
-\item \emph{Explicit solutions.} The invariant tori of \cref{cor:tori} should admit a parametrisation by
-  elliptic functions, as for planar Kahan maps~\cite{PSS19}.
+\item \emph{A block theorem without closure.} The proof of \cref{thm:isotropic}(b) uses a block whose closure
+  defect is absorbed by another conserved quantity, and the magnetic integrals of \cref{prop:magnetic} exist
+  although the closure condition fails. A general version of this mechanism, or a reduction theory for Kahan
+  maps with linear symmetries, might derive \cref{prop:magnetic} from \cref{thm:isotropic} through a discrete
+  Larmor theorem, and prove \cref{conj:principle}.
+\item \emph{Proofs by hand.} \Cref{prop:quarticdensity} and \cref{prop:magnetic}(b) are polynomial
+  identities verified by computer algebra in seconds. Hand proofs along the lines of \cref{thm:isotropic}(c)
+  would explain the formulas, and might extend \cref{prop:quarticdensity} to all three-dimensional quadratic
+  Nambu systems, the setting of~\cite{LP}.
 \item \emph{Higher order.} Modified integrals depend on $h$, so compositions of Kahan steps with different
   step sizes conserve none of them exactly. Is there a lift or a composition that keeps a common invariant?
 \item \emph{Applications.} Volume-preserving, reversible, linearly implicit integrators for exponential and
@@ -933,18 +1205,22 @@ integrable in every dimension, with an $O(n)$ explicit form. Open problems:
 were carried out with the assistance of an AI system; all results were checked by the author.
 
 \section*{Data availability}
-The scripts that reproduce every computation and figure, including the computer-algebra verification of
-\cref{thm:isotropic}, are available at [repository URL to be added].
+The scripts that reproduce every computation and figure, including the computer-algebra verifications of
+\cref{app:proof} and the searches of \cref{app:exact}, are available at [repository URL to be added].
 
 % ======================================================================================================
 \appendix
-\section{Computer-algebra verification of \texorpdfstring{\cref{thm:isotropic}}{Theorem 6.1}}
+\section{Computer-algebra verification}
 \label{app:proof}
 
 The proofs of \cref{thm:isotropic} in \cref{sec:isotropic} are complete without computer assistance. As an
-independent check, three SymPy~1.14 scripts in the folder \texttt{proofs/} of the repository verify the statements
-as exact identities between rational functions, with $h$, $u_1$ and $u_2$ symbolic.
+independent check, and to complete the proofs of \cref{prop:quarticdensity}, \cref{thm:radial} and
+\cref{prop:magnetic}, six SymPy~1.14 scripts in the folder \texttt{proofs/} of the repository verify the
+statements as exact identities between rational functions, with the step size and all parameters symbolic.
 \begin{enumerate}[leftmargin=*]
+\item \texttt{quartic\_density\_proof.py} (under a second) verifies \cref{prop:quarticdensity}: the polynomial
+  form of the measure identity described in its proof, with $h$ and $a_1,\dots,a_4$ symbolic; the values on the
+  sheet; and the factorisation for $V=\frac14q^4$.
 \item \texttt{isotropic\_proof.py} (about $8$ minutes) first checks that the closed form of \cref{rem:explicit}
   satisfies Kahan's equations identically for $n=2,3$, so that it \emph{is} Kahan's map. It then checks the
   conservation of $c_h$, $M_h$ and $E_h$ and the measure identity $P_n(z')\det(\Id-\frac h2F'(z))=\det(\Id+\frac
@@ -960,9 +1236,22 @@ as exact identities between rational functions, with $h$, $u_1$ and $u_2$ symbol
   $z'=z+h\operatorname{adj}(\mathcal M)F(z)/\det\mathcal M$, $\mathcal M=\Id-\frac h2F'(z)$, instead of the closed
   form, and repeats the checks for $n=2$. It is slower: the energy takes about $7$ minutes, and the measure
   identity about $10$ minutes for $u_2=\frac12$, $u_1=0$.
+\item \texttt{isotropic\_radial\_check.py} verifies \cref{thm:radial}. In the variables of its proof, with
+  $\lvert\eta\rvert^2$ and $\lvert\xi\rvert^2$ eliminated as described there, it checks that the numerator of
+  $E_h(z)-e$ is a constant multiple of $D(z)\,\mathcal Q(y,y')$; that $E_h=e$ is linear in $\lvert q\rvert^2$
+  with root $\mathcal A(y)$, which gives $Q_4$; and the limit in part~(c). It also checks numerically, along an
+  orbit with $n=3$ and $u_1\ne0$, that $\mathcal Q(y_k,y_{k+1})=0$ and $b_k^2=Q_4(y_k)$ to round-off, and that
+  $(y_k,b_k)$ are samples of the elliptic solution at equal steps $\tau$.
+\item \texttt{magnetic\_proof.py} (a few seconds, using sparse polynomial arithmetic) verifies
+  \cref{prop:magnetic} on the slice $q_2=0$: the closed form satisfies Kahan's equations; the Larmor
+  identity~\eqref{eq:larmor}; conservation of $c_h$, $L_h$ and $\mathcal E_h$; the formulas for the two
+  determinants; the measure identity $P^B(z')\det(\Id-\frac h2F'(z))=\det(\Id+\frac h2F'(z'))P^B(z)$; the
+  reductions at $B=0$ and the limits $h\to0$; and a non-zero $3\times3$ minor of the Jacobian of
+  $(c_h,L_h,\mathcal E_h)$. The next state is written as a polynomial divided by $Y^2+\beta^2$, and $y'$ is
+  eliminated at the end through its linear equation.
 \end{enumerate}
-Independent floating-point and exact rational checks at random points, for $n=2,3,4$, are also in the
-repository.
+Independent floating-point and exact rational checks at random points, for $n=2,3,4$, and a floating-point
+check of \cref{prop:magnetic} that computes the step by a generic linear solve, are also in the repository.
 
 \section{Exact searches and degree growth}\label{app:exact}
 
@@ -975,6 +1264,24 @@ found this way exists for generic $h$, and ``no solution up to degree $d$'' is a
 for that degree, barring an unlucky choice of prime. All positive results were then confirmed over the rationals
 or with symbolic $h$. The modified energy $E_h$ of \cref{thm:isotropic} was found as the ratio of two Darboux
 polynomials with the cofactor $(K'/K)(Y'/Y)^2$, where $K$ and $Y$ are the factors of the measure.
+
+\paragraph{Parameters in the ansatz.} To find the density of \cref{prop:quarticdensity} for all quartic
+potentials at once, we treated $h$ and $a_1,\dots,a_4$ as random residues as well, and sought $P$ as a polynomial in
+$(h^2,q,p,y,a_1,\dots,a_4)$ that is invariant under the two scalings of the family of fields, $(q,p,y,h,a_4,a_3,a_2,a_1)
+\mapsto(\lambda q,\lambda^2p,\lambda^2y,\lambda^{-1}h,a_4,\lambda a_3,\lambda^2a_2,\lambda^3a_1)$ and
+$(p,h,a_k)\mapsto(\mu p,\mu^{-1}h,\mu^2a_k)$. Of degree at most four in $(q,p,y)$ and in $h^2$ there are $115$
+such monomials, and the null space is spanned by $P$ and $h^2a_2P$ (\texttt{code/quartic\_density\_search.py}).
+
+\paragraph{Invariant bases and exact reconstruction.} For maps with a rotation symmetry the search can be
+restricted to invariant polynomials, which shrinks the linear systems considerably. For the magnetic case
+(\cref{prop:magnetic}) we used the monomials $y^ia^jb^kc^lM^m$ with $a=\lvert q\rvert^2$, $b=q\cdot v$,
+$c=\lvert v\rvert^2$, $M=q\wedge v$ and $m\le1$ (since $M^2=ac-b^2$), for fixed rational parameters. Solving
+modulo six primes near $2^{31}$ and combining the null spaces by the Chinese remainder theorem and rational
+reconstruction gives the invariant densities exactly over $\mathbb Q$ in under a second
+(\texttt{code/magnetic\_darboux\_search.py}). For $h=\frac15$, $B=1$, $u_2=\frac12$ and $u_1=0$ there is a
+four-dimensional space of densities of weighted degree at most five; the ratios of its elements give the
+integrals. Repeating the search for several parameter values identified the coefficients as polynomials in
+$(h,B,u_2)$, which led to the closed forms of \cref{prop:magnetic}, then verified symbolically.
 
 \paragraph{Degree growth.} To compute $d_k$ we restrict the $k$-th iterate to a random line $z=a+bt$ over
 $\mathbb F_p$ and determine the degree of the resulting rational function of $t$ from the nullity of a
@@ -1036,6 +1343,15 @@ discretizations, \emph{J. Phys. A: Math. Theor.} \textbf{53} (2020) 37LT01.
 \bibitem{GMQ24} G.~Gubbiotti, D.\,I.~McLaren and G.\,R.\,W.~Quispel, An elementary construction of modified
 Hamiltonians and modified measures of 2D Kahan maps, \emph{Open Commun. Nonlinear Math. Phys.} (2024),
 special issue in memory of Decio Levi, ocnmp:12249.
+
+\bibitem{QRT88} G.\,R.\,W.~Quispel, J.\,A.\,G.~Roberts and C.\,J.~Thompson, Integrable mappings and soliton
+equations, \emph{Phys. Lett. A} \textbf{126} (1988) 419--421.
+
+\bibitem{QRT89} G.\,R.\,W.~Quispel, J.\,A.\,G.~Roberts and C.\,J.~Thompson, Integrable mappings and soliton
+equations II, \emph{Physica D} \textbf{34} (1989) 183--192.
+
+\bibitem{Duistermaat10} J.\,J.~Duistermaat, \emph{Discrete Integrable Systems: QRT Maps and Elliptic Surfaces},
+Springer Monographs in Mathematics \textbf{304}, Springer, New York, 2010.
 
 \bibitem{HoneQuispel19} A.\,N.\,W.~Hone and G.\,R.\,W.~Quispel, Analogues of Kahan's method for higher order
 equations of higher degree, arXiv:1911.03161 (2019).
@@ -1116,6 +1432,15 @@ type and deformed Lie--Poisson algebras, \emph{J. Geom. Mech.} \textbf{1} (2009)
 \bibitem{PS18} M.~Petrera and Yu.\,B.~Suris, New results on integrability of the Kahan--Hirota--Kimura
 discretizations, in \emph{Nonlinear Systems and Their Remarkable Mathematical Structures} (N.~Euler, ed.), CRC
 Press, Boca Raton, 2018, 94--120.
+
+\bibitem{BiesiadeckiSkeel93} J.\,J.~Biesiadecki and R.\,D.~Skeel, Dangers of multiple time step methods,
+\emph{J. Comput. Phys.} \textbf{109} (1993) 318--328.
+
+\bibitem{GSS99} B.~Garc\'ia-Archilla, J.\,M.~Sanz-Serna and R.\,D.~Skeel, Long-time-step methods for oscillatory
+differential equations, \emph{SIAM J. Sci. Comput.} \textbf{20} (1999) 930--963.
+
+\bibitem{HochbruckLubich99} M.~Hochbruck and C.~Lubich, A Gautschi-type method for oscillatory second-order
+differential equations, \emph{Numer. Math.} \textbf{83} (1999) 403--426.
 
 \bibitem{BMQW16} P.~Bader, D.\,I.~McLaren, G.\,R.\,W.~Quispel and M.~Webb, Volume preservation by Runge--Kutta
 methods, \emph{Appl. Numer. Math.} \textbf{109} (2016) 123--137.
