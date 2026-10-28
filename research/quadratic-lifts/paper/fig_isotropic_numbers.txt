@@ -1,4 +1,4 @@
-(a) h*om = 5, 10000 steps: max drift E_h 2.2e-16, M_h 1.6e-14, c_h 7.7e-14; max energy error 5.60e-02
+(a) h*om = 5, 10000 steps: max absolute drift E_h 1.4e-14 (E_h = -65.83), M_h 5.3e-15 (|M_h| = 0.375), c_h 7.7e-14; max energy error 5.60e-02
 (b) Kahan h*om=5: max energy err 5.60e-02; midpoint h*om=5: 2.75e-03 (4.0 Newton iterations per step); Verlet h*om=1.5: 3.44e-01 (blow-up: False)
 (c) radial QRT curve: max |Q(y_k, y_k+1)| over 400 steps = 2.3e-14
 wrote ../fig_isotropic.pdf

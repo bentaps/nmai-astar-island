@@ -1,8 +1,10 @@
 # How strong is the draft now, and what is left before submission?
 
-> **Main takeaway.** After this round, every weakness on the earlier list has been addressed except
-> coordinating with the companion manuscript [LP]. The draft is now a credible submission to *Nonlinearity*:
-> expect "minor" or "major revision" rather than a rejection. It remains a safe fit for *J. Phys. A*.
+> **Main takeaway.** After this round, every weakness on the earlier list has been addressed except two:
+> coordinating with the companion manuscript [LP], and a conjugacy check against known integrable maps. The draft
+> is now a credible submission to *Nonlinearity*: expect "minor" or "major revision" rather than a rejection. It
+> remains a safe fit for *J. Phys. A*. One numerical claim of the earlier draft was wrong (large-step stability at
+> large amplitude); an independent check caught it, and it is corrected.
 >
 > * **New results:**
 >   * an explicit solution of the integrable family through a QRT map and elliptic functions;
@@ -42,7 +44,7 @@
 | **Section 7 was empirical.** | **Every map in the integrable half of Table 1 is now proved integrable:** one DOF; the isotropic family and anything affinely conjugate to it (anisotropic mass matrix, the two-body problem); products of these; single exponentials and harmonics in any dimension; the magnetic case. Only the general principle (Conjecture 7.3) and the non-integrability of the other half remain evidence-based. Algebraic entropy is the accepted evidence for that. | Prop. 7.1 |
 | **No explicit solution; few links to other structures.** | **The radial motion is a QRT map.** The lifted variable is an elliptic function sampled at equal steps. This gives the whole orbit explicitly and links the family to the classic theory of integrable maps of the plane. | Thm. 6.5, Cor. 6.6 |
 | **The magnetic case was unexplained.** | **Closed formulas:** the step, three integrals, the measure, and a "discrete Larmor identity" linking the continuous angular momentum to consecutive positions. Verified exactly in 7 seconds and independently in floating point. | Prop. 7.2 |
-| **Modest numerical gain.** | **An honest scan over 1961 step sizes** against the midpoint rule, SV and the impulse method (the natural explicit competitor). The lifted Kahan map has **one** failure band, at the step size the theory predicts. The impulse method has six resonance bands. The text also says where the lifted Kahan map loses: it is less accurate than the midpoint rule, and less accurate than the impulse method between its resonances. | Sec. 8, Fig. 3 |
+| **Modest numerical gain.** | **An honest scan over 1961 step sizes** against the midpoint rule, SV and Strang splitting with the exact harmonic flow (both orders, including the impulse method). Up to the SV limit, $h\omega<2$, bounded orbits are *guaranteed* (Prop. 6.3) and the lifted Kahan map is about 80 times more accurate than SV. Beyond it the map has no resonance bands, unlike the splitting method, and small-amplitude orbits stay bounded up to $h\omega=10$. Large amplitudes can escape, so this part is *observed*, not guaranteed. The text says where the map loses: the midpoint rule is the most accurate, and the splitting method is more accurate away from its resonances. | Sec. 8, Fig. 3 |
 | **Novelty of the integrable map (no conjugacy check).** | Partly addressed. The QRT reduction makes the structure explicit, and a conjugacy check against known maps is now a finite computation. The check itself has not been done. | open |
 
 **An example of the new radial result.**
@@ -65,8 +67,8 @@ area, by the same formula.
 | Family or mechanism, not one example? | strong | strong | Block theorem, Liouville theorem, isotropic family, quartic density for all potentials. |
 | Connections to other structures | weak–medium | medium–strong | QRT maps and elliptic curves (Thm. 6.5); still no Lax pair or Poisson structure. |
 | Self-contained (no reliance on unpublished work) | weak | strong | [LP] is no longer used in any proof. |
-| Survey section | weak (empirical) | medium–strong | All positive cases proved; one conjecture remains. |
-| Numerics | medium | medium–strong | Fair comparison, including the method's weaknesses; one predicted failure band. |
+| Survey section | weak (empirical) | medium–strong | All positive cases proved. The conjecture is now stated precisely, in the direction the evidence supports: hidden integrals are lost. |
+| Numerics | medium | medium | Fair and reproducible, including the method's weaknesses. The large-step stability is real at small amplitudes but not guaranteed. |
 | Depth of the main theorem | medium | medium | Proofs are still short. Two new results (Prop. 5.3, Prop. 7.2) are computer-algebra identities, not conceptual proofs. |
 
 ## 3. What a referee could still object to (most serious first)
@@ -79,15 +81,53 @@ area, by the same formula.
    repository, which is acceptable in this field. A referee may still ask *why* the formulas hold. Open problem 1
    (a block theorem without closure, or a discrete Larmor theorem) is the natural answer, and it is not yet
    found.
-3. **Conjecture 7.3 remains a conjecture.** It is confirmed in every case tested, and Prop. 7.1 proves it in
-   the cases where the symmetry reduction is a rotation or an affine splitting.
-4. **The lifted Kahan map is not the most accurate integrator.** Its selling points are cost (an explicit
-   $O(n)$ step), exact modified invariants, stability beyond the SV limit, and a predictable failure band.
+3. **Conjecture 7.3 remains a conjecture.** It now says: for a non-quadratic system, if a complete set of
+   integrals cannot be built from affine symmetries and affine splittings, the lifted Kahan map is not
+   integrable. All four hidden-symmetry systems tested agree with it. Its converse is false, and the paper
+   says so with two examples.
+4. **The lifted Kahan map is not the most accurate integrator, and its large-step stability is limited.** Its
+   selling points:
+   * cost: an explicit $O(n)$ step;
+   * exact modified invariants;
+   * guaranteed bounded orbits up to the SV limit, with about 80 times SV's accuracy there;
+   * at small amplitudes, stability far beyond that limit without resonance bands.
+
+   At large amplitudes and step sizes it can escape (for example 20 of 20 orbits with $|q_0|=3$ at $h\omega=10$).
 5. **No conjugacy check** against Feng–Maruno (2008) or discrete Newtonian central-force maps.
 
 ## 4. Independent check of the new material
 
-*To be completed from the independent reviewer's report (see below).*
+A separate reviewer agent re-derived and tested every new result. It used its own scripts, written before it
+looked at the paper's. This is what it found.
+
+* **Confirmed:**
+  * Prop. 5.3 as an exact polynomial identity, plus 200 random-point checks with a generic linear solve.
+  * The values on the sheet, the $V=\frac14q^4$ factorisation and Cor. 5.4.
+  * All formulas of Thm. 6.5: the elliptic sampling agrees to $10^{-12}$, and $\tau/2h\to1$.
+  * Every part of Prop. 7.2, with the step computed by a generic $5\times5$ solve:
+    * integrals to $10^{-13}$;
+    * the measure, with a perturbed density as a control;
+    * both Larmor identities and both determinants;
+    * the closure failure.
+  * The reductions in Prop. 7.1.
+  * The Section 8 numbers in the figure files, and the explanation of the failure band at $h\omega\approx2$.
+* **Errors and overclaims it found, all now fixed:**
+  * **A wrong statistic carried over from the earlier draft.** "1 of 20 large-amplitude orbits escaped at
+    $h\omega=10$" came from an unshifted initial value; with the stated setup it is 20 of 20. Section 8 now
+    has a reproducible amplitude scan (`code/stability_amplitude_scan.py`), and the abstract and introduction
+    no longer claim stability "far beyond the Störmer–Verlet limit" without qualification.
+  * The splitting method was called "the impulse method" although it used the other order of substeps. Both
+    orders are now reported, and the escape criterion is defined.
+  * The angle formula (13) used $\tan$, which fixes the angle only modulo $\pi$. It now uses $\cot$, with the
+    angle in $(0,\pi)$.
+  * The two-body example was listed under the wrong case of Prop. 7.1. It is a product with free motion.
+  * The hypotheses behind "conjugate to a rotation" were missing for the magnetic case.
+  * The old Conjecture 7.3 did not fit its own main examples. It is now restated as above.
+  * Missing qualifications in the abstract and introduction: "for small $h$"; the Nambu lift; "in the plane"
+    for the magnetic case.
+  * Notation clashes ($P$, $Q_4$) and an orbit whose parameters were not stated.
+  * Figure 2(a) now shows absolute drifts. The relative drift of $E_h$ was dominated by a large constant.
+* **Not re-checked:** the rotor-chain sentence at the end of Section 8, and the degree sequences of Table 1.
 
 ## 5. Where to send it
 

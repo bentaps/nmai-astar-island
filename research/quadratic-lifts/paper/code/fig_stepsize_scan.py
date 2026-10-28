@@ -1,6 +1,7 @@
 """Figure 3: maximal relative energy error on [0, 200] against h*omega for the stiff isotropic oscillator in R^3
 (H = |p|^2/2 + om^2 |q|^2/2 + |q|^4/4, om = 10, q0 = (0.8, 0.1, -0.3), p0 = (0, 3, 1)), for
-  lifted Kahan (closed form, O(n) per step), Strang splitting with the exact harmonic flow ("impulse" method),
+  lifted Kahan (closed form, O(n) per step), Strang splitting with the exact harmonic flow in the order
+  flow(h/2)-kick(h)-flow(h/2) (plotted; the kick-flow-kick "impulse" ordering is reported in the numbers only),
   the implicit midpoint rule (Newton) and Stormer-Verlet.
 Also marks h*omega where D(z0) = 0 (Proposition 6.3). Writes ../fig_stepsize.pdf and ../fig_stepsize_numbers.txt."""
 import numpy as np, matplotlib
@@ -25,6 +26,17 @@ def impulse_run(h):
         q, p = c*q + s/om*p, -om*s*q + c*p
         p = p - h*(q@q)*q
         q, p = c*q + s/om*p, -om*s*q + c*p
+        e = abs(H(q, p) - E0)/E0
+        if not np.isfinite(e) or e > CAP: return np.inf
+        err = max(err, e)
+    return err
+def kfk_run(h):
+    "impulse method in the kick-flow-kick ordering (half kicks), for comparison; not plotted"
+    c, s = np.cos(om*h), np.sin(om*h); q, p = q0.copy(), p0.copy(); err = 0
+    for k in range(int(round(T/h))):
+        p = p - h/2*(q@q)*q
+        q, p = c*q + s/om*p, -om*s*q + c*p
+        p = p - h/2*(q@q)*q
         e = abs(H(q, p) - E0)/E0
         if not np.isfinite(e) or e > CAP: return np.inf
         err = max(err, e)
@@ -54,6 +66,7 @@ def D0(h):
 fine = np.linspace(0.2, 10.0, 1961); coarse = np.linspace(0.2, 10.0, 99)
 K = np.array([kahan_run(x/om) for x in fine]); I = np.array([impulse_run(x/om) for x in fine])
 Mp = np.array([midpoint_run(x/om) for x in coarse]); S = np.array([verlet_run(x/om) for x in fine if x < 2.1])
+KFK = np.array([kfk_run(x/om) for x in fine])
 hc = brentq(D0, 0.1, 0.3)*om
 def bands(mask):
     "Group the grid points where mask holds into intervals [first, last] of consecutive points."
@@ -67,8 +80,14 @@ lines = [f"D(z0) = 0 at h*om = {hc:.5f}",
          + bands((~np.isfinite(K)) | (K > 0.3)),
          f"impulse: {int(np.sum(~np.isfinite(I)))} escapes of {len(fine)}; error > 0.3 or escape for h*om in "
          + bands((~np.isfinite(I)) | (I > 0.3)),
-         f"median error for h*om in [2.2, 10]: Kahan {np.median(K[(fine > 2.2) & np.isfinite(K)]):.3f}, "
-         f"impulse {np.median(I[(fine > 2.2) & np.isfinite(I)]):.3f}, midpoint {np.median(Mp[coarse > 2.2]):.4f}",
+         f"impulse, kick-flow-kick ordering (not plotted): {int(np.sum(~np.isfinite(KFK)))} escapes; error > 0.3 or "
+         f"escape for {int(np.sum((~np.isfinite(KFK)) | (KFK > 0.3)))} step sizes, in " + bands((~np.isfinite(KFK)) | (KFK > 0.3)),
+         f"median error over non-escaping runs, h*om in [2.2, 10]: Kahan {np.median(K[(fine > 2.2) & np.isfinite(K)]):.3f}, "
+         f"impulse {np.median(I[(fine > 2.2) & np.isfinite(I)]):.3f}, kick-flow-kick {np.median(KFK[(fine > 2.2) & np.isfinite(KFK)]):.3f}, "
+         f"midpoint {np.median(Mp[coarse > 2.2]):.4f}",
+         f"Verlet: first escape at h*om = {fine[fine < 2.1][~np.isfinite(S)][0]:.3f}",
+         "lifted Kahan in its band: " + ", ".join(f"h*om = {x:.3f}: {'escape' if not np.isfinite(K[np.argmin(abs(fine - x))]) else f'{K[np.argmin(abs(fine - x))]:.2f}'}"
+                                                   for x in (1.995, 2.0, 2.005)),
          f"h*om <= 1: Kahan/Verlet error ratio {np.median(K[fine <= 1]/np.array([verlet_run(x/om) for x in fine[fine <= 1]])):.3f}"]
 open("../fig_stepsize_numbers.txt", "w").write("\n".join(lines) + "\n"); print("\n".join(lines))
 plt.rcParams.update({"font.family": "serif", "mathtext.fontset": "cm", "font.size": 8, "axes.linewidth": 0.6,

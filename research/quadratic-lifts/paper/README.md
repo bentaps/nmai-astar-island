@@ -36,7 +36,8 @@ Requirements: Python 3 with `numpy`, `scipy`, `sympy`, `matplotlib`. Run the scr
 | Proposition 7.2, floating-point cross-check with the step computed by a generic linear solve | `proofs/magnetic_float_check.py` | 1 s |
 | Proposition 7.2: how the integrals were found (rotation-invariant Darboux search modulo primes, CRT and rational reconstruction) | `code/magnetic_darboux_search.py 1/5 1 1/2 0` | 1 s |
 | Figure 2 and the numbers in Section 8 (output saved in `fig_isotropic_numbers.txt`) | `code/fig_isotropic_numerics.py` | seconds |
-| Figure 3 (step-size scan: lifted Kahan, impulse/Strang splitting, midpoint, Störmer–Verlet; resonance bands; output saved in `fig_stepsize_numbers.txt`) | `code/fig_stepsize_scan.py` | 2 min |
+| Figure 3 (step-size scan: lifted Kahan, Strang splitting with the exact harmonic flow in both orders, midpoint, Störmer–Verlet; resonance bands; output saved in `fig_stepsize_numbers.txt`) | `code/fig_stepsize_scan.py` | 2 min |
+| Section 8, stability against amplitude: escapes of 20 random orbits per amplitude and step size, lifted Kahan and splitting, with the sign of $D(z_0)$; output saved in `stability_amplitude_numbers.txt` | `code/stability_amplitude_scan.py` | 10 s |
 | Figure 1 (degree sequences; computed by the scripts listed in the docstring) | `code/fig_degrees.py` | seconds |
 | Table 1, Sections 3–5 and 7 | scripts in [`../code-invariants/`](../code-invariants/), [`../code-applications/`](../code-applications/), [`../code-theory/`](../code-theory/); each folder's README maps claims to scripts | seconds to minutes |
 

@@ -1,6 +1,6 @@
 """Figure: the lifted Kahan map for the stiff isotropic anharmonic oscillator in R^3,
 H = |p|^2/2 + om^2 |q|^2/2 + |q|^4/4  (U(y) = y^2/4 + om^2 y/2, lift y = |q|^2), om = 10.
-(a) the modified invariants E_h, M_h, c_h are conserved to round-off over 10^4 steps at h*om = 5;
+(a) the modified invariants E_h, M_h, c_h are conserved to round-off over 10^4 steps at h*om = 5 (absolute drift);
 (b) relative energy error in time: lifted Kahan and implicit midpoint at h*om = 5, Stormer-Verlet at h*om = 1.5;
 (c) radial dynamics (Theorem 6.5): consecutive values of the shifted auxiliary variable lie on the biquadratic
     curve Q(y, y') = 0, shown in the coordinates ((y + y')/2, (y' - y)/h) together with the continuous radial relation.
@@ -36,8 +36,7 @@ def run_kahan(h, T):
     Eh0, Mh0, ch0 = invariants(q, p, y, h); out = []
     for k in range(int(round(T/h))):
         q, p, y = kahan(q, p, y, h); Eh, Mh, ch = invariants(q, p, y, h)
-        out.append(((k + 1)*h, abs(Eh - Eh0)/abs(Eh0), np.abs(Mh - Mh0).max()/np.abs(Mh0).max(), abs(ch - ch0),
-                    abs(H(q, p) - E0)/E0))
+        out.append(((k + 1)*h, abs(Eh - Eh0), np.abs(Mh - Mh0).max(), abs(ch - ch0), abs(H(q, p) - E0)/E0))
     return np.array(out)
 def run_mid(h, T):
     q, p = q0.copy(), p0.copy(); out = []; its = 0
@@ -53,8 +52,9 @@ def run_verlet(h, T):
     return np.array(out), False
 # (a) long-time conservation at h*om = 5
 hA = 0.5; A = run_kahan(hA, 5000.0)
-print(f"(a) h*om = 5, {len(A)} steps: max drift E_h {A[:,1].max():.1e}, M_h {A[:,2].max():.1e}, c_h {A[:,3].max():.1e};"
-      f" max energy error {A[:,4].max():.2e}")
+Eh0, Mh0, ch0 = invariants(q0, p0, q0@q0 - hA**2/4*p0@p0, hA)
+print(f"(a) h*om = 5, {len(A)} steps: max absolute drift E_h {A[:,1].max():.1e} (E_h = {Eh0:.2f}), M_h {A[:,2].max():.1e}"
+      f" (|M_h| = {np.linalg.norm(Mh0):.3f}), c_h {A[:,3].max():.1e}; max energy error {A[:,4].max():.2e}")
 # (b) energy error in time
 Kb = run_kahan(0.5, 200.0); Mb, itsb = run_mid(0.5, 200.0); Vb, blow = run_verlet(0.15, 200.0)
 print(f"(b) Kahan h*om=5: max energy err {Kb[:,4].max():.2e}; midpoint h*om=5: {Mb[:,1].max():.2e}"
@@ -90,7 +90,7 @@ cm = np.maximum.accumulate
 ax[0].semilogy(A[sub, 0], cm(A[:, 1])[sub] + eps, color=C1, lw=1.0, label=r"$E_h$")
 ax[0].semilogy(A[sub, 0], cm(A[:, 2])[sub] + eps, color=C2, lw=1.0, ls="--", label=r"$M_h$")
 ax[0].semilogy(A[sub, 0], cm(A[:, 3])[sub] + eps, color=C3, lw=1.0, ls=":", label=r"$c_h$")
-ax[0].set_ylim(1e-17, 1e-11); ax[0].set_xlabel(r"$t$"); ax[0].set_ylabel("running max. drift")
+ax[0].set_ylim(1e-17, 1e-11); ax[0].set_xlabel(r"$t$"); ax[0].set_ylabel("running max. absolute drift")
 ax[0].legend(frameon=False, loc="upper left", ncol=3, handlelength=1.6, columnspacing=0.8)
 ax[0].set_title(r"(a) lifted Kahan, $h\omega=5$", fontsize=8)
 ax[1].semilogy(Kb[:, 0], cm(Kb[:, 4]), color=C1, lw=1.0, label=r"lifted Kahan, $h\omega=5$")

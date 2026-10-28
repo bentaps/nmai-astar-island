@@ -4,7 +4,8 @@
    parameters), where Q is the symmetric biquadratic of the theorem.
 2. The level-set quartic: |q|^2 = A(y) and b^2 = Q4(y) on {c_h = g, |M_h|^2 = m2, E_h = e}.
 3. Continuous limit: Q(x, x + h w)/h^2 -> -4 w^2 + 16 [(x - g)(2e - u2 x^2) - m2].
-4. Numerics: along an orbit (n = 3, u1 != 0), Q(y_k, y_{k+1}) = 0, b_k^2 = Q4(y_k), and (y_k, b_k) are samples at
+4. Numerics: along an orbit (n = 3, h = 0.4, u2 = 0.8, u1 = 0.6, random initial data with seed 4),
+   Q(y_k, y_{k+1}) = 0, b_k^2 = Q4(y_k), and (y_k, b_k) are samples at
    x0 + k tau of the solution of y'' = Q4'(y)/2, y'^2 = Q4(y).
 Works with the shifted variable y~ = y + u1/u2 and g = c_h + u1/u2 (so u1 = 0 below)."""
 import sympy as sp, numpy as np
@@ -52,10 +53,15 @@ for k in range(60): orb.append(step(*orb[-1]))
 Yk = np.array([o[2] + u1v/u2v for o in orb]); bk = np.array([o[0]@o[1] for o in orb])
 print(f"[4] max |Q(y_k, y_k+1)| = {max(abs(Qf(Yk[k], Yk[k+1])) for k in range(60)):.1e},"
       f" max |b_k^2 - Q4(y_k)| = {max(abs(bk[k]**2 - Q4f(Yk[k])) for k in range(61)):.1e}")
-sol = solve_ivp(lambda s, z: [z[1], dQ4f(z[0])/2], [0, 70], [Yk[0], bk[0]], rtol=1e-12, atol=1e-13, dense_output=True)
+sol = solve_ivp(lambda s, z: [z[1], dQ4f(z[0])/2], [0, 70], [Yk[0], bk[0]], method="DOP853", rtol=1e-13, atol=1e-14,
+                dense_output=True)
 ts = np.linspace(0, 2, 20001); d = np.abs(sol.sol(ts)[0] - Yk[1]) + np.abs(sol.sol(ts)[1] - bk[1]); j = np.argmin(d[1:]) + 1
 f = lambda T: np.sum((sol.sol(T) - np.array([Yk[60], bk[60]]))**2)
 tau1 = minimize_scalar(lambda T: np.sum((sol.sol(T) - np.array([Yk[1], bk[1]]))**2), bounds=(ts[j-1], ts[j+1]), method='bounded', options={'xatol': 1e-13}).x
-tau = minimize_scalar(f, bounds=(60*tau1 - 1e-3, 60*tau1 + 1e-3), method='bounded', options={'xatol': 1e-13}).x/60
+# refine tau by root finding at step 60 (a least-squares fit only resolves tau to about sqrt(machine epsilon))
+from scipy.optimize import brentq
+comp, target = (0, Yk[60]) if abs(bk[60]) > abs(dQ4f(Yk[60]))/2*1e-3 else (1, bk[60])
+T60 = minimize_scalar(f, bounds=(60*tau1 - 1e-3, 60*tau1 + 1e-3), method='bounded', options={'xatol': 1e-13}).x
+tau = brentq(lambda T: sol.sol(T)[comp] - target, T60 - 1e-4, T60 + 1e-4, xtol=1e-15, rtol=1e-15)/60
 err = max(np.abs(sol.sol(k*tau) - np.array([Yk[k], bk[k]])).max() for k in range(61))
 print(f"    tau = {tau:.10f} (about 2h = {2*hv}); max |(y(k tau), y'(k tau)) - (y_k, b_k)|, k <= 60: {err:.1e}")

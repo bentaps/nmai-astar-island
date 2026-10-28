@@ -1,5 +1,8 @@
 D(z0) = 0 at h*om = 1.99998
 lifted Kahan: 2 escapes of 1961; error > 0.3 or escape for h*om in [1.995, 2.005]
 impulse: 50 escapes of 1961; error > 0.3 or escape for h*om in [1.565, 1.565], [3.080, 3.150], [4.685, 4.705], [6.220, 6.350], [7.800, 7.840], [9.240, 9.450]
-median error for h*om in [2.2, 10]: Kahan 0.081, impulse 0.033, midpoint 0.0029
+impulse, kick-flow-kick ordering (not plotted): 34 escapes; error > 0.3 or escape for 93 step sizes, in [1.565, 1.570], [3.110, 3.175], [4.695, 4.710], [6.220, 6.350], [7.825, 7.850], [9.330, 9.525]
+median error over non-escaping runs, h*om in [2.2, 10]: Kahan 0.081, impulse 0.033, kick-flow-kick 0.027, midpoint 0.0029
+Verlet: first escape at h*om = 1.955
+lifted Kahan in its band: h*om = 1.995: 0.48, h*om = 2.000: escape, h*om = 2.005: escape
 h*om <= 1: Kahan/Verlet error ratio 0.013

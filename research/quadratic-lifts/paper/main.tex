@@ -58,15 +58,15 @@ need not survive. We show which do. (i)~A
 the quadratic invariants of those flows when their second-derivative operators close and commute; the flows
 themselves need not commute. It gives $I-\tfrac{h^2}{8}F\tr\nabla^2I\,F$ when the curvature of $I$ lies in
 affinely moving variables. (ii)~Constraints with affinely moving factors are protected; on the invariant
-\emph{shifted sheet} the lifted method is a symmetric one-step method for the original system. For quartic
-potentials in one degree of freedom it preserves an explicit area form. (iii)~For
+\emph{shifted sheet} the lifted method is a symmetric one-step method for the original system. For the Nambu
+lift of any quartic potential in one degree of freedom it preserves an explicit area form. (iii)~For
 potentials built from exponentials and single harmonics, with any mass matrix, the lifted map preserves the
 Liouville measure and a modified energy. (iv)~For isotropic quartic oscillators in $\R^n$ the lifted map is
-integrable for every $n$, with all integrals and the measure in closed form. Its radial part is a QRT map,
+integrable for every $n$, with integrals and measure in closed form. Its radial part is a QRT map,
 solved explicitly by elliptic functions, and the planar case stays integrable in a magnetic field. This gives
-an $O(n)$-cost integrator, stable far beyond the St\"ormer--Verlet limit, whose single failure band the theory
-predicts. All proved integrable cases stem from linear symmetries and one degree of freedom; degree growth
-suggests that hidden symmetries do not survive lifting.
+an $O(n)$-cost integrator with exact modified invariants and an explicit condition for bounded orbits.
+In all proved cases the integrals come from affine symmetries and splittings; degree growth suggests that hidden
+integrals do not survive lifting.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Kahan's method, Hirota--Kimura discretisation, quadratic lifts, auxiliary
@@ -125,26 +125,27 @@ whether lifting can produce new integrable maps. Our main results are the follow
   $\frac12p\tr Gp+\sum_kc_k\mathrm e^{\alpha_k\cdot q}+\sum_jg_j\cos(\beta_j\cdot q)$, in any dimension and with
   any constant mass matrix, Kahan's method in the exponential and harmonic variables preserves the
   canonical Liouville measure and a modified energy. This covers Toda chains, rotor and XY chains and coupled
-  pendula. For every potential of degree at most four in one degree of freedom, the lifted map preserves an
-  explicit measure, so the method on the shifted sheet preserves an area form even when it is not integrable
-  (\cref{cor:area}).
+  pendula. For every potential of degree at most four in one degree of freedom, the Kahan map of its Nambu
+  lift preserves an explicit measure, so the method on the shifted sheet preserves an area form even when it is
+  not integrable (\cref{cor:area}).
 \item \textbf{An integrable family in every dimension} (\cref{thm:isotropic,cor:tori}). For
   $H=\frac12\lvert p\rvert^2+U(\lvert q\rvert^2)$ with $U$ quadratic and $q,p\in\R^n$, the lift
   $y=\lvert q\rvert^2$ gives a Kahan map that conserves modified angular momenta, a modified energy and an
-  explicit measure, for every $n$. Its compact regular level sets are invariant 2-tori on which it acts as a
-  skew rotation. Its radial part is a QRT map: the lifted variable $y_k$ is an elliptic function sampled at
-  equal steps, which gives an explicit solution (\cref{thm:radial,cor:explicit-solution}). The map can be
-  evaluated in closed form at $O(n)$ cost (\cref{rem:explicit}), and bounded orbits are guaranteed under an
-  explicit condition (\cref{prop:bounded}). In a scan over step sizes it stays stable far beyond the
-  St\"ormer--Verlet limit, with a single failure band where this condition fails, whereas a splitting method
-  that integrates the stiff part exactly resonates near every multiple of $\pi/2$ (\cref{sec:numerics}).
+  explicit measure, for every $n$. For small $h$, its compact regular level sets are invariant 2-tori on which it
+  acts as a skew rotation. Its radial part is a QRT map: for small $h$, the lifted variable $y_k$ is an elliptic
+  function sampled at equal steps, which gives an explicit solution (\cref{thm:radial,cor:explicit-solution}).
+  The map can be evaluated in closed form at $O(n)$ cost (\cref{rem:explicit}), and bounded orbits are guaranteed
+  under an explicit condition (\cref{prop:bounded}). On a stiff test problem it is far more accurate than
+  St\"ormer--Verlet at the same cost; at small amplitudes it stays stable well beyond the St\"ormer--Verlet limit,
+  without the resonance bands of splitting methods, while at large amplitudes and step sizes it can fail
+  (\cref{sec:numerics}).
 \item \textbf{Which integrable systems survive lifting} (\cref{sec:survey}). We prove integrability for every
   lifted map in our survey whose degree growth is polynomial (\cref{prop:cases}). The cases are one degree of
   freedom, the isotropic family, single exponentials and harmonics, products of these up to affine changes of
   variables, and the planar isotropic oscillator in a magnetic field. For the last, whose integrals lie outside
   the reach of the block theorem, we give the integrals and the measure in closed form, together with a discrete
   Larmor identity (\cref{prop:magnetic}). Exact degree-growth computations on nineteen lifted maps indicate
-  that integrability resting on hidden symmetries is lost (\cref{conj:principle}).
+  that integrability resting on hidden integrals is lost (\cref{conj:principle}).
 \end{enumerate}
 
 \paragraph{Relation to other work.}
@@ -806,10 +807,10 @@ second-order, integrable discretisation of the original system on $\R^{2n}$ (\cr
 \subsection{Radial dynamics: a QRT map and an explicit solution}\label{sec:radial}
 
 By \cref{rem:explicit}, $q_k\cdot q_{k+1}=\big((1-\frac h2\alpha_{k+1})\lvert q_k\rvert^2+h\,q_k\cdot p_k\big)/Y_k$ and
-$\lvert q_k\wedge q_{k+1}\rvert=hm$ with $m=\lvert M_h\rvert$. So in the plane of motion the polar angle of $q_k$
-advances by $\vartheta_k$ with
+$q_k\wedge q_{k+1}=hM_h$. Orient the plane of motion so that $M_h=m>0$. Then the polar angle of $q_k$ advances
+by the angle $\vartheta_k\in(0,\pi)$ determined by
 \begin{equation}\label{eq:angle}
-\tan\vartheta_k=\frac{hm\,Y_k}{(1-\frac h2\alpha_{k+1})\lvert q_k\rvert^2+h\,q_k\cdot p_k},
+\cot\vartheta_k=\frac{(1-\frac h2\alpha_{k+1})\lvert q_k\rvert^2+h\,q_k\cdot p_k}{hm\,Y_k},
 \end{equation}
 and the whole orbit is determined by the radial quantities $y_k$, $\lvert q_k\rvert^2$ and $b_k=q_k\cdot p_k$. The
 next theorem shows that they are elliptic functions of $k$, generated by a QRT map~\cite{QRT88,QRT89,Duistermaat10}.
@@ -818,22 +819,23 @@ next theorem shows that they are elliptic functions of $k$, generated by a QRT m
 Let $u_1=0$ (otherwise replace $y$ by $\tilde y=y+u_1/u_2$ and $c_h$ by $c_h+u_1/u_2$), and let $(z_k)$ be an orbit
 with $c_h=\gamma$, $\lvert M_h\rvert^2=m^2$ and $E_h=e$. Define the symmetric biquadratic polynomial
 \begin{align*}
-\mathcal Q(x,x')={}&P\sigma_1^2-4\kappa\big(e\kappa h^2+2\big)\sigma_1\sigma_2+16\big(e\kappa h^2+1\big)\sigma_2\\
+\mathcal Q(x,x')={}&\Lambda\sigma_1^2-4\kappa\big(e\kappa h^2+2\big)\sigma_1\sigma_2+16\big(e\kappa h^2+1\big)\sigma_2\\
 &+16eh^2\sigma_1-16h^2\big(2e\gamma+m^2\big),
 \end{align*}
-where $\sigma_1=x+x'$, $\sigma_2=xx'$ and $P=4(\kappa\gamma-1)+\kappa h^2(2e\gamma\kappa-4e+\kappa m^2)$.
+where $\sigma_1=x+x'$, $\sigma_2=xx'$ and $\Lambda=4(\kappa\gamma-1)+\kappa h^2(2e\gamma\kappa-4e+\kappa m^2)$.
 \begin{enumerate}[label=(\alph*)]
-\item $\mathcal Q(y_k,y_{k+1})=0$ for all $k$. For fixed $\gamma$ and $m$, $\mathcal Q$ depends linearly on $e$. Hence
-  $y_{k+1}$ and $y_{k-1}$ are the two roots of $\mathcal Q(y_k,\cdot)$, and $(y_{k-1},y_k)\mapsto(y_k,y_{k+1})$ is
-  the symmetric QRT map of the pencil of biquadratic curves $\{\mathcal Q=0\}$ parametrised by $e$.
-\item $\lvert q_k\rvert^2=\mathcal A(y_k)$ and $b_k^2=Q_4(y_k)$, where
+\item $\mathcal Q(y_k,y_{k+1})=0$ for all $k$. Since $\mathcal Q$ is symmetric, $y_{k+1}$ and $y_{k-1}$ are both
+  roots of the quadratic polynomial $\mathcal Q(y_k,\cdot)$, and when they differ they are its two roots. For fixed
+  $\gamma$ and $m$, $\mathcal Q$ depends linearly on $e$, so the curves $\{\mathcal Q=0\}$ form a pencil, and
+  $(y_{k-1},y_k)\mapsto(y_k,y_{k+1})$ is the symmetric QRT map of this pencil.
+\item $\lvert q_k\rvert^2=\mathcal A(y_k)$ and $b_k^2=\mathcal R(y_k)$, where
 \begin{gather*}
 \mathcal A(x)=\big(1+\tfrac12e\kappa h^2\big)\big(x-\gamma-\tfrac14\kappa x^2\big)+\tfrac12eh^2-\tfrac14\kappa h^2m^2,\\
-Q_4(x)=\tfrac{4}{h^2}\mathcal A(x)\big(\gamma-x+\mathcal A(x)\big)-m^2\big(1+\tfrac12\kappa x\big)^2 .
+\mathcal R(x)=\tfrac{4}{h^2}\mathcal A(x)\big(\gamma-x+\mathcal A(x)\big)-m^2\big(1+\tfrac12\kappa x\big)^2 .
 \end{gather*}
-  If $Q_4$ has simple roots and $h$ is small enough, there are $x_0$ and $\tau$ such that
+  If $\mathcal R$ has simple roots and $h$ is small enough, there are $x_0$ and $\tau$ such that
   $(y_k,b_k)=\big(\mathfrak y(x_0+k\tau),\mathfrak y'(x_0+k\tau)\big)$ for all $k$, where $\mathfrak y$ is the
-  elliptic function with $(\mathfrak y')^2=Q_4(\mathfrak y)$.
+  elliptic function with $(\mathfrak y')^2=\mathcal R(\mathfrak y)$.
 \item As $h\to0$, $\mathcal Q(x,x+hw)/h^2\to-4w^2+16\big[(x-\gamma)(2e-u_2x^2)-m^2\big]$, so the curve
   $\mathcal Q=0$ is a deformation of the radial energy relation
   $\dot y^2=4\big[(y-\gamma)(2e-u_2y^2)-m^2\big]$ of the continuous system.
@@ -854,12 +856,12 @@ $\mathcal Q(y_{k-1},y_k)$ and $\mathcal Q(y_k,y_{k+1})$ vanish.
 
 (b) On the level set, $c_h=\gamma$ gives $\lvert p\rvert^2=\frac4{h^2}(\gamma-y+\lvert q\rvert^2)$, and then
 $E_h=e$ is linear in $\lvert q\rvert^2$, with root $\mathcal A(y)$. Lagrange's identity gives
-$b^2=\lvert q\rvert^2\lvert p\rvert^2-\lvert q\wedge p\rvert^2=Q_4(y)$. So the map induced on the orbit space
-is a birational automorphism of the curve $\mathfrak E=\{(y,b):b^2=Q_4(y)\}$, which has genus one when $Q_4$ has
+$b^2=\lvert q\rvert^2\lvert p\rvert^2-\lvert q\wedge p\rvert^2=\mathcal R(y)$. So the map induced on the orbit space
+is a birational automorphism of the curve $\mathfrak E=\{(y,b):b^2=\mathcal R(y)\}$, which has genus one when $\mathcal R$ has
 simple roots. In a uniformising coordinate $x$ with $\dd x=\dd y/b$, every automorphism of $\mathfrak E$ is
 $x\mapsto\zeta x+\tau$ with $\zeta$ a root of unity. The induced map depends continuously on $h$ and tends to the
 identity as $h\to0$, so $\zeta=1$: it is a translation. Then $\mathfrak y(x)=y$ satisfies $\mathfrak y'=b$ and
-$(\mathfrak y')^2=Q_4(\mathfrak y)$.
+$(\mathfrak y')^2=\mathcal R(\mathfrak y)$.
 
 (c) Expand $\mathcal Q(x,x+hw)$ in powers of $h$ (\cref{app:proof}).
 \end{proof}
@@ -879,9 +881,10 @@ $\tau\approx2h$.
 Kahan discretisations of planar quadratic systems are known to produce QRT-type maps and translations on
 elliptic curves~\cite{PSS19,GMQ24}. Here the QRT map arises as the radial part of a map in five or more
 dimensions, after reduction by the rotation group. Numerically, the points $(y_k,y_{k+1})$ lie on $\mathcal Q=0$
-to round-off (\cref{fig:isotropic}(c)). Along an orbit with $n=3$ and $h=0.4$, the pairs $(y_k,b_k)$ agree with
-$(\mathfrak y(x_0+k\tau),\mathfrak y'(x_0+k\tau))$, $\tau=0.7822$, to $4\times10^{-9}$ over 60 steps, which is the
-accuracy of the reference integration of $\mathfrak y''=\frac12Q_4'(\mathfrak y)$.
+to round-off (\cref{fig:isotropic}(c)). Along an orbit with $n=3$, $h=0.4$, $u_2=0.8$ and $u_1=0.6$ (in the
+variable $\tilde y$), the pairs $(y_k,b_k)$ agree with $(\mathfrak y(x_0+k\tau),\mathfrak y'(x_0+k\tau))$,
+$\tau=0.7822$, to $3\times10^{-12}$ over 60 steps, where $\mathfrak y$ is computed by integrating
+$\mathfrak y''=\frac12\mathcal R'(\mathfrak y)$ numerically.
 
 % ======================================================================================================
 \section{Which integrable systems survive lifting?}\label{sec:survey}
@@ -952,17 +955,19 @@ is the product of the Kahan maps of $F_1$ and $F_2$.
 \begin{proposition}[proved integrable cases]\label{prop:cases}
 For each of the following lifted systems, Kahan's map preserves a measure with an explicit density and conserves
 explicit, functionally independent modified integrals. Their common level sets are curves in cases~(a)
-and~(d), surfaces that carry a circle action commuting with the map in cases~(b) and~(e), and products of
-these in case~(c).
+and~(d), surfaces that carry a circle action commuting with the map in cases~(b) and~(e), and in case~(c)
+products of these and of affine subspaces, one for each factor of free motion.
 \begin{enumerate}[label=(\alph*)]
-\item One degree of freedom: the systems of \cref{prop:pencil}, which include all even quartic oscillators.
+\item One degree of freedom: the systems of \cref{prop:pencil} and the paragraph after it, which include all
+  even quartic oscillators.
 \item The isotropic family of \cref{thm:isotropic}, in every dimension, and every lifted system that is
-  affinely conjugate to it. Examples are $H=\frac12p\tr Gp+U(q\tr G^{-1}q)$ with $G$ symmetric positive
-  definite, lifted with $y=q\tr G^{-1}q$, and the two-body problem
+  affinely conjugate to it, for example $H=\frac12p\tr Gp+U(q\tr G^{-1}q)$ with $G$ symmetric positive
+  definite, lifted with $y=q\tr G^{-1}q$.
+\item Lifted systems that are affinely conjugate to a product of systems from the other cases and of free
+  motions $\dot x=v$, $\dot v=0$, on which Kahan's map is exact. Examples are the potential $q_1^4+q_2^4$ with
+  $y_k=q_k^2$; $q_1^4+6q_1^2q_2^2+q_2^4$ with $y_\pm=(q_1\pm q_2)^2$; and the two-body problem
   $H=\frac12\lvert p_1\rvert^2+\frac12\lvert p_2\rvert^2+U(\lvert q_1-q_2\rvert^2)$ with $q_k,p_k\in\R^n$,
   lifted with $y=\lvert q_1-q_2\rvert^2$.
-\item Lifted systems that are affinely conjugate to a product of systems from the other cases. Examples are the
-  potential $q_1^4+q_2^4$ with $y_k=q_k^2$, and $q_1^4+6q_1^2q_2^2+q_2^4$ with $y_\pm=(q_1\pm q_2)^2$.
 \item A single exponential or a single harmonic, $H=\frac12p\tr Gp+c\,\mathrm e^{\alpha\cdot q}$ or
   $H=\frac12p\tr Gp+g\cos(\beta\cdot q)$ on $\R^n\times\R^n$, with $G$ symmetric and the lift of
   \cref{thm:liouville}. Examples are the two-particle Toda chain and two coupled rotors.
@@ -971,15 +976,15 @@ these in case~(c).
 \end{proposition}
 
 \begin{proof}
-(a) is \cref{prop:pencil}: two integrals on $\R^3$. (b) follows from \cref{thm:isotropic} and
-\cref{prop:basic}(c). For the first example, the linear change $\tilde q=G^{-1/2}q$, $\tilde p=G^{1/2}p$ gives the
-isotropic system with $y=\lvert\tilde q\rvert^2$. For the two-body problem, put $r=q_1-q_2$, $\pi=p_1-p_2$,
-$R=q_1+q_2$ and $P=p_1+p_2$. The lifted field becomes $\dot r=\pi$, $\dot\pi=-4U'(y)\,r$, $\dot y=2\,r\cdot\pi$,
-which is~\eqref{eq:isofield} with $U$ replaced by $2U$, together with $\dot R=P$, $\dot P=0$, on which Kahan's
-map is the exact flow. (c) The map is the product of the maps of the factors. In the second example the lifted
+(a) is \cref{prop:pencil} and the paragraph after it: two integrals on $\R^3$. (b) follows from
+\cref{thm:isotropic} and \cref{prop:basic}(c); in the example, the linear change $\tilde q=G^{-1/2}q$,
+$\tilde p=G^{1/2}p$ gives the isotropic system with $y=\lvert\tilde q\rvert^2$. (c) The map is the product of the
+maps of the factors. In the second example the lifted
 field is $\dot p_1=-2(q_1+q_2)y_+-2(q_1-q_2)y_-$, $\dot p_2=-2(q_1+q_2)y_++2(q_1-q_2)y_-$,
 $\dot y_\pm=2(q_1\pm q_2)(p_1\pm p_2)$, which decouples in the variables $q_1\pm q_2$, $p_1\pm p_2$, $y_\pm$ into two
-quartic oscillators. (d) On $\R^N$ with $N=n+1$ (exponential) or $N=n+2$ (harmonic), \cref{thm:liouville} gives
+quartic oscillators. For the two-body problem, put $r=q_1-q_2$, $\pi=p_1-p_2$, $R=q_1+q_2$ and $P=p_1+p_2$. The
+lifted field becomes $\dot r=\pi$, $\dot\pi=-4U'(y)\,r$, $\dot y=2\,r\cdot\pi$, which is~\eqref{eq:isofield} with
+$U$ replaced by $2U$, together with the free motion $\dot R=P$, $\dot P=0$. (d) On $\R^N$ with $N=n+1$ (exponential) or $N=n+2$ (harmonic), \cref{thm:liouville} gives
 the Liouville measure, $E_h$ and, in the harmonic case, the modified circle
 $\rho_h=(C^2+S^2)/(1+\frac14h^2b^2)$ with $b=\beta\tr Gp$. Since $\dot p$ is a multiple of $\alpha$ (resp.\
 $\beta$), the $n-1$ linear functions $w\cdot p$ with $w\perp\alpha$ (resp.\ $w\perp\beta$) are integrals of the
@@ -989,11 +994,14 @@ linear ones do not involve the lifted variables, and $\partial E_h/\partial u=c-
 \big(1+\frac14h^2b^2\big)$ (harmonic), is not identically zero. (e) is \cref{prop:magnetic}.
 \end{proof}
 
-In each case the map is integrable in the usual sense. On a compact regular level set that is a curve, the
-preserved measure induces an invariant density, and the argument in the proof of \cref{cor:tori} shows that
-the map is conjugate to a rotation of the circle. In cases~(b) and~(e) the same argument applies to the circle
-$L/SO(2)$ and gives a skew rotation of a $2$-torus, under the hypotheses of \cref{cor:tori}. Level sets need not
-be compact: for the two-particle Toda chain they are open arcs, traversed by scattering orbits.
+In each case the map is integrable in the usual sense. Let $L$ be a compact connected component of a regular
+level set on which $\Phi_h^{\pm1}$ are defined, the density is non-zero and $\Phi_h(L)=L$; for small $h$ these
+conditions hold. If $L$ is a curve and $\Phi_h$ preserves its orientation, the induced invariant density makes
+$\Phi_h|_L$ conjugate to a rotation of the circle, as in the proof of \cref{cor:tori}. In case~(b),
+\cref{cor:tori} gives a skew rotation of a $2$-torus when $M_h\ne0$. In case~(e) the same argument applies to the
+circle $L/SO(2)$ if $q\ne0$ on $L$ and $h$ is small enough that the increment of $\arg q$ stays in
+$(-\frac\pi2,\frac\pi2)$; it again gives a skew rotation of a $2$-torus. Level sets need not be compact: for the
+two-particle Toda chain they are open arcs, traversed by scattering orbits.
 
 \begin{proposition}[the magnetic case]\label{prop:magnetic}
 Let $n=2$ and $U(y)=\frac12u_2y^2$. A charged particle in the potential $U(\lvert q\rvert^2)$ and a uniform
@@ -1068,7 +1076,7 @@ analogue of this theorem that would derive \cref{prop:magnetic} from \cref{thm:i
 
 Three observations stand out. First, every integrable map in \cref{tab:degrees} is covered by
 \cref{prop:cases}; in particular the isotropic family stays integrable with a harmonic term, in every
-dimension, and in a uniform magnetic field. Second, in our tests every lifted system whose
+dimension, and, in the plane, in a uniform magnetic field. Second, in our tests every lifted system whose
 continuous integrability rests on a hidden symmetry is chaotic after lifting: three-particle Toda, the Garnier
 system~\cite{Garnier19}, and the quartic potentials $1{:}6{:}8$ and $1{:}12{:}16$~\cite{Hietarinta87}. Third,
 the separable $1{:}6{:}1$ potential $q_1^4+6q_1^2q_2^2+q_2^4=\frac12[(q_1+q_2)^4+(q_1-q_2)^4]$ gives an
@@ -1077,21 +1085,23 @@ $y_k=q_k^2$. Kahan's method commutes with linear changes of variables, but these
 one, so the lift must respect the linear structure that makes the system integrable.
 
 \begin{conjecture}\label{conj:principle}
-Let $\dot x=f(x)$ be integrable because of a group of linear symmetries together with a reduction to one
-degree of freedom, and let $F$ be a quadratic lift that is equivariant under the symmetries, adapted to the
-reduction and has only protected constraints. If the reduced one-degree-of-freedom problem lies in a class
-on which Kahan's method is integrable (\cref{prop:pencil}, or \cref{prop:cases}(d)), then the lifted Kahan
-map is integrable.
+Let $\dot x=f(x)$ be an integrable Hamiltonian system that is not quadratic, and $F$ a quadratic lift of it with
+only protected constraints. Call an integral \emph{elementary} if it is a function of the momentum maps of
+affine symmetries and of the energies of the factors into which an affine change of variables splits the
+system. If $\dot x=f(x)$ has no complete set of elementary integrals, then the lifted Kahan map is not
+integrable.
 \end{conjecture}
 
-\Cref{prop:cases} confirms the conjecture in every case of this kind that we tested. In cases~(b) and~(e) the
-symmetry group consists of rotations and the reduction is to the radial motion; in cases~(c) and~(d) the
-reduction is an affine change of variables that splits off decoupled or free factors. What is missing for a
-proof is a reduction theory for Kahan maps with linear symmetries (\cref{sec:conclusion}).
+The four hidden-symmetry systems above satisfy the hypothesis, and their lifted maps are chaotic. The converse
+fails: the integrals of the non-symmetric quartic of \cref{sec:onedof} and of the $1{:}6{:}1$ potential with the
+lift $y_k=q_k^2$ are elementary, yet both lifted maps are chaotic. \Cref{prop:cases} shows that elementary
+integrals do survive when the lift respects the symmetry or splitting and each factor has a modified energy.
+A proof of the conjecture would need a theory of which integrals have modified versions; \cref{thm:block} gives
+sufficient conditions.
 
 The heuristic reason is that every mechanism producing exact modified integrals here is linear-algebraic:
-Kahan's method commutes with linear maps, and the modified integrals are built from quadratic invariants of
-linear flows and their speeds. A linear symmetry therefore passes to the map, while hidden integrals (Toda's
+Kahan's method commutes with affine maps, and the modified integrals are built from quadratic invariants of
+linear flows and their speeds. An affine symmetry therefore passes to the map, while hidden integrals (Toda's
 $\operatorname{tr}L^3$, Garnier's Uhlenbeck integrals, the quartic integrals of $1{:}6{:}8$) are not invariants
 of linear flows and nothing protects them. This is a statement about \emph{lifted} systems only: the
 genuinely quadratic Clebsch and $\mathfrak{so}(4)$ Manakov tops keep hidden quadratic integrals under Kahan's
@@ -1107,19 +1117,20 @@ H=\tfrac12\lvert p\rvert^2+\tfrac12\omega^2\lvert q\rvert^2+\tfrac14\lvert q\rve
 \omega=10,
 \]
 i.e.\ $u_2=\frac12$ and $u_1=\frac12\omega^2$, with $q_0=(0.8,0.1,-0.3)$, $p_0=(0,3,1)$ and $y_0$ on the
-shifted sheet. The stiff harmonic term sits in the linear part of the lift, which Kahan's method treats like
+shifted sheet. The stiff harmonic term sits in the linear part of the lift, on which Kahan's method reduces to
 the midpoint rule. We compare with three methods: the implicit midpoint rule on $(q,p)$, solved by Newton's
-method to a tolerance of $10^{-14}$; the St\"ormer--Verlet method; and Strang splitting into the exact
-harmonic flow and a kick by the quartic force (the impulse method), which is the natural explicit method for
-this problem when the stiff part is linear and known~\cite{BiesiadeckiSkeel93,GSS99,HochbruckLubich99}.
-\Cref{fig:isotropic,fig:stepsize} show the results.
+method to a tolerance of $10^{-14}$; the St\"ormer--Verlet method; and Strang splitting into half steps of the
+exact harmonic flow around a kick by the quartic force (flow--kick--flow). With the substeps in the opposite
+order (kick--flow--kick) the last is the impulse method of multiple time stepping~\cite{BiesiadeckiSkeel93,GSS99};
+both orders are natural explicit methods for this problem, whose stiff part is linear with a known
+flow~\cite{HochbruckLubich99}. We say that an orbit \emph{escapes} if its relative energy error exceeds $100$
+before $t=200$. \Cref{fig:isotropic,fig:stepsize} show the results.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{fig_isotropic.pdf}
 \caption{(a), (b) Stiff isotropic oscillator in $\R^3$, $\omega=10$. (a) Lifted Kahan at $h\omega=5$: running
-maximum of the drift of the modified invariants over $10^4$ steps (relative for $E_h$ and $M_h$, absolute for
-$c_h$). (b) Running maximum of the relative energy error. (c) Radial dynamics of an orbit with $n=2$, $u_2=1$,
+maximum of the absolute drift of the modified invariants over $10^4$ steps. (b) Running maximum of the relative energy error. (c) Radial dynamics of an orbit with $n=2$, $u_2=1$,
 $u_1=0$, $h=0.35$, $q_0=(1.2,0)$, $p_0=(0.3,0.9)$: the points
 $\big(\frac12(y_k+y_{k+1}),(y_{k+1}-y_k)/h\big)$ lie on the curve $\mathcal Q(y,y')=0$ of \cref{thm:radial}
 (solid), a deformation of the continuous radial relation $\dot y^2=4[(y-\gamma)(2e-u_2y^2)-m^2]$ with the same
@@ -1130,45 +1141,52 @@ $\gamma$, $e$, $m$ (dashed).}
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{fig_stepsize.pdf}
-\caption{Maximal relative energy error on $[0,200]$ against $h\omega$ for the stiff oscillator, on a grid of
-$1961$ step sizes ($99$ for the midpoint rule); errors are capped at $3$, and escaping orbits are drawn at the
-cap. Dotted vertical lines: integer multiples of $\pi/2$, where the impulse method resonates. Solid vertical
-line: the step size at which $D(z_0)=0$; \cref{prop:bounded} guarantees bounded lifted Kahan orbits to its
-left.}
+\caption{Maximal relative energy error on $[0,200]$ against $h\omega$ for the stiff oscillator and the initial
+value of \cref{sec:numerics}, on a grid of $1961$ step sizes ($99$ for the midpoint rule). Errors are capped at
+$3$, and escaping orbits are drawn at the cap. Dotted vertical lines: integer multiples of $\pi/2$, near which the
+splitting method resonates. Solid vertical line: the step size at which $D(z_0)=0$; \cref{prop:bounded}
+guarantees bounded lifted Kahan orbits to its left.}
 \label{fig:stepsize}
 \end{figure}
 
 \begin{itemize}[leftmargin=*]
-\item \emph{Exact invariants.} At $h\omega=5$ the modified invariants $E_h$, $M_h$ and $c_h$ drift by at most
-  $2.2\times10^{-16}$, $1.6\times10^{-14}$ and $7.7\times10^{-14}$ over $10^4$ steps, i.e.\ by round-off. The
-  true energy error stays bounded at $5.6\times10^{-2}$.
-\item \emph{Resonances.} St\"ormer--Verlet is unstable for $h\omega>2$. The impulse method is stable for most
-  step sizes, but it resonates near the integer multiples of $\pi/2$, as is well known for impulse and
-  multiple-time-stepping methods~\cite{BiesiadeckiSkeel93,GSS99}: of the $1961$ step sizes, $100$ gave errors
-  above $0.3$, $50$ of them escaping orbits, all in six narrow bands at $h\omega\approx k\pi/2$,
-  $k=1,\dots,6$. The lifted Kahan map has a single failure band, $h\omega\in[1.995,2.005]$ (three step sizes,
-  two of them escaping). Its location is predicted by the theory:
-  $D(z_0)$ changes sign at $h\omega=1.99998$, and \cref{prop:bounded} guarantees bounded orbits below that
-  value. At $h\omega\approx2$ the Cayley transform of the harmonic part, which Kahan's method shares with the
-  midpoint rule, rotates by $\pi/2$ per step (here $Y\approx1+\frac14h^2\omega^2=2$), a $1{:}4$ resonance, and
-  the midpoint rule also shows a bump there. Beyond the band, $D(z_0)<0$ and \cref{prop:bounded} no longer
-  applies, but all orbits in the scan stayed bounded. Larger amplitudes can escape there: one of $20$ random
-  orbits with $\lvert q_0\rvert=3$ and $\lvert p_0\rvert=\omega\lvert q_0\rvert$ escaped at $h\omega=10$.
-\item \emph{Accuracy and cost.} For $h\omega\le1$ the lifted Kahan map is about $75$ times more accurate than
-  St\"ormer--Verlet (median error ratio $0.013$), because, like the midpoint rule, it conserves the energy of the
-  harmonic part exactly, and about three times less accurate than the midpoint rule. For
-  $h\omega\in[2.2,10]$ the median errors are $0.081$ (lifted Kahan), $0.033$ (impulse) and $0.0029$
-  (midpoint); the error of the lifted Kahan map grows to $0.19$ at $h\omega=10$. The midpoint rule needed three
-  to four Newton iterations per step, each with a $6\times6$ linear solve, whereas the lifted Kahan step
-  (\cref{rem:explicit}) costs about as much as a St\"ormer--Verlet step and needs no splitting of the field.
+\item \emph{Exact invariants.} At $h\omega=5$ the modified invariants $E_h\approx-65.8$, $M_h$ (with
+  $\lvert M_h\rvert\approx0.38$) and $c_h$ drift by at most $1.4\times10^{-14}$, $5.3\times10^{-15}$ and
+  $7.7\times10^{-14}$ over $10^4$ steps, i.e.\ by round-off. The true energy error stays bounded at
+  $5.6\times10^{-2}$.
+\item \emph{Stability.} St\"ormer--Verlet becomes unstable near $h\omega=2$; its first escape is at
+  $h\omega=1.955$. The splitting method is stable for most step sizes but resonates near the integer multiples of
+  $\pi/2$, as is well known for impulse and multiple-time-stepping methods~\cite{BiesiadeckiSkeel93,GSS99}. Of
+  the $1961$ step sizes, $100$ gave errors above $0.3$, $50$ of them escaping orbits, all in six narrow bands at
+  $h\omega\approx k\pi/2$, $k=1,\dots,6$; the kick--flow--kick order gives similar bands ($93$ step sizes, $34$
+  escapes). For this initial value the lifted Kahan map failed only for $h\omega\in[1.995,2.005]$, with an error
+  of $0.48$ at $h\omega=1.995$ and escapes at $2.000$ and $2.005$. This band sits where $D(z_0)$ changes sign, at
+  $h\omega=1.99998$, and \cref{prop:bounded} guarantees bounded orbits below it. There the Cayley transform of the
+  harmonic part, which Kahan's method shares with the midpoint rule, rotates by $\pi/2$ per step (here
+  $Y\approx1+\frac14h^2\omega^2=2$), a $1{:}4$ resonance, and the midpoint rule also shows a bump. For
+  $h\omega>2$, $D(z_0)<0$, \cref{prop:bounded} does not apply, and stability depends on the amplitude. Of $20$
+  random orbits with $\lvert q_0\rvert=A$ and $\lvert p_0\rvert=\omega A$, none escaped at $h\omega=2.5$, $5$ or
+  $10$ when $A\le1$. For $A=2$ all escaped at $h\omega=10$ and none at $h\omega\le5$, and for $A=3$, $8$, $14$
+  and $20$ escaped at $h\omega=2.5$, $5$ and $10$. All of them stayed bounded at $h\omega=1.5$. Large amplitudes
+  are hard for the splitting method too: from the same initial values with $A=3$, it lost $11$, $7$ and $0$
+  orbits at $h\omega=2.5$, $5$ and $10$, and none for $A\le2$.
+\item \emph{Accuracy and cost.} For $h\omega\le1$ the lifted Kahan map is about $80$ times more accurate than
+  St\"ormer--Verlet (median error ratio $0.013$), because on the stiff linear part it reduces to the midpoint
+  rule, which has no energy error for a harmonic oscillator. It is about three times less accurate than the
+  midpoint rule. For $h\omega\in[2.2,10]$ the median errors over non-escaping runs are $0.081$ (lifted Kahan),
+  $0.033$ (splitting; $0.027$ in the kick--flow--kick order) and $0.0029$ (midpoint), and the error of the lifted
+  Kahan map grows to $0.19$ at $h\omega=10$. The midpoint rule needed three to four Newton iterations per step,
+  each with a $6\times6$ linear solve, whereas the lifted Kahan step (\cref{rem:explicit}) costs about as much as a
+  St\"ormer--Verlet step and needs no splitting of the field.
 \end{itemize}
 
-So the lifted Kahan map is an explicit-cost, symmetric, integrable integrator that keeps exact modified
-energy and angular momenta and invariant tori at step sizes where the standard explicit method fails.
-Unlike St\"ormer--Verlet it stays stable beyond $h\omega=2$, and unlike the impulse method it has a single
-failure band, whose location is predicted by the sign of $D(z_0)$. It is less accurate than the fully implicit
-midpoint rule and, between its resonances, than the impulse method, which needs the stiff part to be linear and
-its flow known. For the exponential and
+So the lifted Kahan map is an explicit-cost, symmetric, integrable integrator with exact modified energy and
+angular momenta. Its orbits are guaranteed to be bounded in the step-size range of \cref{prop:bounded}, which
+for this stiff problem ends at the St\"ormer--Verlet limit, and there it is far more accurate than
+St\"ormer--Verlet. Beyond that range it has no resonance bands, and small-amplitude orbits stay bounded up to
+$h\omega=10$, but larger amplitudes can escape. The splitting method is more accurate there except near its
+resonances, and the fully implicit midpoint rule is the most accurate and robust of the methods compared, at a
+higher cost per step. For the exponential and
 trigonometric class of \cref{thm:liouville}, stiffness that enters through the lifted nonlinear variables
 limits the step size: for a stiff rotor chain the lifted Kahan method conserved its modified energy and stayed
 stable up to time $600$ for $h\omega\le2$, and blew up beyond.
@@ -1243,8 +1261,8 @@ statements as exact identities between rational functions, with the step size an
 \item \texttt{isotropic\_radial\_check.py} verifies \cref{thm:radial}. In the variables of its proof, with
   $\lvert\eta\rvert^2$ and $\lvert\xi\rvert^2$ eliminated as described there, it checks that the numerator of
   $E_h(z)-e$ is a constant multiple of $D(z)\,\mathcal Q(y,y')$; that $E_h=e$ is linear in $\lvert q\rvert^2$
-  with root $\mathcal A(y)$, which gives $Q_4$; and the limit in part~(c). It also checks numerically, along an
-  orbit with $n=3$ and $u_1\ne0$, that $\mathcal Q(y_k,y_{k+1})=0$ and $b_k^2=Q_4(y_k)$ to round-off, and that
+  with root $\mathcal A(y)$, which gives $\mathcal R$; and the limit in part~(c). It also checks numerically, along an
+  orbit with $n=3$, $u_1\ne0$, that $\mathcal Q(y_k,y_{k+1})=0$ and $b_k^2=\mathcal R(y_k)$ to round-off, and that
   $(y_k,b_k)$ are samples of the elliptic solution at equal steps $\tau$.
 \item \texttt{magnetic\_proof.py} (a few seconds, using sparse polynomial arithmetic) verifies
   \cref{prop:magnetic} on the slice $q_2=0$: the closed form satisfies Kahan's equations; the Larmor
