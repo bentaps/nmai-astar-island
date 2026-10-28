@@ -76,3 +76,9 @@ den = 1 + hs**2*qs**2/2
 ch = ys - qs**2 + hs**2/4*ps**2
 Hh = (ps**2/2 + ys**2/4)/den
 print(f"[4] V = q^4/4: P = (1 + h^2 q^2/2)(3 + h^2 c_h/2 - h^4 Ht_h/4): {sp.simplify(P4 - den*(3 + hs**2*ch/2 - hs**4*Hh/4)) == 0}")
+# the h^2 and h^6 terms as invariants of the Jacobian: h^2 T1 = h^2 sigma_2(F')/2, h^6 (4a4 q + a3)^2 p^2/16 = h^6 det(F')^2/64
+Fq = sp.Matrix([ps, -(A4*4*qs*ys + 2*A3*qs**2 + 2*A2*qs + A3*ys + A1), 2*qs*ps]); Jq = Fq.jacobian([qs, ps, ys])
+sig2 = sum(Jq.extract([i, j], [i, j]).det() for i in range(3) for j in range(i + 1, 3))
+T1e = 4*A4*qs**2 + 2*A4*ys + 3*A3*qs + A2
+print(f"[5] sigma_2(F') = 2 T1 and det(F')^2/64 = (4a4 q + a3)^2 p^2/16: "
+      f"{sp.expand(sig2 - 2*T1e) == 0 and sp.expand(Jq.det()**2/64 - (4*A4*qs + A3)**2*ps**2/16) == 0}")

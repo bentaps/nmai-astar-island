@@ -590,7 +590,10 @@ We found $P$ by the exact search of \cref{app:exact}, in an ansatz that is invar
 symmetries of the family of fields; within this ansatz the density is unique up to a factor that depends only on
 $h$ and the coefficients. For
 $V=\frac14q^4$ it factorises as $P=\big(1+\frac12h^2q^2\big)\big(3+\frac12h^2c_h-\frac14h^4\tilde H_h\big)$, where
-$1+\frac12h^2q^2$ is the density of \cref{ex:quartic} and $c_h$, $\tilde H_h$ are its integrals.
+$1+\frac12h^2q^2$ is the density of \cref{ex:quartic} and $c_h$, $\tilde H_h$ are its integrals. Two of the four
+terms of $P$ are invariants of the Jacobian matrix: $h^2T_1=\frac12h^2\sigma_2\big(F'(z)\big)$, where $\sigma_2$ is the
+sum of the principal $2\times2$ minors, and the last term is $\frac1{64}h^6\big(\det F'(z)\big)^2$. This suggests a
+closed form for general three-dimensional Nambu fields (\cref{sec:conclusion}).
 
 \begin{corollary}\label{cor:area}
 For every potential of degree at most four, the back-substituted method of \cref{thm:sheet} for the Nambu lift
@@ -897,7 +900,8 @@ integrable.
 \begin{table}[t]
 \centering\small
 \caption{Degree growth $d_1,d_2,\dots$ of lifted Kahan maps (exact, modulo a prime, along a random line).
-Polynomial (here linear or quadratic) growth indicates integrability, exponential growth chaos. ``Source'' names the origin of the
+Polynomial (here linear or quadratic) growth indicates integrability, exponential growth chaos. The maps in the
+upper half are proved integrable in \cref{prop:cases}. ``Source'' names the origin of the
 continuous system's integrability. Lifts use $y=\lvert q\rvert^2$ for isotropic systems, $y_k=q_k^2$ (or the
 products noted) for quartic potentials, and exponential or harmonic variables otherwise.}
 \label{tab:degrees}
@@ -1220,7 +1224,7 @@ statements as exact identities between rational functions, with the step size an
 \begin{enumerate}[leftmargin=*]
 \item \texttt{quartic\_density\_proof.py} (under a second) verifies \cref{prop:quarticdensity}: the polynomial
   form of the measure identity described in its proof, with $h$ and $a_1,\dots,a_4$ symbolic; the values on the
-  sheet; and the factorisation for $V=\frac14q^4$.
+  sheet; the factorisation for $V=\frac14q^4$; and the two expressions through $\sigma_2(F')$ and $\det F'$.
 \item \texttt{isotropic\_proof.py} (about $8$ minutes) first checks that the closed form of \cref{rem:explicit}
   satisfies Kahan's equations identically for $n=2,3$, so that it \emph{is} Kahan's map. It then checks the
   conservation of $c_h$, $M_h$ and $E_h$ and the measure identity $P_n(z')\det(\Id-\frac h2F'(z))=\det(\Id+\frac
